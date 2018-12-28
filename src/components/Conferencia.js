@@ -13,7 +13,7 @@ class Conferencia extends Component {
     }
     return (
       <div className="container-fluid ">
-        <div className="after-box">
+        <div className="after-box encabezado">
           <div className="box1"><img src={evento1} className="banner" /></div>
             <div className="box2">
               <h1>Conferencia 1</h1>
@@ -35,19 +35,21 @@ class Conferencia extends Component {
                 </div>
             </div>
         </div>
+
         <div className="fondo">
           <div className="card carta1" >
             <YouTube
               videoId="MYVBgYquVCY"
               opts={opts}
             />
-
           </div>
+
           <div className="card carta2" >
             <iframe src="https://onedrive.live.com/embed?cid=039C20F0AE16508F&resid=39C20F0AE16508F%21662&authkey=AEESLZ3Jg1dlV2c&em=2" width="402" height="400" frameborder="0" scrolling="no"></iframe>
           </div>
+
           <div className="card carta3" >
-            <img className="card-img-top" src={evento1} style={{height:"400px"}}/>
+            <img className="" src={evento1} style={{height:"400px"}}/>
           </div>
 
         </div>

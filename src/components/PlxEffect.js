@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Parallax, Background } from 'react-parallax';
 import '../css/PlxEffect.css';
+import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
 class Plx extends Component {
   render() {
     return(
@@ -22,7 +23,7 @@ class Plx extends Component {
             {this.props.cuerpo}
           </h4>
            <div style={{ height: this.props.size }} />
-           <button type="button" class="btn btn-success boton">Mas Informacion</button>
+           <Link to="/Home/Conferencia" class="btn btn-success boton">Ver</Link>
         </Parallax>
     </div>
   );

@@ -6,8 +6,8 @@ import Agenda from"./components/Agenda.js";
 import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
 import Nvbar from"./components/Nvbar.js";
+import Conferencia from"./components/Conferencia.js";
 import createHistory from 'history/createBrowserHistory'
-
 import { BrowserRouter, Route, Switch, Redirect, Link} from 'react-router-dom';
 import "./js/MuroFuncion.js";
 
@@ -47,6 +47,7 @@ class Home extends Component {
       <Route exact path="/Home" component={Muro} />
       <Route path="/Home/Perfil" component={Perfil} />
       <Route path="/Home/Agenda" component={Agenda} />
+      <Route exact path="/Home/Conferencia" component={Conferencia}/>
     </Switch>
 </div>
     );
