@@ -2,10 +2,7 @@
   import "../../node_modules/bootstrap/dist/css/bootstrap.css";
   import "../../node_modules/bootstrap/dist/js/bootstrap.js";
   import "../css/Registro.css";
-  import Login from './Login.js';
   import '../../node_modules/history/umd/history.js';
-
-  import ReactDOM from 'react-dom';
   class Registro extends Component {
 
   state ={

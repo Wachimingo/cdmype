@@ -23,7 +23,7 @@ class Plx extends Component {
             {this.props.cuerpo}
           </h4>
            <div style={{ height: this.props.size }} />
-           <Link to="/Home/Conferencia" class="btn btn-success boton">Ver</Link>
+           <Link to="/Home/Conferencia" class="btn btn-info boton float-right">Ver</Link>
         </Parallax>
     </div>
   );

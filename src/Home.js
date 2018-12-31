@@ -5,16 +5,14 @@ import "./css/SideBar.css";
 import Agenda from"./components/Agenda.js";
 import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
-import Nvbar from"./components/Nvbar.js";
 import Conferencia from"./components/Conferencia.js";
-import createHistory from 'history/createBrowserHistory'
-import { BrowserRouter, Route, Switch, Redirect, Link} from 'react-router-dom';
+import {Route, Switch, Link} from 'react-router-dom';
 import "./js/MuroFuncion.js";
+import $ from 'jquery';
 
 class Home extends Component {
 
   render() {
-
     return (
     <div className="container-fluid ">
 
