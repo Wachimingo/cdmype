@@ -4,26 +4,32 @@
 }
 
 .Ancho{
-height: 500px;
+
 width: 100%;
 margin-left: -0%;
 margin: 0px;
 padding: 0px;
+overflow: auto;
+display:inline-block;
+align-content: center;
 }
 .txtTitulo{
   color: white;
-  padding-left: 10%;
+  padding-left: 5%;
   padding-top: 5%;
   padding-right: 20%;
 }
-
-.txtCuerpo{
+#cuerpo{
+   width: 95%;
+   height: 90%;
+   overflow: hidden;
+   font-size: 1em;
+   margin-left: 2%;
+}
+.texto{
+  font-size: 150%;
   color: white;
-  padding-left: 15%;
-  padding-top: 5%;
-  padding-right: 20%;
 }
-
 .fecha{
   font-size: 24px;
   height: 150px;
@@ -38,6 +44,8 @@ padding: 0px;
 }
 
 .boton{
-  margin-top: 15%;
-  margin-left: 75%;
+  font-size: 25px;
+  width: 30%;
+  margin-top: 0%;
+  margin-right: 5%;
 }

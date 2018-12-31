@@ -5,25 +5,22 @@ import "./css/SideBar.css";
 import Agenda from"./components/Agenda.js";
 import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
-import Nvbar from"./components/Nvbar.js";
 import Conferencia from"./components/Conferencia.js";
-import createHistory from 'history/createBrowserHistory'
-import { BrowserRouter, Route, Switch, Redirect, Link} from 'react-router-dom';
+import Patrocinadores from"./components/Patrocinadores.js";
+import {Route, Switch, Link} from 'react-router-dom';
 import "./js/MuroFuncion.js";
+import $ from 'jquery';
 
 class Home extends Component {
 
   render() {
-
     return (
     <div className="container-fluid ">
 
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark d">
         <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
       <Link to={'/Home'} className="navbar-brand link Items" >CONAMYPE</Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
+      <span className="fa fa-arrow-up arrow">__Subir fotos</span>
 
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
@@ -40,6 +37,7 @@ class Home extends Component {
             <div className="list-group outer panel">
                 <Link to={'/Home/Perfil'} className="list-group-item a collapsed "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Perfil</span> </Link>
                 <Link to={'/Home/Agenda'} className="list-group-item b collapsed"   data-parent="#sidebar"><i className="fa fa-calendar-o"></i> <span className="hidden-sm-down">Programa</span></Link>
+                <Link to={'/Home/Patrocinadores'} className="list-group-item c collapsed"   data-parent="#sidebar"><i className="fa fa-gift"></i> <span className="hidden-sm-down">Patrocinadores</span></Link>
             </div>
        </div>
     </div>

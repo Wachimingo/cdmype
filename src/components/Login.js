@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/login.css";
-import Home from '../Home.js';
-import Registro from './RegistrarUsuario.js';
 import '../../node_modules/history/umd/history.js';
-import { BrowserRouter, Route, Switch, Redirect, Link} from 'react-router-dom';
-import ReactDOM from 'react-dom';
-
-
+import { Link} from 'react-router-dom';
 class Login extends Component {
 
   onSignIn(event) {

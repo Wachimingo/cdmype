@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Parallax, Background } from 'react-parallax';
 import '../css/PlxEffect.css';
-import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
+import $ from 'jquery';
 class Plx extends Component {
+
   render() {
+    $(function() {
+    while( $('#cuerpo p').height() > $('#cuerpo').height() ) {
+        $('#cuerpo p').css('font-size', (parseInt($('#cuerpo p').css('font-size')) - 1) + "px" );
+    }
+});
     return(
     <div >
     <div className="fecha">
@@ -19,11 +26,13 @@ class Plx extends Component {
           <h1 className="txtTitulo">
               {this.props.titulo}
           </h1>
-          <h4 className="txtCuerpo">
-            {this.props.cuerpo}
-          </h4>
+          <div  id="cuerpo">
+            <p className="texto">
+              {this.props.cuerpo}
+            </p>
+          </div>
            <div style={{ height: this.props.size }} />
-           <Link to="/Home/Conferencia" class="btn btn-success boton">Ver</Link>
+           <Link to="/Home/Conferencia" class="btn btn-info boton float-right">Ver</Link>
         </Parallax>
     </div>
   );
