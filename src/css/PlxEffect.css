@@ -46,6 +46,10 @@ align-content: center;
 .boton{
   font-size: 25px;
   width: 30%;
+<<<<<<< HEAD
   margin-top: 0%;
+=======
+  margin-top: 20%;
+>>>>>>> e2e7ba9af33173bfae5e7656c25e46ad7c6a21f8
   margin-right: 5%;
 }

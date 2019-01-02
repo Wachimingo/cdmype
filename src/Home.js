@@ -6,7 +6,10 @@ import Agenda from"./components/Agenda.js";
 import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
 import Conferencia from"./components/Conferencia.js";
+<<<<<<< HEAD
 import Patrocinadores from"./components/Patrocinadores.js";
+=======
+>>>>>>> e2e7ba9af33173bfae5e7656c25e46ad7c6a21f8
 import {Route, Switch, Link} from 'react-router-dom';
 import "./js/MuroFuncion.js";
 import $ from 'jquery';
