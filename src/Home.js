@@ -45,6 +45,7 @@ class Home extends Component {
       <Route exact path="/Home" component={Muro} />
       <Route path="/Home/Perfil" component={Perfil} />
       <Route path="/Home/Agenda" component={Agenda} />
+      <Route path="/Home/Patrocinadores" component={Patrocinadores} />
       <Route exact path="/Home/Conferencia" component={Conferencia}/>
     </Switch>
 </div>

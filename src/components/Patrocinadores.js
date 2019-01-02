@@ -1,23 +1,53 @@
 import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
-import evento1 from '../img/agenda/evento1.png';
-import evento2 from '../img/agenda/evento2.png';
-import Plx from "./PlxEffect.js";
-class Agenda extends Component {
+import Cartas from "./Cartas.js";
+class Patrocinadores extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      patrocinadorOro: [
+        {id: 1,ruta:'americanexpress.png', nombre:'American Express', industria:'Banca', descripcion:'Banco Multinacional'},
+        {id:2,ruta:'ford.png', nombre:'Ford', industria:'Automotriz', descripcion:'Fabrica de carros'},
+        {id:3,ruta:'ibm.png',nombre:'IBM', industria:'Electronica', descripcion:'Coporacion de soluciones tecnologicas'},
+      ],
+      patrocinadorPlata: [
+        {id: 1,ruta:'americanexpress.png',},
+        {id:2,ruta:'ford.png'},
+        {id:3,ruta:'ibm.png'},
+        {id:4,ruta:'sky.png'},
+      ],
+      patrocinadorBronce: [
+        {id: 1,ruta:'americanexpress.png'},
+        {id:2,ruta:'ford.png'},
+        {id:3,ruta:'ibm.png'},
+        {id:4,ruta:'sky.png'},
+      ]
+    }
+  }
+
   render() {
-
     return (
-      <div className="container-fluid ">
-          <div style={{height: "50px"}}/>
-          <Plx titulo="Cena Grupal" cuerpo = "Un texto es una composición de signos codificados en un sistema de escritura que forma una unidad de sentido. También es una composición de caracteres imprimibles generados por un algoritmo de cifrado que, aunque no tienen sentido para cualquier persona, sí puede ser descifrado por su destinatario original. " img = {evento1} fecha="21 de Enenero"/>
-
-          <Plx titulo="Planeacion" cuerpo = "jgsaduigfsduiugadiufs" img = {evento2} fecha="1 de Febrero"/>
-
-          <div style={{height: "150px"}}/>
+      <div>
+      <div className="cabezera"><h1 className="">Nuestros Patrocinadores</h1></div>
+      <div className="oro"><h1 className="titulo">Patrocinadores de oro</h1>
+        {this.state.patrocinadorOro.map((item, i) =>
+          <Cartas item={item} key={i} />
+        )}
+      </div>
+      <div className="plata"><h1 className="titulo">Patrocinadores de plata</h1>
+        {this.state.patrocinadorPlata.map((item, i) =>
+          <Cartas item={item} key={i} />
+        )}
+      </div>
+      <div className="bronce"><h1 className="titulo">Patrocinadores de bronce</h1>
+        {this.state.patrocinadorBronce.map((item, i) =>
+          <Cartas item={item} key={i} />
+        )}
+      </div>
       </div>
     );
   }
 }
 
-export default Agenda;
+export default Patrocinadores;
