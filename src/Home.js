@@ -6,16 +6,26 @@ import Agenda from"./components/Agenda.js";
 import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
 import Conferencia from"./components/Conferencia.js";
-<<<<<<< HEAD
 import Patrocinadores from"./components/Patrocinadores.js";
-=======
->>>>>>> e2e7ba9af33173bfae5e7656c25e46ad7c6a21f8
+import Post from"./components/ModalWindowPost.js";
 import {Route, Switch, Link} from 'react-router-dom';
 import "./js/MuroFuncion.js";
 import $ from 'jquery';
 
 class Home extends Component {
+  onFileSelected(event) {
+  var selectedFile = event.target.files[0];
+  var reader = new FileReader();
 
+  var imgtag = document.getElementById("myimage");
+  imgtag.title = selectedFile.name;
+
+  reader.onload = function(event) {
+    imgtag.src = event.target.result;
+  };
+
+  reader.readAsDataURL(selectedFile);
+  }
   render() {
     return (
     <div className="container-fluid ">
@@ -23,7 +33,8 @@ class Home extends Component {
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark d">
         <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
       <Link to={'/Home'} className="navbar-brand link Items" >CONAMYPE</Link>
-      <span className="fa fa-arrow-up arrow">__Subir fotos</span>
+      <label htmlFor="bt" className="fa fa-arrow-up arrow" >Subir fotos</label>
+      <button type="button" id="bt" data-toggle="modal" data-target="#post" style={{display: "none"}}/>
 
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
@@ -34,7 +45,22 @@ class Home extends Component {
     </ul>
     </div>
     </nav>
-
+    {/*Modal window para hacer una publicacion*/}
+    <div className="modal fade" id="post" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Subir nueva publicacion</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        <Post/>
+      </div>
+    </div>
+  </div>
+</div>
     <div className="row">
         <div className="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in " id="sidebar">
             <div className="list-group outer panel">

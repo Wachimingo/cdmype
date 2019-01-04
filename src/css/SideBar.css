@@ -29,13 +29,13 @@
 {
     padding-right: 4.3%;
     z-index: 1;
-    padding-right: 90.5px;
+    padding-right: 94px;
 }
 .b
 {
     margin-top: 3.7%;
     z-index: 1;
-    padding-right: 53px;
+    padding-right: 56px;
 }
 .c
 {
@@ -112,13 +112,11 @@
     .a
     {
         z-index: 1;
-        padding-right: 90.5px;
     }
     .b
     {
         margin-top: 50px;
         z-index: 1;
-        padding-right: 53px;
     }
     .c
     {

@@ -20,6 +20,7 @@
     event.preventDefault();
     this.props.history.push('/')
   }
+
   onFileSelected(event) {
   var selectedFile = event.target.files[0];
   var reader = new FileReader();

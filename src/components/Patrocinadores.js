@@ -30,20 +30,27 @@ class Patrocinadores extends Component {
     return (
       <div>
       <div className="cabezera"><h1 className="">Nuestros Patrocinadores</h1></div>
-      <div className="oro"><h1 className="titulo">Patrocinadores de oro</h1>
-        {this.state.patrocinadorOro.map((item, i) =>
-          <Cartas item={item} key={i} />
-        )}
+
+        <div className="oro"><h1 className="titulo">Patrocinadores de oro</h1>
+        <div className="contenedor">
+          {this.state.patrocinadorOro.map((item, i) =>
+            <Cartas item={item} key={i} />
+          )}
+        </div>
       </div>
-      <div className="plata"><h1 className="titulo">Patrocinadores de plata</h1>
-        {this.state.patrocinadorPlata.map((item, i) =>
-          <Cartas item={item} key={i} />
-        )}
+        <div className="plata"><h1 className="titulo">Patrocinadores de plata</h1>
+        <div className="contenedor">
+          {this.state.patrocinadorPlata.map((item, i) =>
+            <Cartas item={item} key={i} />
+          )}
+        </div>
       </div>
       <div className="bronce"><h1 className="titulo">Patrocinadores de bronce</h1>
+      <div className="contenedor">
         {this.state.patrocinadorBronce.map((item, i) =>
           <Cartas item={item} key={i} />
         )}
+      </div>
       </div>
       </div>
     );
