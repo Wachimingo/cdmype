@@ -4,9 +4,13 @@ import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import evento1 from '../img/agenda/evento1.png';
 import evento2 from '../img/agenda/evento2.png';
 import Plx from "./PlxEffect.js";
+import $ from 'jquery';
 class Agenda extends Component {
   render() {
-
+    $(window).on('load',function(){
+            document.body.style.backgroundImage = null;
+            document.body.style.background = "white";
+    });
     return (
       <div className="container-fluid ">
           <div style={{height: "50px"}}/>

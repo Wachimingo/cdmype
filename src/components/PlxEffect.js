@@ -6,16 +6,11 @@ import $ from 'jquery';
 class Plx extends Component {
 
   render() {
-    $(function() {
-    while( $('#cuerpo p').height() > $('#cuerpo').height() ) {
-        $('#cuerpo p').css('font-size', (parseInt($('#cuerpo p').css('font-size')) - 1) + "px" );
-    }
-});
     return(
-    <div >
-    <div className="fecha">
+    <div className="cc">
+      <div className="fecha">
         <span className="fecha">{this.props.fecha}</span>
-    </div>
+      </div>
         <Parallax
             className="Ancho"
             blur={0}
@@ -32,7 +27,7 @@ class Plx extends Component {
             </p>
           </div>
            <div style={{ height: this.props.size }} />
-           <Link to="/Home/Conferencia" class="btn btn-info boton float-right">Ver</Link>
+           <Link to="/Home/Conferencia" className="btn btn-info boton float-right">Ver</Link>
         </Parallax>
     </div>
   );

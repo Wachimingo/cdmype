@@ -2,158 +2,119 @@ import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/Perfil.css";
+import $ from 'jquery';
 class Perfil extends Component {
-  render() {
+  constructor(props){
+    super(props);
+    this.state ={
+      profile: [],
 
+    }
+  }
+  componentDidMount(){
+   fetch("http://localhost/cdmypephp/getprofile.php",{ mode:'cors'})
+      .then(response => response.json())
+      .then(data => this.setState({profile: data}));
+  }
+  render() {
+    $(window).on('load',function(){
+            document.body.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Herbstlandschaft_%28am_Rebhang%29.jpg/800px-Herbstlandschaft_%28am_Rebhang%29.jpg')";
+    });
+    const {profile} =  this.state;
     return (
-      <div class="container emp-profile r">
+      <div className="container emp-profile r1">
+      { profile.map((info,key) =>
         <form method="post">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="profile-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                        <div class="file btn btn-lg btn-primary">
+            <div className="row">
+                <div className="col-md-4">
+                    <div className="profile-img">
+                        <img src={"localhost/img/"+info.Cd_Uimg_profile} alt=""/>
+                        <div className="file btn btn-lg btn-primary">
                             Change Photo
                             <input type="file" name="file"/>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="profile-head">
+                <div className="col-md-6">
+                    <div className="profile-head">
                                 <h5>
-                                    Kshiti Ghelani
+                                    {info.Cd_UnameF + info.Cd_UlnameF }
                                 </h5>
                                 <h6>
-                                    Web Developer and Designer
+                                {/*Mostrar el puesto que tiene la persona*/}
+                                    {info.Cd_Upuesto}
                                 </h6>
-                                <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        <ul className="nav nav-tabs" id="myTab" role="tablist">
+                            <li className="nav-item">
+                                <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Acerca de: {info.Cd_UnameF}</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                            <li className="nav-item">
+                                <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">CV</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                <div className="col-md-2">
+                    <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="profile-work">
-                        <p>WORK LINK</p>
-                        <a >Website Link</a><br/>
-                        <a >Bootsnipp Profile</a><br/>
-                        <a >Bootply Profile</a>
-                        <p>SKILLS</p>
-                        <a >Web Designer</a><br/>
-                        <a >Web Developer</a><br/>
-                        <a >WordPress</a><br/>
-                        <a >WooCommerce</a><br/>
-                        <a >PHP, .Net</a><br/>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="tab-content profile-tab" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>User Id</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Kshiti123</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Name</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Kshiti Ghelani</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Email</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>kshitighelani@gmail.com</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Phone</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>123 456 7890</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Profession</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Web Developer and Designer</p>
-                                        </div>
-                                    </div>
+            <div className="row">
+                <div className="col-md-4">
+
+                <div className="col-md-8">
+                    <div className="tab-content profile-tab" id="myTabContent">
+                        <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                          <div className="row">
+                              <div className="col-md-6">
+                                  <label>Nombre</label>
+                              </div>
+                              <div className="col-md-6">
+                                  <p>{info.Cd_UnameF +" "+ info.Cd_UnameS+" "+info.Cd_UlnameF+" "+info.Cd_UlnameS}</p>
+                              </div>
+                          </div>
+                          <div className="row">
+                              <div className="col-md-6">
+                                  <label>Correo</label>
+                              </div>
+                              <div className="col-md-6">
+                                  <p>{info.Cd_Umail}</p>
+                              </div>
+                          </div>
+                          <div className="row">
+                              <div className="col-md-6">
+                                  <label>Telefono</label>
+                              </div>
+                              <div className="col-md-6">
+                                  <p>{info.Cd_UnumTel}</p>
+                              </div>
+                          </div>
+                          <div className="row">
+                              <div className="col-md-6">
+                                  <label>Puesto</label>
+                              </div>
+                              <div className="col-md-6">
+                                  <p>{info.Cd_Upuesto}</p>
+                              </div>
+                          </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Experience</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Expert</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Hourly Rate</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>10$/hr</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Total Projects</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>230</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>English Level</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>Expert</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Availability</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>6 months</p>
-                                        </div>
-                                    </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Your Bio</label><br/>
-                                    <p>Your detail description</p>
+                        <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label>Experiencia</label>
+                                </div>
+                                <div className="col-md-6">
+                                    <p>{info.Cd_Uexperiencia}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
         </form>
+      )}
     </div>
-    );
+  );
   }
 }
 

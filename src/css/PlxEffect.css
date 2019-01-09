@@ -1,17 +1,19 @@
-*{
+html,body{
     margin: 0;
     padding: 0;
 }
-
+.cc{
+  width: 98.5vw;
+  margin-left: -28px;
+}
 .Ancho{
-
-width: 100%;
-margin-left: -0%;
-margin: 0px;
-padding: 0px;
-overflow: auto;
-display:inline-block;
-align-content: center;
+  width: 100%;
+  margin-left: -0%;
+  margin: 0px;
+  padding: 0px;
+  overflow: auto;
+  display:inline-block;
+  align-content: center;
 }
 .txtTitulo{
   color: white;
@@ -46,10 +48,7 @@ align-content: center;
 .boton{
   font-size: 25px;
   width: 30%;
-<<<<<<< HEAD
   margin-top: 0%;
-=======
   margin-top: 20%;
->>>>>>> e2e7ba9af33173bfae5e7656c25e46ad7c6a21f8
   margin-right: 5%;
 }

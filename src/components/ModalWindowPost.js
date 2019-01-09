@@ -6,7 +6,6 @@ import $ from 'jquery';
 class Post extends Component {
 
   render() {
-    var event = 1;
     $(document).ready(function() {
         document.getElementById('pro-image').addEventListener('change', readImage, false);
         $(document).on('click', '.image-cancel', function() {
@@ -46,39 +45,42 @@ class Post extends Component {
         }
     }
     window.onload=function(){
-      const url = './php/process.php';
-      const form = document.getElementById('frm');
-
+      var form = $("#frm")
     // Listen for form submit
-    form.addEventListener('submit', e => {
+    form.submit(function(e) {
         e.preventDefault();
+        var formData = new FormData(form[0]);
         const files = document.querySelector('[type=file]').files;
-        const formData = new FormData();
         for (let i = 0; i < files.length; i++) {
           let file = files[i];
           formData.append('files[]', file);
         }
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            console.log(response);
-        });
+        formData.append("descripcion", "esta es una descripcion");
+        $.ajax({
+                url: 'http://localhost/cdmypephp/process.php',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function(d) {
+                    alert(d);
+                }
+            });
     });
 }
     return (
     <div className="container-fluid ">
-      <form id="frm">
+      <form id="frm" method="POST" encType="multipart/form-data">
         <label htmlFor="comment">Descripcion:</label>
-        <textarea className="form-control" rows="5" id="comment"></textarea>
+        <textarea className="form-control" rows="5" id="comment" form="frm" maxLength="200"></textarea>
         <div className="images">
           <label htmlFor="pro-image" className="btn btn-info">Agregar Fotos</label>
         </div>
-        <input type="file" id="pro-image" name="files[]"  className="form-control" multiple style={{display:"none"}}/>
+        <input type="file" id="pro-image" name="Files[]"  className="form-control" multiple  style={{display:"none"}}/>
           <div className="preview-images-zone">
 
           </div>
-          <button type="submit" className="btn btn-primary float-left">Publicar</button>
+          <button type="submit" className="btn btn-primary float-left" value="Upload File">Publicar</button>
       </form>
     </div>
 
