@@ -2,16 +2,53 @@ import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/login.css";
-import '../../node_modules/history/umd/history.js';
-import { Link} from 'react-router-dom';
+import { Link, Redirect,BrowserRouter, withRouter} from 'react-router-dom';
+import $ from 'jquery';
 class Login extends Component {
-
-  onSignIn(event) {
-    event.preventDefault();
-    this.props.history.push('/Home')
+constructor(props){
+  super(props);
+  this.state = {
+    info: [],
+    usuario: '',
+    clave: '',
+    validado: true,
   }
-  render() {
+}
+inLogin(e){
+  e.preventDefault();
+  var form = $('#login');
+  var formData = new FormData(form[0]);
+  $.ajax({
+      url: "http://localhost/cdmypephp/validarLogin.php",
+      data: formData,
+      type:'POST',
+      contentType: false,
+      processData: false,
+      success: data => this.validarLogin(data)
+  });
+}
+validarLogin(data){
+  var data = JSON.parse(data);
+  console.log(data);
+  this.setState({info: data});
+  if (this.state.info[5] === this.state.usuario && this.state.info[7] === this.state.clave) {
+    this.props.history.push('/Home');
+  }
+  else if (!data[0]) {
+     this.setState({validado: false});
+     this.aviso();
+  }
+}
+aviso(){
+  if (this.state.validado) {
+    return(null);
+  }else{
+  return(
+    <h3>Usuario o clave incorrecta</h3>
+  );}
+}
 
+  render() {
     return (
 <div className = "bg">
       <div className="container">
@@ -22,22 +59,22 @@ class Login extends Component {
               <div className="d-flex justify-content-end social_icon">
                 <span><i className="fa fa-facebook-square"></i></span>
                 <span><i className="fa  fa-google-plus-square"></i></span>
-
               </div>
+              {this.aviso()}
             </div>
             <div className="card-body">
-              <form onSubmit={this.onSignIn.bind(this)}>
+              <form name="login" id="login" method="POST" onSubmit={this.inLogin.bind(this)}>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text"><i className="fa fa-user-md"></i></span>
                   </div>
-                  <input type="text" className="form-control" placeholder="Nombre de usuario"/>
+                  <input type="text" className="form-control" placeholder="Nombre de usuario" id="usuario" name="usuario" onChange={e=>this.setState({usuario: e.target.value})}/>
                 </div>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text"><i className="fa fa-lock"></i></span>
                   </div>
-                  <input type="password" className="form-control" placeholder="Contraseña"/>
+                  <input type="password" className="form-control" placeholder="Contraseña" id="clave" name="clave" onChange={e => this.setState({clave: e.target.value})}/>
                 </div>
                 <div className="row align-items-center remember">
                   <input type="checkbox"/>Recuerdame
@@ -63,4 +100,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

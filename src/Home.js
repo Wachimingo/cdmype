@@ -27,6 +27,10 @@ class Home extends Component {
   reader.readAsDataURL(selectedFile);
   }
   render() {
+    $(window).on('load',function(){
+      document.body.style.backgroundImage = null;
+      document.body.style.background = "white";
+    });
     return (
     <div className="container-fluid ">
 
