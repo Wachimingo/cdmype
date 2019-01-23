@@ -48,24 +48,20 @@ onRegister(e) {
 }
 
 componentDidMount(){
-{/*Fecth para la lista de cdmypes, conamypes e invitados, ademas de los puestos de cada uno*/}
+/*Fecth para la lista de cdmypes, conamypes e invitados, ademas de los puestos de cada uno*/
  fetch("http://localhost/cdmypephp/getentidades.php",{ mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({entidad: data}));
   }
 render() {
-  {/*const cdmype y conamype toman los valores del ajax sobre la tabla organizaciones*/}
+  /*const cdmype y conamype toman los valores del ajax sobre la tabla organizaciones*/
   const {entidad} = this.state;
-  {/*separacion de listas del array entidad*/}
+  /*separacion de listas del array entidad*/
   let cdmype = entidad.filter(tipo => tipo.tipoentidad === "1");
   let puestoscdmype = entidad.filter(id => id.identidad ==="1");
   let conamype = entidad.filter(tipo => tipo.tipoentidad === "3");
   let puestosconamype = entidad.filter(id => id.identidad ==="3");
-  let empresario = entidad.filter(tipo => tipo.tipoentidad === "2");
-  let puestoempresario = entidad.filter(id => id.identidad ==="3");
-  let no_empresario = entidad.filter(tipo => tipo.tipoentidad === "4");
-  let puestono_empresario = entidad.filter(id => id.identidad ==="4");
-  {/*La funcion renderOrg toma el parametro M dado en despues del grupo de radio buttons, el parametro puede ser cdmype, conamype o invitado*/}
+  /*La funcion renderOrg toma el parametro M dado en despues del grupo de radio buttons, el parametro puede ser cdmype, conamype o invitado*/
  function renderOrg(M) {
   const m = M
   if(m === "cdmype"){
@@ -237,7 +233,7 @@ render() {
                     <label htmlFor="imgInp" className="btn btn-info"> Eligir foto de perfil</label>
                     <input type="file"  id="imgInp" onChange={this.onFileSelected.bind(this)} style={{display:"none"}} name="foto"/>
                   </div>
-                    <img id="myimage" className="preview"/>
+                    <img id="myimage" className="preview" alt="preview"/>
                   <div className="botones">
                     <input type="submit" value="Registrar" className="btn float-right login_btn"/>
                     <Link to="/" className="btn float-left login_btn2">Volver</Link>

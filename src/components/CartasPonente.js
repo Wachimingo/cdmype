@@ -3,33 +3,34 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/Patrocinadores.css";
 import $ from 'jquery';
-class Cartas extends Component {
+import {Link} from 'react-router-dom';
+class Cartasponente extends Component {
   render() {
     function importAll(r) {
-      let patrocinadores = {};
-      r.keys().map((item, index) => {return patrocinadores[item.replace('./', '')] = r(item); });
-      return patrocinadores;
+      let ponentesFoto = {};
+      r.keys().map((item, index) => {return ponentesFoto[item.replace('./', '')] = r(item); });
+      return ponentesFoto;
     }
-    const patrocinadores = importAll(require.context('../img/patrocinadores', false, /\.(png|jpe?g|svg)$/));
+    const ponentesFoto = importAll(require.context('../img/ponentes', false, /\.(png|jpe?g|svg)$/));
     $(window).on('load',function(){
       document.body.style.backgroundImage = null;
       document.body.style.background = "white";
     });
     return (
       <div className="contenedor">
-        <a href={this.props.item.enlace}>
+        <Link to={{pathname:`/Home/Ponente/${this.props.item.idponente}`}}>
           <div className="card1">
             <div className="box">
               <div className="img">
-                  <img src={patrocinadores[this.props.item.imgpatrocinador]} alt="pat"/>
+                  <img src={ponentesFoto[this.props.item.foto]} alt="preview de ponente"/>
               </div>
-              <h2>{this.props.item.nombrepatrocinador}<br/></h2>
+              <h2>{this.props.item.nombreponente}<br/></h2>
             </div>
           </div>
-        </a>
+        </Link>
       </div>
     );
   }
 }
 
-export default Cartas;
+export default Cartasponente;

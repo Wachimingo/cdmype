@@ -2,76 +2,77 @@ import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/Perfil.css";
+import {Link} from "react-router-dom";
 import $ from 'jquery';
-import img1 from "../img/imgperfil/perfil1.jpg";
 class Perfil extends Component {
   constructor(props){
     super(props);
     this.state ={
       profile: [],
-
     }
   }
-  // componentDidMount(){
-  //  fetch("http://localhost/cdmypephp/getprofile.php",{ mode:'cors'})
-  //     .then(response => response.json())
-  //     .then(data => this.setState({profile: data}));
-  // }
+  componentDidMount(){
+    let id = sessionStorage.getItem('id');
+    if (typeof this.props.match.params.id !== 'undefined') {
+        id = this.props.match.params.id;
+    }
+    else {
+        this.props.history.push('/Home');
+    }
+    fetch("http://localhost/cdmypephp/getperfil.php?id="+id, { mode:'cors'})
+       .then(response => response.json())
+       .then(data => this.setState({profile: data[0]}));
+  }
+  renderInputSubmit(){
+    if (sessionStorage.getItem('id') === this.props.match.params.id) {
+      return(
+        <div className="col-md-2">
+            <Link to={{pathname:`/Home/EditarPerfil`}} className="btn profile-edit-btn">Editar Perfil</Link>
+        </div>
+      );
+    }
+    else {
+      return(
+         null
+      );
+    }
+  }
   render() {
+    function importAll(r) {
+      let foto = {};
+      r.keys().map((item, index) => { return foto[item.replace('./', '')] = r(item); });
+      return foto;
+    }
+    const foto = importAll(require.context('../img/usuarios', false, /\.(png|jpe?g|svg)$/));
     $(window).on('load',function(){
             document.body.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Herbstlandschaft_%28am_Rebhang%29.jpg/800px-Herbstlandschaft_%28am_Rebhang%29.jpg')";
     });
-    const {profile} =  this.state;
     return (
-      <div className="container emp-profile r1">
+      <div className="container emp-profile">
+        <div style={{height: "70px"}}></div>
         <form method="post">
             <div className="row">
                 <div className="col-md-4">
                     <div className="profile-img">
-                        <img src={img1} alt=""/>
-                        <div className="file btn btn-lg btn-primary">
-                            Change Photo
-                            <input type="file" name="file"/>
-                        </div>
+                        <img id="preview" src={foto[this.state.profile["imgperfil"]]} alt="foto"/>
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="profile-head">
                                 <h5>
-                                    Joshua Herrea
+                                    {this.state.profile["nombres"]} {this.state.profile["apellidos"]}
                                 </h5>
-                                <h6>
-                                {/*Mostrar el puesto que tiene la persona*/}
-                                    Programador
-                                </h6>
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item">
                                 <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Acerca de: Joshua</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">CV</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
-                <div className="col-md-2">
-                    <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                </div>
+                {this.renderInputSubmit()}
             </div>
             <div className="row">
             <div class="col-md-4">
-                   <div class="profile-work">
-                       <p>WORK LINK</p>
-                       <a href="">Website Link</a><br/>
-                       <a href="">Bootsnipp Profile</a><br/>
-                       <a href="">Bootply Profile</a>
-                       <p>SKILLS</p>
-                       <a href="">Web Designer</a><br/>
-                       <a href="">Web Developer</a><br/>
-                       <a href="">WordPress</a><br/>
-                       <a href="">WooCommerce</a><br/>
-                       <a href="">PHP, .Net</a><br/>
-                   </div>
                </div>
                 <div className="col-md-8">
                     <div className="tab-content profile-tab" id="myTabContent">
@@ -81,7 +82,7 @@ class Perfil extends Component {
                                   <label>Nombre</label>
                               </div>
                               <div className="col-md-6">
-                                  <p>Joshua  Herrera </p>
+                                  <p>{this.state.profile['nombres']} {this.state.profile['apellidos']}</p>
                               </div>
                           </div>
                           <div className="row">
@@ -89,7 +90,7 @@ class Perfil extends Component {
                                   <label>Correo</label>
                               </div>
                               <div className="col-md-6">
-                                  <p>joshuaguillen.adoc@live.com</p>
+                                  <p>{this.state.profile['correo']}</p>
                               </div>
                           </div>
                           <div className="row">
@@ -97,7 +98,7 @@ class Perfil extends Component {
                                   <label>Telefono</label>
                               </div>
                               <div className="col-md-6">
-                                  <p>7173-4144</p>
+                                  <p>{this.state.profile['telefono']}</p>
                               </div>
                           </div>
                           <div className="row">
@@ -105,19 +106,9 @@ class Perfil extends Component {
                                   <label>Puesto</label>
                               </div>
                               <div className="col-md-6">
-                                  <p>Programador</p>
+                                  <p>{this.state.profile['nombrepuesto']}</p>
                               </div>
                           </div>
-                        </div>
-                        <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <label>Experiencia</label>
-                                </div>
-                                <div className="col-md-6">
-                                    <p>2 años</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

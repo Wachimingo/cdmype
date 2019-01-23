@@ -1,0 +1,87 @@
+body, html{
+    margin:0;
+    padding:0;
+}
+tr:hover {
+  cursor: pointer;
+}
+.rotulo{
+  margin-top: 55px;
+  width: 100vh;
+  float: left;
+}
+.bloque{
+  float: left;
+}
+.link{
+  color: black;
+  text-decoration: none;
+}
+.contenido{
+  background-image: linear-gradient(to right, #5678B7 , #263160);
+  width: 89vh;
+  color: white;
+  text-align: left;
+  margin-top: 195px;
+  margin-left: 90px
+}
+.tabla{
+  margin-top: 0px;
+  width: 200vh;
+  background-color: #E9A043;
+}
+.header{
+  background-color: #E5E7E8;
+  text-align: center;
+}
+.dia{
+  text-align: center;
+  background-color: #E9A043;
+}
+
+.rotate {
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  width: 1.5em;
+}
+.rotate div {
+  margin-top: 50px;
+  -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
+ -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */
+   filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+
+}
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #F2EE96;
+ }
+
+ @media only screen and (max-width: 600px){
+   .rotulo{
+     margin-left: -35px;
+     margin-top: 70px;
+     width: 60vh;
+     float: left;
+   }
+   .bloque{
+     float: left;
+   }
+   .contenido{
+     background-image: linear-gradient(to right, #5678B7 , #263160);
+     font-size: 20px;
+     width: 62vh;
+     color: white;
+     text-align: left;
+     margin-top: 0;
+     margin-left: -30px;
+   }
+   .wrapper{
+     margin-left: -45px;
+     height: 100%;
+     width: 64vh;
+     overflow: auto;
+   }
+ }

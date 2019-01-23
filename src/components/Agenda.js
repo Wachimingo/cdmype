@@ -1,24 +1,92 @@
 import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
-import evento1 from '../img/agenda/evento1.png';
-import evento2 from '../img/agenda/evento2.png';
-import Plx from "./PlxEffect.js";
+import "../css/Agenda.css";
+import {Link} from 'react-router-dom';
+import logo from '../img/congreso.jpg';
 import $ from 'jquery';
 class Agenda extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      agenda:[],
+      miercoles:[],
+    };
+  }
+  componentDidMount(){
+  /*Fetch para obtener toda la agenda de la bd*/
+    fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
+       .then(response => response.json())
+       .then(data => this.setState({agenda: data}));
+  }
   render() {
+    /*Array agenda*/
+    const {agenda} = this.state;
+    /*funcion para cambiar el fondo*/
     $(window).on('load',function(){
-            document.body.style.backgroundImage = null;
-            document.body.style.background = "white";
+      document.body.style.backgroundImage = null;
+      document.body.style.background = "white";
     });
+    /*Funcion para crear la tabla de la agenda, toma un array como parametro, en este caso llamado JSON*/
+    function renderAgenda(){
+      return agenda.map((value,key) => {
+        return (
+               <tr>
+                  <td id={value.dia} className="dia">{value.dia}</td>
+                  <td width=''>{value.hora}</td>
+                  <td width=''>{value.contenido}</td>
+                  <td width='' align="center"><Link to={{pathname:`/Home/Ponente/${value.idponente}`}}>{value.nombreponente}</Link></td>
+                  <td width='' align="center">{value.publico}</td>
+              </tr>
+        )
+      })
+
+    }
+/*Funcion para hacer rowspan a la columna de dia, pero causa que las celdas se muevan hacia la derecha*/
+    /*$(function() {
+        var idToElementCount = {};
+        $('[id]').each(function() {
+            var $this = $(this);
+            var id = $this.attr('data-id');
+            if(!idToElementCount.hasOwnProperty(id)) {
+                idToElementCount[id] = 0;
+            }
+
+            idToElementCount[id]++;
+        });
+        for(var currentId in idToElementCount) {
+            $('[id='+currentId + "]")
+                .first()
+                .attr("rowspan", idToElementCount[currentId])
+                .end()
+            .filter(":gt(0)")
+            .remove()
+        }
+    })*/
     return (
       <div className="container-fluid ">
-          <div style={{height: "50px"}}/>
-          <Plx titulo="Cena Grupal" cuerpo = "Un texto es una composición de signos codificados en un sistema de escritura que forma una unidad de sentido. También es una composición de caracteres imprimibles generados por un algoritmo de cifrado que, aunque no tienen sentido para cualquier persona, sí puede ser descifrado por su destinatario original. " img = {evento1} fecha="21 de Enenero"/>
-
-          <Plx titulo="Planeacion" cuerpo = "jgsaduigfsduiugadiufs" img = {evento2} fecha="1 de Febrero"/>
-
-          <div style={{height: "150px"}}/>
+          <div>
+            <img src={logo} className="rotulo bloque " alt="logo"/>
+            <div className="bloque contenido">
+              <h3>Programa de contenidos</h3>
+            </div>
+          </div>
+          <div id="agenda" className="col-md-6 wrapper">
+              <table className="table tabla table-striped" id="agenda">
+                <thead>
+                  <tr className="header">
+                     <td>Dia</td>
+                     <td>Hora</td>
+                     <td>Contenido</td>
+                     <td>Ponente</td>
+                     <td>Publico</td>
+                 </tr>
+                </thead>
+                <tbody>
+                  {renderAgenda()}
+                </tbody>
+              </table>
+          </div>
       </div>
     );
   }

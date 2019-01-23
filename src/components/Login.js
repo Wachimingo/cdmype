@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/login.css";
-import { Link, Redirect,BrowserRouter, withRouter} from 'react-router-dom';
+import { Link, withRouter} from 'react-router-dom';
 import $ from 'jquery';
 class Login extends Component {
 constructor(props){
   super(props);
   this.state = {
     info: [],
+    prueba: 'hola',
     usuario: '',
     clave: '',
     validado: true,
@@ -28,10 +29,17 @@ inLogin(e){
   });
 }
 validarLogin(data){
-  var data = JSON.parse(data);
-  console.log(data);
-  this.setState({info: data});
+  var resultado = JSON.parse(data);
+  this.setState({info: resultado});
   if (this.state.info[5] === this.state.usuario && this.state.info[7] === this.state.clave) {
+    sessionStorage.setItem("id",resultado['idusuario']);
+    sessionStorage.setItem("nombres",resultado['nombres']);
+    sessionStorage.setItem("apellidos",resultado['apellidos']);
+    sessionStorage.setItem("identidad",resultado['identidad']);
+    sessionStorage.setItem("idpuesto",resultado['idpuesto']);
+    sessionStorage.setItem("correo",resultado['correo']);
+    sessionStorage.setItem("telefono",resultado['telefono']);
+    sessionStorage.setItem("foto",resultado['imgperfil']);
     this.props.history.push('/Home');
   }
   else if (!data[0]) {
@@ -47,7 +55,6 @@ aviso(){
     <h3>Usuario o clave incorrecta</h3>
   );}
 }
-
   render() {
     return (
 <div className = "bg">
@@ -99,5 +106,4 @@ aviso(){
     );
   }
 }
-
 export default withRouter(Login);

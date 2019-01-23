@@ -1,0 +1,32 @@
+.nombre{
+   background-color: #E5E7E8;
+   text-align: center;
+   color: #5678B7;
+}
+.panelizquierdo{
+  float: left;
+  position: relative;
+  margin-right: 35px;
+  width: 200px;
+  height: 500px;
+  text-align: center;
+}
+.panelderecho{
+  margin-right: 35px;
+  text-align: justify;
+}
+@media only screen and (max-width: 600px){
+  .panelizquierdo{
+    clear: both;
+    margin-right: 0;
+    height: 200px;
+    margin-left: 20%;
+    text-align: center;
+  }
+  .panelderecho{
+    clear: both;
+    margin-top: 0;
+    margin-left: 10%;
+    text-align: justify;
+  }
+}

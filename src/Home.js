@@ -5,14 +5,24 @@ import "./css/SideBar.css";
 import Agenda from"./components/Agenda.js";
 import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
+import Ponentes from"./components/Ponentes.js";
+import PonenteInfo from"./components/PonenteInfo.js";
 import Conferencia from"./components/Conferencia.js";
 import Patrocinadores from"./components/Patrocinadores.js";
-import Post from"./components/ModalWindowPost.js";
+import Post from "./components/ModalWindowPost.js";
+import EditarPerfil from "./components/EditarPerfil.js";
 import {Route, Switch, Link} from 'react-router-dom';
 import "./js/MuroFuncion.js";
 import $ from 'jquery';
 
 class Home extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      info: [],
+    }
+  }
+  /*Funcion para mostrar un preview de la foto seleccionada para la publicacion*/
   onFileSelected(event) {
   var selectedFile = event.target.files[0];
   var reader = new FileReader();
@@ -26,62 +36,60 @@ class Home extends Component {
 
   reader.readAsDataURL(selectedFile);
   }
+
   render() {
     $(window).on('load',function(){
       document.body.style.backgroundImage = null;
       document.body.style.background = "white";
     });
     return (
-    <div className="container-fluid ">
+      <div className="container-fluid ">
+          <nav className="navbar fixed-top navbar-expand-lg navbar-dark barra">
+              <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
+              <Link to={'/Home'} className="navbar-brand Items">V CONGRESO</Link>
+              <button type="button" data-toggle="modal" data-target="#post" className="subir"><i className="fa fa-arrow-up fa-2x"/></button>
+          </nav>
 
-    <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark d">
-        <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
-      <Link to={'/Home'} className="navbar-brand link Items" >CONAMYPE</Link>
-      <label htmlFor="bt" className="fa fa-arrow-up arrow" >Subir fotos</label>
-      <button type="button" id="bt" data-toggle="modal" data-target="#post" style={{display: "none"}}/>
-
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul className="navbar-nav mr-auto">
-    <li className="nav-item active">
-    <a href="#" className="nav-link" href="#">{this.props.Palabra} <span className="sr-only">(current)</span></a>
-    </li>
-
-    </ul>
-    </div>
-    </nav>
-    {/*Modal window para hacer una publicacion*/}
-    <div className="modal fade" id="post" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Subir nueva publicacion</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div className="modal-body">
-        <Post/>
-      </div>
-    </div>
-  </div>
-</div>
-    <div className="row">
-        <div className="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in " id="sidebar">
-            <div className="list-group outer panel">
-                <Link to={'/Home/Perfil'} className="list-group-item a collapsed "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Perfil</span> </Link>
-                <Link to={'/Home/Agenda'} className="list-group-item b collapsed"   data-parent="#sidebar"><i className="fa fa-calendar-o"></i> <span className="hidden-sm-down">Programa</span></Link>
-                <Link to={'/Home/Patrocinadores'} className="list-group-item c collapsed"   data-parent="#sidebar"><i className="fa fa-gift"></i> <span className="hidden-sm-down">Patrocinadores</span></Link>
+          {/*Modal window para hacer una publicacion*/}
+          <div className="modal fade" id="post" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">Subir nueva publicacion</h5>
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <Post/>
+                </div>
+              </div>
             </div>
-       </div>
-    </div>
-    <Switch>
-      <Route exact path="/Home" component={Muro} />
-      <Route path="/Home/Perfil" component={Perfil} />
-      <Route path="/Home/Agenda" component={Agenda} />
-      <Route path="/Home/Patrocinadores" component={Patrocinadores} />
-      <Route exact path="/Home/Conferencia" component={Conferencia}/>
-    </Switch>
-</div>
+          </div>
+{/*Aqui comienza el dropdown menu*/}
+          <div className="row">
+              <div className="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in panel fixed-top" id="sidebar">
+                  <div className="list-group ">
+                      <Link to={'/Home/Agenda'} className="options "   data-parent="#sidebar"><i className="fa fa-calendar-o"></i> <span className="hidden-sm-down">Programa</span></Link>
+                      <Link to={'/Home/Ponentes'} className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Ponentes</span> </Link>
+                      <Link to={'/Home/Patrocinadores'} className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Patrocinadores</span> </Link>
+                      <Link to={{pathname:`/Home/Perfil${sessionStorage.getItem('id')}`}} className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Perfil</span> </Link>
+                  </div>
+             </div>
+          </div>
+{/*Este es el enrutador, toma las rutas del navegador y renderiza el componente de la barra de navegacion y un componene hijo*/}
+          <Switch>
+            <Route exact path="/Home" component={Muro} />
+            <Route exact path="/Home/Perfil:id" component={Perfil} />
+            <Route path="/Home/Perfil/:id" component={Perfil} />
+            <Route path="/Home/Agenda" component={Agenda} />
+            <Route exact path="/Home/Ponentes/" component={Ponentes} />
+            <Route path="/Home/Ponente/:id" component={PonenteInfo} />
+            <Route path="/Home/Patrocinadores" component={Patrocinadores} />
+            <Route exact path="/Home/Conferencia/:id" component={Conferencia}/>
+            <Route exact path="/Home/EditarPerfil" component={EditarPerfil}/>
+          </Switch>
+      </div>
     );
   }
 }

@@ -3,7 +3,7 @@
 }
 .emp-profile{
     padding: 3%;
-    margin-top: 3%;
+    margin-top: 7%;
     margin-bottom: 3%;
     border-radius: 0.5rem;
     background: #fff;
@@ -27,13 +27,16 @@
     border-radius: 0;
     font-size: 15px;
     background: #212529b8;
+    cursor: pointer;
 }
 .profile-img .file input {
     position: absolute;
     opacity: 0;
     right: 0;
     top: 0;
+    cursor: pointer;
 }
+
 .profile-head h5{
     color: #333;
 }
