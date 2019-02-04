@@ -3,7 +3,6 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/Agenda.css";
 import {Link} from 'react-router-dom';
-import logo from '../img/congreso.jpg';
 import $ from 'jquery';
 class Agenda extends Component {
   constructor(props){
@@ -15,75 +14,129 @@ class Agenda extends Component {
   }
   componentDidMount(){
   /*Fetch para obtener toda la agenda de la bd*/
+    // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
+    //    .then(response => response.json())
+    //    .then(data => this.setState({agenda: data}));
     fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
-       .then(response => response.json())
-       .then(data => this.setState({agenda: data}));
+      .then(response => response.json())
+      .then(data => this.setState({agenda: data}));
   }
   render() {
     /*Array agenda*/
     const {agenda} = this.state;
+    /*Cambiar las agendas.map por las siguientes arrays*/
+    let miercoles = agenda.filter(id => id.dia === 'Miercoles');
+    let jueves = agenda.filter(id => id.dia === 'Jueves');
+    let viernes = agenda.filter(id => id.dia === 'Viernes');
     /*funcion para cambiar el fondo*/
     $(window).on('load',function(){
       document.body.style.backgroundImage = null;
       document.body.style.background = "white";
     });
     /*Funcion para crear la tabla de la agenda, toma un array como parametro, en este caso llamado JSON*/
-    function renderAgenda(){
+    function renderMiercoles(){
       return agenda.map((value,key) => {
         return (
-               <tr>
-                  <td id={value.dia} className="dia">{value.dia}</td>
+               <tr key={value.idagenda} className="cuerpo">
                   <td width=''>{value.hora}</td>
-                  <td width=''>{value.contenido}</td>
-                  <td width='' align="center"><Link to={{pathname:`/Home/Ponente/${value.idponente}`}}>{value.nombreponente}</Link></td>
-                  <td width='' align="center">{value.publico}</td>
+                  <td width=''>
+                    {value.contenido}
+                    <br/>
+                    <Link to={{pathname:`/Home/Ponente/${value.idponente}`}}>{value.nombreponente}</Link>
+                  </td>
               </tr>
         )
       })
-
     }
-/*Funcion para hacer rowspan a la columna de dia, pero causa que las celdas se muevan hacia la derecha*/
-    /*$(function() {
-        var idToElementCount = {};
-        $('[id]').each(function() {
-            var $this = $(this);
-            var id = $this.attr('data-id');
-            if(!idToElementCount.hasOwnProperty(id)) {
-                idToElementCount[id] = 0;
-            }
-
-            idToElementCount[id]++;
-        });
-        for(var currentId in idToElementCount) {
-            $('[id='+currentId + "]")
-                .first()
-                .attr("rowspan", idToElementCount[currentId])
-                .end()
-            .filter(":gt(0)")
-            .remove()
-        }
-    })*/
+    function renderJueves(){
+      return agenda.map((value,key) => {
+        return (
+               <tr key={value.idagenda} className="cuerpo">
+                  <td width=''>{value.hora}</td>
+                  <td width=''>
+                    {value.contenido}
+                    <br/>
+                    <Link to={{pathname:`/Home/Ponente/${value.idponente}`}}>{value.nombreponente}</Link>
+                  </td>
+              </tr>
+        )
+      })
+    }
+    function renderViernes(){
+      return agenda.map((value,key) => {
+        return (
+               <tr key={value.idagenda} className="cuerpo">
+                  <td width=''>{value.hora}</td>
+                  <td width=''>
+                    {value.contenido}
+                    <br/>
+                    <Link to={{pathname:`/Home/Ponente/${value.idponente}`}}>{value.nombreponente}</Link>
+                  </td>
+              </tr>
+        )
+      })
+    }
     return (
       <div className="container-fluid ">
+
           <div>
-            <img src={logo} className="rotulo bloque " alt="logo"/>
+            <img src={`https://cdmype.000webhostapp.com/uploads/congreso.jpg`} className="rotulo bloque " alt="logo"/>
             <div className="bloque contenido">
               <h3>Programa de contenidos</h3>
             </div>
           </div>
-          <div id="agenda" className="col-md-6 wrapper">
+
+          <a className="link">
+            <div className="dia">
+                <h3>Miercoles</h3>
+            </div>
+          </a>
+          <div className="divTabla resume">
               <table className="table tabla table-striped" id="agenda">
                 <thead>
                   <tr className="header">
-                     <td>Dia</td>
                      <td>Hora</td>
                      <td>Contenido</td>
-                     <td>Ponente</td>
-                     <td>Publico</td>
                  </tr>
                 </thead>
                 <tbody>
-                  {renderAgenda()}
+                  {renderMiercoles()}
+                </tbody>
+              </table>
+          </div>
+          <a className="link">
+            <div className="dia">
+                <h3>Jueves</h3>
+            </div>
+          </a>
+          <div  className="divTabla">
+              <table className="table tabla table-striped" id="agenda">
+                <thead>
+                  <tr className="header">
+                     <td>Hora</td>
+                     <td>Contenido</td>
+                 </tr>
+                </thead>
+                <tbody>
+                  {renderJueves()}
+                </tbody>
+              </table>
+          </div>
+          <a className="link">
+            <div className="dia">
+                <h3>Viernes</h3>
+            </div>
+          </a>
+          <div className="divTabla">
+              <table className="table tabla table-striped" id="agenda">
+                <thead>
+                  <tr className="header">
+                     <td>Hora</td>
+                     <td>Contenido</td>
+                 </tr>
+                </thead>
+                <tbody>
+                  {renderViernes()}
                 </tbody>
               </table>
           </div>

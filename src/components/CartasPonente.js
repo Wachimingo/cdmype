@@ -6,12 +6,6 @@ import $ from 'jquery';
 import {Link} from 'react-router-dom';
 class Cartasponente extends Component {
   render() {
-    function importAll(r) {
-      let ponentesFoto = {};
-      r.keys().map((item, index) => {return ponentesFoto[item.replace('./', '')] = r(item); });
-      return ponentesFoto;
-    }
-    const ponentesFoto = importAll(require.context('../img/ponentes', false, /\.(png|jpe?g|svg)$/));
     $(window).on('load',function(){
       document.body.style.backgroundImage = null;
       document.body.style.background = "white";
@@ -22,7 +16,8 @@ class Cartasponente extends Component {
           <div className="card1">
             <div className="box">
               <div className="img">
-                  <img src={ponentesFoto[this.props.item.foto]} alt="preview de ponente"/>
+                  {/*<img src={`https://cdmype.000webhostapp.com/uploads/ponentes/${this.props.item.foto}`} alt="preview de ponente"/>*/}
+                  <img src={`http://localhost/cdmypephp/uploads/ponentes/${this.props.item.foto}`} alt="preview"/>
               </div>
               <h2>{this.props.item.nombreponente}<br/></h2>
             </div>

@@ -8,19 +8,19 @@ class Login extends Component {
 constructor(props){
   super(props);
   this.state = {
-    info: [],
-    prueba: 'hola',
-    usuario: '',
+    correo: '',
     clave: '',
     validado: true,
   }
 }
 inLogin(e){
+  // const urlhost ="https://cdmype.000webhostapp.com/validarLogin.php";
+  const urllocal = "http://localhost/cdmypephp/validarlogin.php";
   e.preventDefault();
   var form = $('#login');
   var formData = new FormData(form[0]);
   $.ajax({
-      url: "http://localhost/cdmypephp/validarLogin.php",
+      url: urllocal,
       data: formData,
       type:'POST',
       contentType: false,
@@ -30,21 +30,21 @@ inLogin(e){
 }
 validarLogin(data){
   var resultado = JSON.parse(data);
-  this.setState({info: resultado});
-  if (this.state.info[5] === this.state.usuario && this.state.info[7] === this.state.clave) {
+  if (resultado['correo'] === this.state.correo && resultado['clave'] === this.state.clave) {
     sessionStorage.setItem("id",resultado['idusuario']);
     sessionStorage.setItem("nombres",resultado['nombres']);
-    sessionStorage.setItem("apellidos",resultado['apellidos']);
     sessionStorage.setItem("identidad",resultado['identidad']);
+    sessionStorage.setItem("nombreentidad",resultado['nombreentidad']);
+    sessionStorage.setItem("nombretipo",resultado['nombretipo']);
+    sessionStorage.setItem("nombrepuesto",resultado['nombrepuesto']);
     sessionStorage.setItem("idpuesto",resultado['idpuesto']);
     sessionStorage.setItem("correo",resultado['correo']);
     sessionStorage.setItem("telefono",resultado['telefono']);
     sessionStorage.setItem("foto",resultado['imgperfil']);
     this.props.history.push('/Home');
   }
-  else if (!data[0]) {
-     this.setState({validado: false});
-     this.aviso();
+  else  {
+    this.setState({validado: false});
   }
 }
 aviso(){
@@ -52,7 +52,7 @@ aviso(){
     return(null);
   }else{
   return(
-    <h3>Usuario o clave incorrecta</h3>
+    <h3 className="aviso">Usuario o clave incorrecta</h3>
   );}
 }
   render() {
@@ -62,11 +62,7 @@ aviso(){
         <div className="d-flex justify-content-center h-100">
           <div className="card">
             <div className="card-header">
-              <h3>Sign In</h3>
-              <div className="d-flex justify-content-end social_icon">
-                <span><i className="fa fa-facebook-square"></i></span>
-                <span><i className="fa  fa-google-plus-square"></i></span>
-              </div>
+              <h3 className="links">Sign In</h3>
               {this.aviso()}
             </div>
             <div className="card-body">
@@ -75,7 +71,7 @@ aviso(){
                   <div className="input-group-prepend">
                     <span className="input-group-text"><i className="fa fa-user-md"></i></span>
                   </div>
-                  <input type="text" className="form-control" placeholder="Nombre de usuario" id="usuario" name="usuario" onChange={e=>this.setState({usuario: e.target.value})}/>
+                  <input type="email" className="form-control" placeholder="Correo" id="correo" name="correo" onChange={e=>this.setState({correo: e.target.value})}/>
                 </div>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
@@ -83,20 +79,20 @@ aviso(){
                   </div>
                   <input type="password" className="form-control" placeholder="Contraseña" id="clave" name="clave" onChange={e => this.setState({clave: e.target.value})}/>
                 </div>
-                <div className="row align-items-center remember">
-                  <input type="checkbox"/>Recuerdame
-                </div>
                 <div className="form-group">
-                  <input type="submit" value="Login" className="btn float-right login_btn"/>
+                  <input type="submit" value="Login" className="btn float-right btn-info"/>
                 </div>
               </form>
             </div>
             <div className="card-footer">
-              <div className="d-flex justify-content-center links">
-                No tienes cuenta??<Link to="/Registro" className="link">Registrate</Link>
+              <div className=" justify-content-center float-right links registrar">
+                <div>
+                  <p>No tienes cuenta?</p>
+                </div>
+                <Link to="/Registro" className="btn btn-info float-right">Registrate</Link>
               </div>
-              <div className="d-flex justify-content-center">
-                <Link to="/Recuperar" className="link">Has olvidado tu contraseña?</Link>
+              <div className="d-flex justify-content-center float-left">
+                <Link to="/Recuperar" className="btn btn-info recuperar">Recuperar contraseña?</Link>
               </div>
             </div>
           </div>

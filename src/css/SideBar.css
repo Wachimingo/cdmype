@@ -14,11 +14,14 @@
 .panel{
   top:55px;
   left:-15px;
-  width: 200px;
+  width: auto;
 }
 .options{
     color:black;
     background-color: #E9A043;
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .options:hover{
     color:black;
@@ -32,7 +35,16 @@
 .subir{
   cursor:pointer;
   color:white;
-  margin-left: 80vh;
+  margin-left: 45vh;
+  outline:none;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+}
+.cerrar{
+  cursor:pointer;
+  color:white;
+  margin-left: 5vh;
   outline:none;
   background-color: Transparent;
   background-repeat:no-repeat;
@@ -40,15 +52,32 @@
 }
 @media only screen and (max-width: 600px){
   .Items{
-    margin-left: 7%;
+    margin-left: 0%;
+    font-size: 15px;
   }
   .subir{
+    font-size: 15px;
     cursor:pointer;
     color:white;
-    margin-left: 0;
+    margin-left: -20px;
     outline:none;
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
+  }
+  .cerrar{
+    font-size: 15px;
+    cursor:pointer;
+    color:white;
+    margin-left: 0vh;
+    outline:none;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+  }
+  .panel{
+    top:47px;
+    left:-15px;
+    width: 150vh;
   }
 }

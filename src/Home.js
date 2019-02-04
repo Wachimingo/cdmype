@@ -7,8 +7,8 @@ import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
 import Ponentes from"./components/Ponentes.js";
 import PonenteInfo from"./components/PonenteInfo.js";
-import Conferencia from"./components/Conferencia.js";
 import Patrocinadores from"./components/Patrocinadores.js";
+import PatrocinadorInfo from"./components/PatrocinadorInfo.js";
 import Post from "./components/ModalWindowPost.js";
 import EditarPerfil from "./components/EditarPerfil.js";
 import {Route, Switch, Link} from 'react-router-dom';
@@ -19,8 +19,7 @@ class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      info: [],
-    }
+    };
   }
   /*Funcion para mostrar un preview de la foto seleccionada para la publicacion*/
   onFileSelected(event) {
@@ -37,9 +36,13 @@ class Home extends Component {
   reader.readAsDataURL(selectedFile);
   }
 
+/*Funcion para cerrar sesion*/
+ cerrarSesion(e){
+   this.props.history.replace('/');
+ }
   render() {
     $(window).on('load',function(){
-      document.body.style.backgroundImage = null;
+      document.body.style.backgroundImage ="white";
       document.body.style.background = "white";
     });
     return (
@@ -47,7 +50,8 @@ class Home extends Component {
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark barra">
               <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
               <Link to={'/Home'} className="navbar-brand Items">V CONGRESO</Link>
-              <button type="button" data-toggle="modal" data-target="#post" className="subir"><i className="fa fa-arrow-up fa-2x"/></button>
+              <button type="button" data-toggle="modal" data-target="#post" className="subir"><i className="fa fa-arrow-up"/> Publicar</button>
+              <button type="button" className="cerrar" onClick={this.cerrarSesion.bind(this)}><i className="fa fa-power-off"/> Cerrar Sesion</button>
           </nav>
 
           {/*Modal window para hacer una publicacion*/}
@@ -73,21 +77,20 @@ class Home extends Component {
                       <Link to={'/Home/Agenda'} className="options "   data-parent="#sidebar"><i className="fa fa-calendar-o"></i> <span className="hidden-sm-down">Programa</span></Link>
                       <Link to={'/Home/Ponentes'} className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Ponentes</span> </Link>
                       <Link to={'/Home/Patrocinadores'} className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Patrocinadores</span> </Link>
-                      <Link to={{pathname:`/Home/Perfil${sessionStorage.getItem('id')}`}} className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Perfil</span> </Link>
+                      <Link to={{pathname:`/Home/Perfil/${sessionStorage.getItem('id')}`}}  className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Perfil</span> </Link>
                   </div>
              </div>
           </div>
 {/*Este es el enrutador, toma las rutas del navegador y renderiza el componente de la barra de navegacion y un componene hijo*/}
           <Switch>
             <Route exact path="/Home" component={Muro} />
-            <Route exact path="/Home/Perfil:id" component={Perfil} />
-            <Route path="/Home/Perfil/:id" component={Perfil} />
+            <Route exact path="/Home/Perfil/:id" render={(props) => (<Perfil key={props.match.params.id} {...props}/>)} />
             <Route path="/Home/Agenda" component={Agenda} />
             <Route exact path="/Home/Ponentes/" component={Ponentes} />
             <Route path="/Home/Ponente/:id" component={PonenteInfo} />
             <Route path="/Home/Patrocinadores" component={Patrocinadores} />
-            <Route exact path="/Home/Conferencia/:id" component={Conferencia}/>
-            <Route exact path="/Home/EditarPerfil" component={EditarPerfil}/>
+            <Route path="/Home/Patrocinador/:id" component={PatrocinadorInfo} />
+            <Route  path="/Home/EditarPerfil" component={EditarPerfil}/>
           </Switch>
       </div>
     );

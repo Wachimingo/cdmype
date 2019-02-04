@@ -2,13 +2,20 @@ body, html{
     margin:0;
     padding:0;
 }
-tr:hover {
-  cursor: pointer;
-}
+
 .rotulo{
   margin-top: 55px;
   width: 100vh;
   float: left;
+}
+.dia{
+  background-color: #ff9714;
+  color:#f2ee96;
+  margin-top: 0px;
+  clear: both;
+  text-align: center;
+  width: 250px;
+  cursor: pointer;
 }
 .bloque{
   float: left;
@@ -22,23 +29,25 @@ tr:hover {
   width: 89vh;
   color: white;
   text-align: left;
-  margin-top: 195px;
-  margin-left: 90px
+  margin-top: 0;
+  margin-left: 108vh;
 }
 .tabla{
   margin-top: 0px;
-  width: 200vh;
   background-color: #E9A043;
+}
+.divTabla{
+  clear: both;
+  height: auto;
+  width: auto;
 }
 .header{
   background-color: #E5E7E8;
   text-align: center;
 }
-.dia{
+.cuerpo{
   text-align: center;
-  background-color: #E9A043;
 }
-
 .rotate {
   text-align: center;
   white-space: nowrap;
@@ -83,5 +92,15 @@ tr:hover {
      height: 100%;
      width: 64vh;
      overflow: auto;
+   }
+   .dia{
+     background-color: #ff9714;
+     color:#f2ee96;
+     margin-top: 0px;
+     margin-left: 50px;
+     clear: both;
+     text-align: center;
+     width: 250px;
+     cursor: pointer;
    }
  }

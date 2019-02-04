@@ -1,16 +1,6 @@
-/* Made with love by Mutiullah Samim*/
-
-@import url('https://fonts.googleapis.com/css?family=Numans');
-
-html, body{
-  margin:0;
-  padding:0;
-  height: 100%;
-  font-family: 'Numans', sans-serif;
-}
 body{
   height: 100%;
-  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+  font-weight: 900;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -23,40 +13,12 @@ body{
 }
 
 .cardR{
-  height: 170vh;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  width: 100%;
-  background-color: rgba(0,0,0,0.5) !important;
-}
-
-#img-upload{
-    width: 100%;
-}
-.social_icon span:hover{
-color: white;
-cursor: pointer;
-}
-.inline{
-  display: inline-block;
-  margin-left: 10%;
-}
-.radios{
-  margin-left: 30%;
-}
-.inline2{
-  display: inline-block;
-    width: 47%;
-    margin: 1em;
-}
-.card-header h3{
-color: white;
-}
-
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
+  color: white;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: auto;
+  background-color:rgba(0,0,0,0.5) !important;
 }
 
 .input-group-prepend span{
@@ -71,113 +33,35 @@ outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
 
 }
-
-.remember{
-color: white;
-}
-
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
-}
-
-.login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
-}
-.login_btn2{
-color: black;
-background-color: #FFC312;
-width: 100px;
-margin-right: 50px;
-}
-.login_btn:hover{
-color: black;
-background-color: white;
-}
-
-.links{
-color: white;
-}
-
-.links a{
-margin-left: 4px;
-}
 .preview{
-  height: 200px;
-  margin-bottom: 80px;
-  margin-left: 40%;
+  height: 0;
+  margin-left: 160px;
 }
-
-@media screen and (max-width: 1100px){
-  .inline2{
-    margin-left: 2px;
-    width: 48%;
-  }
-  .cardR{
-    height: 250vh;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
-    background-color: rgba(0,0,0,0.5) !important;
-  }
+.nota{
+  font-size: 15px;
 }
-@media screen and (max-width: 992px){
-
-  .inline2{
-    margin-left: -6px;
-    width: 100%;
-  }
-  .login_btn2{
-    color: black;
-    background-color: #FFC312;
-    width: 100px;
-    margin-right: 90px;
-  }
-  .preview{
-    height: 200px;
-    margin-bottom: 20px;
-    margin-left: 30%;
-  }
-  .cardR{
-    height: 220vh;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
-    background-color: rgba(0,0,0,0.5) !important;
-  }
-  .radios{
-    margin-left: 20%;
-  }
+.informaciongeneral{
+  font-size: 27px;
+  font-weight: 900;
 }
 
 @media screen and (max-width: 600px){
-
-  .inline2{
-    margin-left: -6px;
-    width: 100%;
-  }
-
   .preview{
-    height: 200px;
-    margin-bottom: 20px;
-    margin-left: 0%;
+    height: 0;
+    margin-left: 100px;
   }
   .botones{
     margin-right: 0%;
   }
   .cardR{
-    height: 220vh;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
     background-color: rgba(0,0,0,0.5) !important;
   }
-  .radios{
-    margin-left: 5%;
+  .informaciongeneral{
+    font-size: 25px;
+    font-weight: 900;
   }
 }

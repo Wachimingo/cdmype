@@ -6,6 +6,7 @@ import './index.css';
 import Home from './Home.js';
 import Login from './components/Login.js';
 import Registro from './components/RegistrarUsuario.js';
+import Recuperar from './components/Recuperar.js';
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 ReactDOM.render((
@@ -15,6 +16,7 @@ ReactDOM.render((
     <Route exact path="/" component={Login} />
     <Route path="/Home" component={Home}/>
     <Route exact path="/Registro" component={Registro} />
+    <Route exact path="/Recuperar" component={Recuperar} />
   </Switch>
 </div>
 </BrowserRouter>

@@ -4,11 +4,11 @@ import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/ponente.css";
 import {Link} from 'react-router-dom';
 import $ from 'jquery';
-class PonenteInfo extends Component {
+class PatrocinadorInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ponente: [],
+      patrocinador: [],
     };
   }
   componentDidMount(){
@@ -16,9 +16,9 @@ class PonenteInfo extends Component {
     // fetch("https://cdmype.000webhostapp.com/getponenteinfo.php?id="+id, {mode:'cors'})
     // .then(response => response.json())
     // .then(data => this.setState({ponente: data[0]}));
-    fetch("http://localhost/cdmypephp/getponenteinfo.php?id="+id, {mode:'cors'})
+    fetch("http://localhost/cdmypephp/getpatrocinadorinfo.php?id="+id, {mode:'cors'})
     .then(response => response.json())
-    .then(data => this.setState({ponente: data[0]}));
+    .then(data => this.setState({patrocinador : data[0]}));
   }
   render() {
     $(window).on('load',function(){
@@ -29,20 +29,23 @@ class PonenteInfo extends Component {
       <div>
         <div style={{height: "100px"}}></div>
         <div className="nombre">
-          <h2>{this.state.ponente['nombreponente']}</h2>
+          <h2>{this.state.patrocinador['nombrepatrocinador']}</h2>
         </div>
         <div className="panelizquierdo">
-          {/*<img src={`https://cdmype.000webhostapp.com/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt="FotoPonente"/>*/}
-          <img src={`http://localhost/cdmypephp/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt="FotoPonente"/>
-          <p>{this.state.ponente['puesto']}</p>
+          {/*<img src={`https://cdmype.000webhostapp.com/uploads/patrociandores/${this.state.patrocinador['imgpatrocinador']}`} height="100px" width="100px" alt="FotoPat"/>*/}
+          <img src={`http://localhost/cdmypephp/uploads/patrocinadores/${this.state.patrocinador['imgpatrocinador']}`} height="100px" width="100px" alt="FotoPat"/>
         </div>
         <div className="panelderecho">
-          <p>{this.state.ponente['descripcion']}</p>
+          <p>
+            {this.state.patrocinador['acerca']}
+            <br/>
+            <a href={this.state.patrocinador['enlace']}>href={this.state.patrocinador['enlace']}</a>
+          </p>
         </div>
-        <Link to="/Home/Ponentes" className="btn btn-info">Volver</Link>
+        <Link to="/Home/Patrocinadores" className="btn btn-info">Volver</Link>
       </div>
     );
   }
 }
 
-export default PonenteInfo;
+export default PatrocinadorInfo;

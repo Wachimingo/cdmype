@@ -14,7 +14,7 @@ class Muro extends Component {
   }
   componentDidMount(){
     /*fetch para buscar las publicaciones*/
-    fetch("http://localhost/cdmypephp/getpublicaciones.php",{mode:'cors'})
+    fetch("https://cdmype.000webhostapp.com/getpublicaciones.php",{mode:'cors'})
       .then(response => response.json())
       .then(data => this.setState({publicaciones: data}));
   }
@@ -22,18 +22,6 @@ class Muro extends Component {
     $(window).on('load',function(){
       document.body.style.backgroundImage = null;
     });
-    function importAllpublicaciones(r) {
-      let pfotos = {};
-      r.keys().map((item, index) => {return pfotos[item.replace('./', '')] = r(item); });
-      return pfotos;
-    }
-    function importAllusuarios(u) {
-      let usuarios = {};
-      u.keys().map((item, index) => {return usuarios[item.replace('./', '')] = u(item); });
-      return usuarios;
-    }
-    const pfotos = importAllpublicaciones(require.context('../img/publicaciones', false, /\.(png|jpe?g|svg)$/));
-    const usuarios = importAllusuarios(require.context('../img/usuarios', false, /\.(png|jpe?g|svg)$/));
     const {publicaciones} = this.state;
     $(window).on('load',function(){
       document.body.style.backgroundImage = null;
@@ -51,7 +39,8 @@ class Muro extends Component {
         			 <div className="cardbox-heading">
           			  <div className="media m-0">
           			   <div className="d-flex mr-3">
-          				<Link to={{pathname:`/Home/Perfil/${item.idusuario}`}}><img className="img-fluid rounded-circle" src={usuarios[item.imgperfil]} alt="User"/></Link>
+          				{/*<Link to={{pathname:`/Home/Perfil/${item.idusuario}`}}><img className="img-fluid rounded-circle" src={`https://cdmype.000webhostapp.com/uploads/usuarios/${item.imgperfil}`} alt="User"/></Link>*/}
+                  <Link to={{pathname:`/Home/Perfil/${item.idusuario}`}}><img className="img-fluid rounded-circle" src={`http://localhost/cdmypephp/uploads/usuarios/${item.imgperfil}`} alt="User"/></Link>
           			   </div>
           			   <div className="media-body">
           			    <p className="m-0">{item.nombres} {item.apellidos}</p>
@@ -61,7 +50,7 @@ class Muro extends Component {
           			  </div>
           			 </div>
           			 <div className="cardbox-item">
-          			  <img className="img-fluid" src={pfotos[item.foto]} alt="publicacion"/>
+          			  <img className="img-fluid" src={`https://cdmype.000webhostapp.com/uploads/publicaciones/${item.foto}`} alt="publicacion"/>
           			 </div>
             </div>
             </div>
