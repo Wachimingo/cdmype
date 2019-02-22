@@ -14,12 +14,12 @@ class Perfil extends Component {
     let id = sessionStorage.getItem('id');
     if (typeof this.props.match.params.id !== 'undefined') {
       id = this.props.match.params.id;
-      // fetch("https://cdmype.000webhostapp.com/getperfil.php?id="+id, { mode:'cors'})
-      //    .then(response => response.json())
-      //    .then(data => this.setState({profile: data[0]}));
-       fetch("http://localhost/cdmypephp/getperfil.php?id="+id, { mode:'cors'})
-          .then(response => response.json())
-          .then(data => this.setState({profile: data[0]}));
+      fetch("https://cdmype.000webhostapp.com/getperfil.php?id="+id, { mode:'cors'})
+         .then(response => response.json())
+         .then(data => this.setState({profile: data[0]}));
+       // fetch("http://192.168.1.20/cdmypephp/getperfil.php?id="+id, { mode:'cors'})
+       //    .then(response => response.json())
+       //    .then(data => this.setState({profile: data[0]}));
     }
   }
 
@@ -45,8 +45,8 @@ class Perfil extends Component {
             <div className="row">
                 <div className="col-md-4">
                     <div className="profile-img">
-                        {/*<img id="preview" src={`https://cdmype.000webhostapp.com/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt="foto"/>*/}
-                        <img id="preview" src={`http://localhost/cdmypephp/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt="foto"/>
+                        <img id="preview" src={`https://cdmype.000webhostapp.com/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt="foto"/>
+                        {/*<img id="preview" src={`http://192.168.1.20/cdmypephp/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt="foto"/>*/}
                     </div>
                 </div>
                 <div className="col-md-6">

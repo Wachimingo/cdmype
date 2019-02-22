@@ -16,7 +16,7 @@ constructor(props) {
   onRegister(e) {
   var form = $("#frm")
   const urlhost ="https://cdmype.000webhostapp.com/registrarusuario.php";
-  // const urllocal = "http://localhost/cdmypephp/registrarusuario.php";
+  // const urllocal = "http://192.168.1.20/cdmypephp/registrarusuario.php";
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
@@ -26,24 +26,13 @@ constructor(props) {
       contentType: false,
       processData: false,
       success: data => this.exito(data)
+      // success: data => alert(data)
   });
 }
   exito(data){
     this.props.history.push('/');
   }
-  onFileSelected(event) {
-  var selectedFile = event.target.files[0];
-  var reader = new FileReader();
 
-  var imgtag = document.getElementById("myimage");
-  imgtag.title = selectedFile.name;
-
-  reader.onload = function(event) {
-    imgtag.src = event.target.result;
-  };
-
-  reader.readAsDataURL(selectedFile);
-}
   cambiarInstituto(e){
     this.setState({mostrar: e.target.value});
   }
@@ -53,17 +42,27 @@ constructor(props) {
           e.preventDefault();
       }
   }
+componentWillMount(){
+  document.body.style.overflow = 'auto';
+}
 componentDidMount(){
+document.body.style.overflow = 'auto';
 /*Fecth para la lista de cdmypes, conamypes e invitados, ademas de los puestos de cada uno*/
- // fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
- //    .then(response => response.json())
- //    .then(data => this.setState({entidad: data}));
- //  }
- fetch("http://localhost/cdmypephp/getentidades.php",{ mode:'cors'})
+ fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({entidad: data}));
   }
+ // fetch("http://192.168.1.20/cdmypephp/getentidades.php",{ mode:'cors'})
+ //    .then(response => response.json())
+ //    .then(data => this.setState({entidad: data}));
+ //
+ //  }
+  // fetch("http://areadev.260mb.net/appmype/index.php/cli/cmpany",{ mode:'cors', method:'POST', cache:'default'})
+  //    .then(response => response.json())
+  //    .then(data => this.setState({entidad: data}));
+  //  }
 render() {
+    document.body.style.overflow = 'auto';
   /*const cdmype y conamype toman los valores del ajax sobre la tabla organizaciones*/
   const {entidad} = this.state;
   /*separacion de listas del array entidad*/
@@ -162,75 +161,65 @@ render() {
   function destroyMaskPhone(string){
   return string.replace(/\D/g,'').substring(0, 8);
   }
-
   return (
       <div className="bgR">
-        <div className="container">
-          <div className="d-flex justify-content-center h-100">
-            <div className="cardR">
-              <div className="card-header">
-                <div className=" justify-content-center ">
-                  <h1 className="informaciongeneral">Informacion general:</h1>
-                  <p className="nota">NOTA: Los siguientes datos se ocuparan para generar el diploma.</p>
+      <br/>
+          <div className="cardR">
+                <h1 className="informaciongeneral">Informacion general:</h1>
+                <p className="nota">Los siguientes datos se ocuparan para generar el diploma.</p>
 {/*comienza el div de formulario*/}
+              <form id="frm" encType="multipart/form-data" method="POST" onSubmit={this.onRegister.bind(this)} className="formulario">
+                  <div className="justify-content-left">
+                    <label>Nombres:</label>
+                  </div>
+                  <div className="form-group d-flex justify-content-center">
+                    <input type="text" className="form-control" id="txtNombre" name="nombres" placeholder="ej: Jose Antonio" required  title="Ingrese sus nombres con letra inicial mayuscula"/>
+                  </div>
+                  <div className=" justify-content-left">
+                    <label>Telefono:</label>
+                  </div>
+                  <div className="form-group d-flex justify-content-center">
+                    <input type="text" name="number" style={{display:"none"}}/>
+                    <input type="text" className="form-control" id="txtTelefono" name="telefono" onKeyPress={this.allowNumbersOnly.bind(this)} placeholder="7145-6985" required  title="Ingrese su numero, ejemplo: 7468-1256"/>
+                  </div>
+                <div className="justify-content-center">
+                  <label>A que organizacion pertenece?</label>
                 </div>
-                <form id="frm" encType="multipart/form-data" method="POST" onSubmit={this.onRegister.bind(this)}>
-                    <div className="justify-content-left">
-                      <label>Nombres:</label>
-                    </div>
-                    <div className="form-group d-flex justify-content-center">
-                      <input type="text" className="form-control" id="txtNombre" name="nombres" placeholder="ej: Jose Antonio" required  title="Ingrese sus nombres con letra inicial mayuscula"/>
-                    </div>
-                    <div className=" justify-content-left">
-                      <label>Telefono:</label>
-                    </div>
-                    <div className="form-group d-flex justify-content-center">
-                      <input type="text" name="number" style={{display:"none"}}/>
-                      <input type="text" className="form-control" id="txtTelefono" name="telefono" onKeyPress={this.allowNumbersOnly.bind(this)} placeholder="7145-6985" required  title="Ingrese su numero, ejemplo: 7468-1256"/>
-                    </div>
-                  <div className="justify-content-center">
-                    <label>A que organizacion pertenece?</label>
-                  </div>
-                  <div className="justify-content-center">
-                    <select className="form-control" id="institucion" name="institucion" ref="institucion" onChange={this.cambiarInstituto.bind(this)}>
-                      <option value="CDMYPE" required>CDMYPE</option>
-                      <option value="CONAMYPE" required>CONAMYPE</option>
-                      <option value="Invitado" required>Invitado</option>
-                    </select>
-                  </div>
+                <div className="justify-content-center">
+                  <select className="form-control" id="institucion" name="institucion" ref="institucion" onChange={this.cambiarInstituto.bind(this)}>
+                    <option value="" defaultValue disable="true">--¿A que organizacion pertenece?--</option>
+                    <option value="CDMYPE" required>CDMYPE</option>
+                    <option value="CONAMYPE" required>CONAMYPE</option>
+                    <option value="Invitado" required>Invitado</option>
+                  </select>
+                </div>
 {/*Se llama a la funcion renderOrg para mostrar que cdmype o conamype ha seleccionado, y su puestos*/}
-                  {
-                    renderOrg(this.state.mostrar)
-                  }
-                  <div className=" justify-content-left">
-                    <label>Correo:</label>
-                  </div>
-                  <div className="form-group d-flex justify-content-center">
-                    <input type="email" className="form-control" id="txtCorreo" name="correo" placeholder="abc@mail.com" required title="Ingrese un correo valido"/>
-                  </div>
-                  <div className=" justify-content-left">
-                    <label>Password:</label>
-                  </div>
-                  <div className="form-group d-flex justify-content-center">
-                    <input type="Password" className="form-control" id="txtPass" name="clave" placeholder="Contraseña" required />
-                  </div>
-                  <div className=" justify-content-left">
-                    <label>Foto de Perfil:</label>
-                  </div>
-                  <div className="form-group d-flex justify-content-left">
-                    <label htmlFor="imgInp" className="btn btn-info"> Eligir foto de perfil</label>
-                    <input type="file"  id="imgInp" onChange={this.onFileSelected.bind(this)} style={{display:"none"}} name="foto"/>
-                  </div>
-                    <img id="myimage" className="preview"/>
-                  <div className="botones">
-                    <input type="submit" value="Registrar" className="btn float-right btn-info"/>
-                    <Link to="/" className="btn float-left btn-info">Volver</Link>
-                  </div>
-                </form>
-              </div>
+                {
+                  renderOrg(this.state.mostrar)
+                }
+                <div className=" justify-content-left">
+                  <label>Correo:</label>
+                </div>
+                <div className="form-group d-flex justify-content-center">
+                  <input type="email" className="form-control" id="txtCorreo" name="correo" placeholder="abc@mail.com" required title="Ingrese un correo valido"/>
+                </div>
+                <div className=" justify-content-left">
+                  <label>Password:</label>
+                </div>
+                <div className="form-group d-flex justify-content-center">
+                  <input type="Password" className="form-control" id="txtPass" name="clave" placeholder="Contraseña" required />
+                </div>
+                <div className=" justify-content-left">
+                  <label>Foto de Perfil:</label>
+                </div>
+                <label htmlFor="imgInp" className="btn btn-info"> Eligir foto de perfil</label>
+                <input type="file"  id="imgInp" style={{display:"none"}} name="foto"/>
+                <br/>
+                <br/>
+                <Link to="/" className="btn btn-info btnvolver">Volver</Link>
+                <input type="submit" value="Registrar" className="btn btn-info registrar"/>
+              </form>
             </div>
-          </div>
-        </div>
       </div>
     );
   }

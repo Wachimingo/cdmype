@@ -14,12 +14,12 @@ class Agenda extends Component {
   }
   componentDidMount(){
   /*Fetch para obtener toda la agenda de la bd*/
-    // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
-    //    .then(response => response.json())
-    //    .then(data => this.setState({agenda: data}));
-    fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
-      .then(response => response.json())
-      .then(data => this.setState({agenda: data}));
+    fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
+       .then(response => response.json())
+       .then(data => this.setState({agenda: data}));
+    // fetch("http://192.168.1.20/cdmypephp/getagenda.php",{ mode:'cors'})
+    //   .then(response => response.json())
+    //   .then(data => this.setState({agenda: data}));
   }
   render() {
     /*Array agenda*/
@@ -35,7 +35,7 @@ class Agenda extends Component {
     });
     /*Funcion para crear la tabla de la agenda, toma un array como parametro, en este caso llamado JSON*/
     function renderMiercoles(){
-      return agenda.map((value,key) => {
+      return miercoles.map((value,key) => {
         return (
                <tr key={value.idagenda} className="cuerpo">
                   <td width=''>{value.hora}</td>
@@ -49,7 +49,7 @@ class Agenda extends Component {
       })
     }
     function renderJueves(){
-      return agenda.map((value,key) => {
+      return jueves.map((value,key) => {
         return (
                <tr key={value.idagenda} className="cuerpo">
                   <td width=''>{value.hora}</td>
@@ -63,7 +63,7 @@ class Agenda extends Component {
       })
     }
     function renderViernes(){
-      return agenda.map((value,key) => {
+      return viernes.map((value,key) => {
         return (
                <tr key={value.idagenda} className="cuerpo">
                   <td width=''>{value.hora}</td>
@@ -85,12 +85,9 @@ class Agenda extends Component {
               <h3>Programa de contenidos</h3>
             </div>
           </div>
-
-          <a className="link">
             <div className="dia">
                 <h3>Miercoles</h3>
             </div>
-          </a>
           <div className="divTabla resume">
               <table className="table tabla table-striped" id="agenda">
                 <thead>
@@ -104,11 +101,9 @@ class Agenda extends Component {
                 </tbody>
               </table>
           </div>
-          <a className="link">
             <div className="dia">
                 <h3>Jueves</h3>
             </div>
-          </a>
           <div  className="divTabla">
               <table className="table tabla table-striped" id="agenda">
                 <thead>
@@ -122,11 +117,9 @@ class Agenda extends Component {
                 </tbody>
               </table>
           </div>
-          <a className="link">
             <div className="dia">
                 <h3>Viernes</h3>
             </div>
-          </a>
           <div className="divTabla">
               <table className="table tabla table-striped" id="agenda">
                 <thead>

@@ -9,14 +9,13 @@ publicar(e){
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
+          // url: 'http://192.168.1.20/cdmypephp/publicar.php',
           url: 'https://cdmype.000webhostapp.com/publicar.php',
           data: formData,
           type: 'POST',
           contentType: false,
           processData: false,
-          success: $(function () {
-           $('#modal').modal('toggle');
-        })
+          success: data => window.location.reload()
       });
 }
 onFileSelected(event) {
@@ -42,7 +41,7 @@ reader.readAsDataURL(selectedFile);
           <label htmlFor="imgInp" className="btn btn-info">Agregar Fotos</label>
         </div>
         <input type="file" id="imgInp" name="foto" multiple onChange={this.onFileSelected.bind(this)} style={{display:"none"}}/>
-        <img id="myimage" className="preview" />
+        <img id="myimage" className="preview" height="100px" width="100px"/>
         <input type="text" defaultValue={sessionStorage.getItem('id')} name="idusuario" style={{display:"none"}}/>
         <button type="submit" className="btn btn-primary float-left" value="Upload File">Publicar</button>
       </form>

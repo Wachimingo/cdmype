@@ -1,6 +1,4 @@
 body{
-  height: 100%;
-  font-weight: 900;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -10,17 +8,25 @@ body{
   -o-background-size:cover;
   background-size:cover;
   background-position:center;
+  width: 100%;
+  height: 100%;
+  font-family: 'Oxygen', sans-serif;
 }
-
+.bgR{
+    height: 150vh;
+    background-image: linear-gradient(#5678B7,#263160);
+}
 .cardR{
   color: white;
   height: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: auto;
+  margin-left: 28%;
+  width: 650px;
   background-color:rgba(0,0,0,0.5) !important;
 }
-
+.formulario{
+  width: 600px;
+  margin-left: 3%;
+}
 .input-group-prepend span{
 width: 50px;
 background-color: #FFC312;
@@ -33,35 +39,54 @@ outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
 
 }
-.preview{
-  height: 0;
-  margin-left: 160px;
-}
 .nota{
   font-size: 15px;
+  margin-left: 20%;
 }
 .informaciongeneral{
   font-size: 27px;
   font-weight: 900;
+  margin-left: 25%;
 }
-
+.registrar{
+  margin-left: 430px;
+}
 @media screen and (max-width: 600px){
   .preview{
     height: 0;
-    margin-left: 100px;
+    margin-left: 100px;}
+  .formulario{
+    margin-left: 3%;
+    width: 320px;
+  }
+  .bgR{
+    height: 107vh;
   }
   .botones{
     margin-right: 0%;
   }
   .cardR{
+    color: white;
     height: auto;
     margin-top: auto;
     margin-bottom: auto;
     width: auto;
     background-color: rgba(0,0,0,0.5) !important;
+    margin-left: 2%;
+    width: 345px;
+    background-color:rgba(0,0,0,0.5) !important;
   }
   .informaciongeneral{
     font-size: 25px;
+    font-size: 24px;
     font-weight: 900;
+    margin-left: 6%;
+  }
+  .nota{
+    font-size: 12px;
+    margin-left: 3%;
+  }
+  .registrar{
+    margin-left: 155px;
   }
 }

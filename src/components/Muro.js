@@ -17,6 +17,9 @@ class Muro extends Component {
     fetch("https://cdmype.000webhostapp.com/getpublicaciones.php",{mode:'cors'})
       .then(response => response.json())
       .then(data => this.setState({publicaciones: data}));
+    // fetch("http://192.168.1.20/cdmypephp/getpublicaciones.php",{mode:'cors'})
+    //   .then(response => response.json())
+    //   .then(data => this.setState({publicaciones: data}));
   }
   render() {
     $(window).on('load',function(){
@@ -39,8 +42,8 @@ class Muro extends Component {
         			 <div className="cardbox-heading">
           			  <div className="media m-0">
           			   <div className="d-flex mr-3">
-          				{/*<Link to={{pathname:`/Home/Perfil/${item.idusuario}`}}><img className="img-fluid rounded-circle" src={`https://cdmype.000webhostapp.com/uploads/usuarios/${item.imgperfil}`} alt="User"/></Link>*/}
-                  <Link to={{pathname:`/Home/Perfil/${item.idusuario}`}}><img className="img-fluid rounded-circle" src={`http://localhost/cdmypephp/uploads/usuarios/${item.imgperfil}`} alt="User"/></Link>
+          				<Link to={{pathname:`/Home/Perfil/${item.idusuario}`}}><img className="img-fluid rounded-circle" src={`https://cdmype.000webhostapp.com/uploads/usuarios/${item.imgperfil}`} alt="User"/></Link>
+                  {/*<Link to={{pathname:`/Home/Perfil/${item.idusuario}`}}><img className="img-fluid rounded-circle" src={`http://192.168.1.20/cdmypephp/uploads/usuarios/${item.imgperfil}`} alt="User"/></Link>*/}
           			   </div>
           			   <div className="media-body">
           			    <p className="m-0">{item.nombres} {item.apellidos}</p>
@@ -50,7 +53,8 @@ class Muro extends Component {
           			  </div>
           			 </div>
           			 <div className="cardbox-item">
-          			  <img className="img-fluid" src={`https://cdmype.000webhostapp.com/uploads/publicaciones/${item.foto}`} alt="publicacion"/>
+          			  <img className="img-fluid" src={`https://cdmype.000webhostapp.com/uploads/publicaciones/${item.foto}`} alt=""/>
+                  {/*<img className="img-fluid" src={`http://192.168.1.20/cdmypephp/uploads/publicaciones/${item.foto}`} alt="publicacion"/>*/}
           			 </div>
             </div>
             </div>

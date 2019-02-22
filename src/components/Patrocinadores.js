@@ -11,12 +11,12 @@ class Patrocinadores extends Component {
     };
   }
   componentDidMount(){
-    // fetch("https://cdmype.000webhostapp.com/getpatrocinadores.php", {mode:'cors'})
-    // .then(response => response.json())
-    // .then(data => this.setState({patrocinadores: data}));
-    fetch("http://localhost/cdmypephp/getpatrocinadores.php", {mode:'cors'})
+    fetch("https://cdmype.000webhostapp.com/getpatrocinadores.php", {mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({patrocinadores: data}));
+    // fetch("http://192.168.1.20/cdmypephp/getpatrocinadores.php", {mode:'cors'})
+    // .then(response => response.json())
+    // .then(data => this.setState({patrocinadores: data}));
   }
 
   render() {

@@ -16,8 +16,8 @@ class Cartasponente extends Component {
           <div className="card1">
             <div className="box">
               <div className="img">
-                  {/*<img src={`https://cdmype.000webhostapp.com/uploads/ponentes/${this.props.item.foto}`} alt="preview de ponente"/>*/}
-                  <img src={`http://localhost/cdmypephp/uploads/ponentes/${this.props.item.foto}`} alt="preview"/>
+                  <img src={`https://cdmype.000webhostapp.com/uploads/ponentes/${this.props.item.foto}`} alt="preview de ponente"/>
+                  {/*<img src={`http://192.168.1.20/cdmypephp/uploads/ponentes/${this.props.item.foto}`} alt="preview"/>*/}
               </div>
               <h2>{this.props.item.nombreponente}<br/></h2>
             </div>

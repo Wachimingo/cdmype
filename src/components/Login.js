@@ -14,13 +14,13 @@ constructor(props){
   }
 }
 inLogin(e){
-  // const urlhost ="https://cdmype.000webhostapp.com/validarLogin.php";
-  const urllocal = "http://localhost/cdmypephp/validarlogin.php";
+  const urlhost ="https://cdmype.000webhostapp.com/validarLogin.php";
+  // const urllocal = "http://192.168.1.20/cdmypephp/validarlogin.php";
   e.preventDefault();
   var form = $('#login');
   var formData = new FormData(form[0]);
   $.ajax({
-      url: urllocal,
+      url: urlhost,
       data: formData,
       type:'POST',
       contentType: false,
@@ -30,7 +30,9 @@ inLogin(e){
 }
 validarLogin(data){
   var resultado = JSON.parse(data);
-  if (resultado['correo'] === this.state.correo && resultado['clave'] === this.state.clave) {
+  console.log(resultado['privilegio']);
+  console.log(resultado['correo']);
+  if (resultado['correo'] === this.state.correo && resultado['clave'] === this.state.clave && resultado['privilegio'] === '1' && resultado['estado'] === '1') {
     sessionStorage.setItem("id",resultado['idusuario']);
     sessionStorage.setItem("nombres",resultado['nombres']);
     sessionStorage.setItem("identidad",resultado['identidad']);
@@ -43,7 +45,14 @@ validarLogin(data){
     sessionStorage.setItem("foto",resultado['imgperfil']);
     this.props.history.push('/Home');
   }
-  else  {
+  // else if (resultado['correo'] === this.state.correo && resultado['clave'] === this.state.clave && resultado['privilegio'] === '2' && resultado['estado'] === '1') {
+  //   sessionStorage.setItem("id",resultado['idusuario']);
+  //   sessionStorage.setItem("nombres",resultado['nombres']);
+  //   sessionStorage.setItem("correo",resultado['correo']);
+  //   sessionStorage.setItem("foto",resultado['imgperfil']);
+  //   this.props.history.push('/Admin/Home');
+  // }
+  else if(resultado['correo'] !== this.state.correo || resultado['clave'] !== this.state.clave || resultado['privilegio'] !== '2' || resultado['estado'] !== '1'){
     this.setState({validado: false});
   }
 }
@@ -55,7 +64,11 @@ aviso(){
     <h3 className="aviso">Usuario o clave incorrecta</h3>
   );}
 }
+componentDidMount(){
+  document.body.style.overflow = 'hidden';
+}
   render() {
+    document.body.style.overflow = 'hidden';
     return (
 <div className = "bg">
       <div className="container">
@@ -85,11 +98,11 @@ aviso(){
               </form>
             </div>
             <div className="card-footer">
-              <div className=" justify-content-center float-right links registrar">
+              <div className=" justify-content-center float-right links lbregistrar">
                 <div>
                   <p>No tienes cuenta?</p>
                 </div>
-                <Link to="/Registro" className="btn btn-info float-right">Registrate</Link>
+                <Link to="/Registro" className="btn btn-info float-right irregistrar">Registrate</Link>
               </div>
               <div className="d-flex justify-content-center float-left">
                 <Link to="/Recuperar" className="btn btn-info recuperar">Recuperar contraseña?</Link>

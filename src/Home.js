@@ -13,12 +13,13 @@ import Post from "./components/ModalWindowPost.js";
 import EditarPerfil from "./components/EditarPerfil.js";
 import {Route, Switch, Link} from 'react-router-dom';
 import "./js/MuroFuncion.js";
-import $ from 'jquery';
+// import $ from 'jquery';
 
 class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
+      reloaded: false,
     };
   }
   /*Funcion para mostrar un preview de la foto seleccionada para la publicacion*/
@@ -40,11 +41,10 @@ class Home extends Component {
  cerrarSesion(e){
    this.props.history.replace('/');
  }
+ componentWillMount(){
+   document.body.style.overflow = 'auto';
+ }
   render() {
-    $(window).on('load',function(){
-      document.body.style.backgroundImage ="white";
-      document.body.style.background = "white";
-    });
     return (
       <div className="container-fluid ">
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark barra">

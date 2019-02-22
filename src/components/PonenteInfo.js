@@ -13,12 +13,12 @@ class PonenteInfo extends Component {
   }
   componentDidMount(){
     let id = this.props.match.params.id;
-    // fetch("https://cdmype.000webhostapp.com/getponenteinfo.php?id="+id, {mode:'cors'})
-    // .then(response => response.json())
-    // .then(data => this.setState({ponente: data[0]}));
-    fetch("http://localhost/cdmypephp/getponenteinfo.php?id="+id, {mode:'cors'})
+    fetch("https://cdmype.000webhostapp.com/getponenteinfo.php?id="+id, {mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({ponente: data[0]}));
+    // fetch("http://192.168.1.20/cdmypephp/getponenteinfo.php?id="+id, {mode:'cors'})
+    // .then(response => response.json())
+    // .then(data => this.setState({ponente: data[0]}));
   }
   render() {
     $(window).on('load',function(){
@@ -32,8 +32,8 @@ class PonenteInfo extends Component {
           <h2>{this.state.ponente['nombreponente']}</h2>
         </div>
         <div className="panelizquierdo">
-          {/*<img src={`https://cdmype.000webhostapp.com/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt="FotoPonente"/>*/}
-          <img src={`http://localhost/cdmypephp/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt="FotoPonente"/>
+          <img src={`https://cdmype.000webhostapp.com/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt="FotoPonente"/>
+          {/*<img src={`http://192.168.1.20/cdmypephp/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt="FotoPonente"/>*/}
           <p>{this.state.ponente['puesto']}</p>
         </div>
         <div className="panelderecho">
