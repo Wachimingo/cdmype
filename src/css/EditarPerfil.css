@@ -1,0 +1,9 @@
+.previewOld{
+  margin-left: 80vh;
+}
+
+@media only screen and (max-width: 600px){
+  .previewOld{
+    margin-left: 17vh;
+  }
+}

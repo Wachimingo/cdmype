@@ -4,22 +4,25 @@ import '../node_modules/font-awesome/css/font-awesome.css';
 import 'font-awesome/css/font-awesome.css';
 import './index.css';
 import Home from './Home.js';
+import AdminHome from './AdminHome.js';
 import Login from './components/Login.js';
 import Registro from './components/RegistrarUsuario.js';
 import Recuperar from './components/Recuperar.js';
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { HashRouter , Route, Switch} from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 ReactDOM.render((
-<BrowserRouter>
+<HashRouter basename="/">
 <div>
   <Switch>
     <Route exact path="/" component={Login} />
     <Route path="/Home" component={Home}/>
+    <Route path="/Admin" component={AdminHome}/>
     <Route exact path="/Registro" component={Registro} />
     <Route exact path="/Recuperar" component={Recuperar} />
   </Switch>
 </div>
-</BrowserRouter>
+</HashRouter>
+// <ReviewTaller/>
   ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

@@ -6,6 +6,9 @@ import Agenda from"./components/Agenda.js";
 import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
 import Ponentes from"./components/Ponentes.js";
+import AcercaDe from"./components/Acercade.js";
+import CreadoresInfo from"./components/CreadoresInfo.js";
+import Participantes from"./components/Participantes.js";
 import PonenteInfo from"./components/PonenteInfo.js";
 import Patrocinadores from"./components/Patrocinadores.js";
 import PatrocinadorInfo from"./components/PatrocinadorInfo.js";
@@ -13,13 +16,11 @@ import Post from "./components/ModalWindowPost.js";
 import EditarPerfil from "./components/EditarPerfil.js";
 import {Route, Switch, Link} from 'react-router-dom';
 import "./js/MuroFuncion.js";
-// import $ from 'jquery';
 
 class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      reloaded: false,
     };
   }
   /*Funcion para mostrar un preview de la foto seleccionada para la publicacion*/
@@ -39,23 +40,26 @@ class Home extends Component {
 
 /*Funcion para cerrar sesion*/
  cerrarSesion(e){
+   localStorage.clear();
    this.props.history.replace('/');
  }
+
  componentWillMount(){
    document.body.style.overflow = 'auto';
+
  }
+
   render() {
     return (
       <div className="container-fluid ">
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark barra">
               <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
-              <Link to={'/Home'} className="navbar-brand Items">V CONGRESO</Link>
+              <Link to={'/Home'} replace className="navbar-brand Items">V CONGRESO</Link>
               <button type="button" data-toggle="modal" data-target="#post" className="subir"><i className="fa fa-arrow-up"/> Publicar</button>
               <button type="button" className="cerrar" onClick={this.cerrarSesion.bind(this)}><i className="fa fa-power-off"/> Cerrar Sesion</button>
           </nav>
-
-          {/*Modal window para hacer una publicacion*/}
-          <div className="modal fade" id="post" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{/*Modal window para hacer una publicacion*/}
+          <div className="modal fade" id="post" tabIndex="-1" role="dialog" aria-labelledby="post" aria-hidden="true">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -74,10 +78,12 @@ class Home extends Component {
           <div className="row">
               <div className="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in panel fixed-top" id="sidebar">
                   <div className="list-group ">
-                      <Link to={'/Home/Agenda'} className="options "   data-parent="#sidebar"><i className="fa fa-calendar-o"></i> <span className="hidden-sm-down">Programa</span></Link>
-                      <Link to={'/Home/Ponentes'} className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Ponentes</span> </Link>
-                      <Link to={'/Home/Patrocinadores'} className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Patrocinadores</span> </Link>
-                      <Link to={{pathname:`/Home/Perfil/${sessionStorage.getItem('id')}`}}  className="options  "  data-parent="#sidebar" ><i className="fa fa-user"></i> <span className="hidden-sm-down">Perfil</span> </Link>
+                      <Link to={'/Home/Agenda'} className="options "   data-parent="#sidebar"><span className="hidden-sm-down">Programa</span></Link>
+                      <Link to={'/Home/Ponentes'} className="options  "  data-parent="#sidebar" ><span className="hidden-sm-down">Ponentes</span> </Link>
+                      <Link to={'/Home/Patrocinadores'} className="options  "  data-parent="#sidebar" ><span className="hidden-sm-down">Patrocinadores</span> </Link>
+                      <Link to={'/Home/Participantes'}   className="options  "  data-parent="#sidebar" ><span className="hidden-sm-down">Participantes</span> </Link>
+                      <Link to={{pathname:`/Home/Perfil/${localStorage.getItem('id')}`}}  className="options  "  data-parent="#sidebar" ><span className="hidden-sm-down">Perfil</span> </Link>
+                      <Link to={'/Home/AcercaDe'}   className="options  "  data-parent="#sidebar" ><span className="hidden-sm-down">Acerca de la App</span> </Link>
                   </div>
              </div>
           </div>
@@ -89,7 +95,10 @@ class Home extends Component {
             <Route exact path="/Home/Ponentes/" component={Ponentes} />
             <Route path="/Home/Ponente/:id" component={PonenteInfo} />
             <Route path="/Home/Patrocinadores" component={Patrocinadores} />
+            <Route path="/Home/Participantes" component={Participantes} />
             <Route path="/Home/Patrocinador/:id" component={PatrocinadorInfo} />
+            <Route  exact path="/Home/AcercaDe" component={AcercaDe}/>
+            <Route  path="/Home/AcercaDe/:id" component={CreadoresInfo}/>
             <Route  path="/Home/EditarPerfil" component={EditarPerfil}/>
           </Switch>
       </div>

@@ -7,7 +7,7 @@
 }
 .bg{
     background-image: linear-gradient(#5678B7,#263160);
-    height: 120vh;
+    height: 105vh;
 }
 body{
   width: 100%;
@@ -16,8 +16,19 @@ body{
   overflow: hidden;
 }
 .recuperar{
-  margin-top: 40px;
-  margin-right: 35px;
+  margin-top: 0px;
+  margin-right: 0px;
+}
+.login{
+  margin-left: 110px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.irregistrar{
+  margin-left: -150px;
+  padding-left: 30px;
+  padding-right: 30px;
+  float: left;
 }
 .container{
 height: 100%;
@@ -25,7 +36,7 @@ align-content: center;
 }
 
 .card{
-top: 10px;
+top: 0px;
 height: auto;
 margin-top: auto;
 margin-bottom: auto;
@@ -35,7 +46,7 @@ background-color: rgba(0,0,0,0.5) !important;
 
 .aviso{
 color: red;
-font-size: 30px;
+font-size: 20px;
 }
 
 .input-group-prepend span{
@@ -78,16 +89,21 @@ color: white;
 margin-left: 4px;
 }
 @media only screen and (max-width: 600px){
-  .recuperar{
-    font-size: 13px;
-    margin-top: -40px;
-    margin-right: 55px;
-    width: 150px;
+  body{
+    width: 100%;
+    height: 100%;
+    font-family: 'Oxygen', sans-serif;
+    overflow: hidden;
+  }
+  .login{
+    margin-left: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
   .irregistrar{
-    margin-top: 0px;
-  }
-  .lbregistrar{
-    margin-top: -25px;
+    margin-left: -150px;
+    padding-left: 30px;
+    padding-right: 30px;
+    float: left;
   }
 }

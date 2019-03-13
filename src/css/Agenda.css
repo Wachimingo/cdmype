@@ -1,12 +1,8 @@
-body, html{
-    margin:0;
-    padding:0;
-}
 
 .rotulo{
   margin-top: 55px;
-  width: 100vh;
-  float: left;
+  width: 250px;
+  height: 250px;
 }
 .dia{
   background-color: #ff9714;
@@ -31,6 +27,9 @@ body, html{
   text-align: left;
   margin-top: 0;
   margin-left: 108vh;
+}
+.contenido > h3{
+  margin-left: 25px;
 }
 .tabla{
   margin-top: 0px;
@@ -70,10 +69,10 @@ body, html{
 
  @media only screen and (max-width: 600px){
    .rotulo{
-     margin-left: -35px;
+     margin-left: 75px;
      margin-top: 70px;
-     width: 60vh;
-     float: left;
+     height: 150px;
+     width: 150px;
    }
    .bloque{
      float: left;
@@ -86,6 +85,9 @@ body, html{
      text-align: left;
      margin-top: 0;
      margin-left: -30px;
+   }
+   .contenido > h3{
+     margin-left: 10px;
    }
    .wrapper{
      margin-left: -45px;

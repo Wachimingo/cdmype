@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
-import "../css/ModalWindowPost.css";
+import "../css/PostAdmin.css";
 import $ from 'jquery';
-class Post extends Component {
+class PostAdmin extends Component {
 publicar(e){
   var form = $("#frm")
   e.preventDefault();
@@ -34,16 +34,19 @@ reader.readAsDataURL(selectedFile);
 }
   render() {
     return (
-    <div className="container-fluid ">
+    <div className="container-fluid contenedor">
       <form id="frm" method="POST" encType="multipart/form-data" onSubmit={this.publicar.bind(this)}>
         <label htmlFor="comment">Descripcion:</label>
-        <textarea className="form-control" rows="5" id="comment" form="frm" maxLength="200" name="descripcion"></textarea>
+        <textarea className="form-control texto" rows="5" id="comment" form="frm" maxLength="200" name="descripcion"></textarea>
+        <br/>
         <div className="images">
           <label htmlFor="imgInp" className="btn btn-info">Agregar Fotos</label>
         </div>
         <input type="file" id="imgInp" name="foto" multiple onChange={this.onFileSelected.bind(this)} style={{display:"none"}}/>
         <img id="myimage" className="preview" height="100px" width="100px" alt=""/>
+        <br/>
         <input type="text" defaultValue={localStorage.getItem('id')} name="idusuario" style={{display:"none"}}/>
+        <br/>
         <button type="submit" className="btn btn-primary float-left" value="Upload File">Publicar</button>
       </form>
     </div>
@@ -52,4 +55,4 @@ reader.readAsDataURL(selectedFile);
   }
 }
 
-export default Post;
+export default PostAdmin;

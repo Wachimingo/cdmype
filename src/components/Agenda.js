@@ -14,10 +14,13 @@ class Agenda extends Component {
   }
   componentDidMount(){
   /*Fetch para obtener toda la agenda de la bd*/
-    fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
-       .then(response => response.json())
-       .then(data => this.setState({agenda: data}));
-    // fetch("http://192.168.1.20/cdmypephp/getagenda.php",{ mode:'cors'})
+  fetch("http://backend.acdmype.org/getagenda.php",{ mode:'cors'})
+     .then(response => response.json())
+     .then(data => this.setState({agenda: data}));
+    // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
+    //    .then(response => response.json())
+    //    .then(data => this.setState({agenda: data}));
+    // fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
     //   .then(response => response.json())
     //   .then(data => this.setState({agenda: data}));
   }
@@ -80,9 +83,9 @@ class Agenda extends Component {
       <div className="container-fluid ">
 
           <div>
-            <img src={`https://cdmype.000webhostapp.com/uploads/congreso.jpg`} className="rotulo bloque " alt="logo"/>
+            <img src={`http://backend.acdmype.org/uploads/logo.png`} className="rotulo bloque" alt=""/>
             <div className="bloque contenido">
-              <h3>Programa de contenidos</h3>
+              <h3>Programa</h3>
             </div>
           </div>
             <div className="dia">

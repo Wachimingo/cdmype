@@ -11,16 +11,17 @@ constructor(props) {
   this.state ={
     mostrar: "",
     entidad: [],
+    sexo:"",
   };
 }
   onRegister(e) {
-  var form = $("#frm")
-  const urlhost ="https://cdmype.000webhostapp.com/registrarusuario.php";
-  // const urllocal = "http://192.168.1.20/cdmypephp/registrarusuario.php";
+  var form = $("#frm");
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
-      url: urlhost,
+      // url:"https://cdmype.000webhostapp.com/registrarusuario.php",
+      url:"http://backend.acdmype.org/registrarusuario.php",
+      // url:"http://localhost/cdmypephp/registrarusuario.php",
       data: formData,
       type: 'POST',
       contentType: false,
@@ -29,18 +30,49 @@ constructor(props) {
       // success: data => alert(data)
   });
 }
+onFileSelected(event) {
+  var selectedFile = event.target.files[0];
+  var reader = new FileReader();
+
+  var imgtag = document.getElementById("myimage");
+  imgtag.title = selectedFile.name;
+
+  reader.onload = function(event) {
+    imgtag.src = event.target.result;
+  };
+
+  reader.readAsDataURL(selectedFile);
+}
   exito(data){
     this.props.history.push('/');
   }
 
-  cambiarInstituto(e){
-    this.setState({mostrar: e.target.value});
-  }
+cambiarInstituto(e){
+  this.setState({mostrar: e.target.value});
+}
+cambiarSexo(e){
+  this.setState({sexo: e.target.value});
+}
   allowNumbersOnly(e) {
       var code = (e.which) ? e.which : e.keyCode;
       if (code > 31 && (code < 48 || code > 57)) {
           e.preventDefault();
       }
+  }
+  preview(){
+    if (this.state.sexo === '1') {
+      return(<img id="myimage" src={"http://backend.acdmype.org/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
+      // return(<img id="myimage" src={"https://cdmype.000webhostapp.com/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
+      // return(<img id="myimage" src={"http://localhost/cdmypephp/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
+    }
+    else if(this.state.sexo === '2'){
+      return(<img id="myimage" src={"http://backend.acdmype.org/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
+      // return(<img id="myimage" src={"https://cdmype.000webhostapp.com/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
+      // return(<img id="myimage" src={"http://localhost/cdmypephp/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
+    }
+    else {
+      return(<img id="myimage" className="preview" height="100px" width="100px" alt=""/>);
+    }
   }
 componentWillMount(){
   document.body.style.overflow = 'auto';
@@ -48,11 +80,15 @@ componentWillMount(){
 componentDidMount(){
 document.body.style.overflow = 'auto';
 /*Fecth para la lista de cdmypes, conamypes e invitados, ademas de los puestos de cada uno*/
- fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
-    .then(response => response.json())
-    .then(data => this.setState({entidad: data}));
-  }
- // fetch("http://192.168.1.20/cdmypephp/getentidades.php",{ mode:'cors'})
+fetch("http://backend.acdmype.org/getentidades.php",{ mode:'cors'})
+   .then(response => response.json())
+   .then(data => this.setState({entidad: data}));
+ }
+ // fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
+ //    .then(response => response.json())
+ //    .then(data => this.setState({entidad: data}));
+ //  }
+ // fetch("http://localhost/cdmypephp/getentidades.php",{ mode:'cors'})
  //    .then(response => response.json())
  //    .then(data => this.setState({entidad: data}));
  //
@@ -170,10 +206,20 @@ render() {
 {/*comienza el div de formulario*/}
               <form id="frm" encType="multipart/form-data" method="POST" onSubmit={this.onRegister.bind(this)} className="formulario">
                   <div className="justify-content-left">
-                    <label>Nombres:</label>
+                    <label>Nombre completo:</label>
                   </div>
                   <div className="form-group d-flex justify-content-center">
                     <input type="text" className="form-control" id="txtNombre" name="nombres" placeholder="ej: Jose Antonio" required  title="Ingrese sus nombres con letra inicial mayuscula"/>
+                  </div>
+                  <div className="justify-content-left">
+                    <label>Sexo:</label>
+                  </div>
+                  <div className="justify-content-center">
+                    <select className="form-control" id="sexo" name="sexo" ref="sexo" onChange={this.cambiarSexo.bind(this)}>
+                      <option value="" defaultValue disable="true">-</option>
+                      <option value="1" required>Masculino</option>
+                      <option value="2" required>Femenino</option>
+                    </select>
                   </div>
                   <div className=" justify-content-left">
                     <label>Telefono:</label>
@@ -187,7 +233,7 @@ render() {
                 </div>
                 <div className="justify-content-center">
                   <select className="form-control" id="institucion" name="institucion" ref="institucion" onChange={this.cambiarInstituto.bind(this)}>
-                    <option value="" defaultValue disable="true">--¿A que organizacion pertenece?--</option>
+                    <option value="" defaultValue disable="true">-</option>
                     <option value="CDMYPE" required>CDMYPE</option>
                     <option value="CONAMYPE" required>CONAMYPE</option>
                     <option value="Invitado" required>Invitado</option>
@@ -212,8 +258,9 @@ render() {
                 <div className=" justify-content-left">
                   <label>Foto de Perfil:</label>
                 </div>
-                <label htmlFor="imgInp" className="btn btn-info"> Eligir foto de perfil</label>
-                <input type="file"  id="imgInp" style={{display:"none"}} name="foto"/>
+                <label htmlFor="imgInp" className="btn btn-info lbfoto">Elegir foto</label>
+                <input type="file" id="imgInp" name="foto" onChange={this.onFileSelected.bind(this)} style={{display:"none"}}/>
+                {this.preview()}
                 <br/>
                 <br/>
                 <Link to="/" className="btn btn-info btnvolver">Volver</Link>
@@ -223,6 +270,6 @@ render() {
       </div>
     );
   }
-  }
+}
 
   export default Registro;

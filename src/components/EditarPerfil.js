@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
-import "../css/Registro.css";
+import "../css/EditarPerfil.css";
 import $ from 'jquery';
 import '../../node_modules/history/umd/history.js';
 import {Link} from 'react-router-dom';
@@ -9,39 +9,51 @@ class EditarPerfil extends Component {
 constructor(props) {
   super(props);
   this.state ={
-    nombres: sessionStorage.getItem('nombres'),
-    telefono: sessionStorage.getItem('telefono'),
-    correo: sessionStorage.getItem('correo'),
+    nombres: localStorage.getItem('nombres'),
+    telefono: localStorage.getItem('telefono'),
+    correo: localStorage.getItem('correo'),
     mostrar: "",
     entidad: [],
   };
 }
 
 onEdit(e) {
-  var form = $("#frm")
   e.preventDefault();
+  var form = $("#frme");
   var formData = new FormData(form[0]);
-  formData.append("idusuario", sessionStorage.getItem('id'));
+  formData.append("idusuario", localStorage.getItem('id'));
   formData.append("nombres", this.state.nombres);
   formData.append("telefono",this.state.telefono);
   formData.append("correo", this.state.correo);
-  formData.append("defaultidentidad", sessionStorage.getItem('identidad'));
-  formData.append("defaultidpuesto", sessionStorage.getItem('idpuesto'));
-  formData.append("defaultfoto", sessionStorage.getItem('foto'));
+  formData.append("defaultidentidad", localStorage.getItem('identidad'));
+  formData.append("defaultidpuesto", localStorage.getItem('idpuesto'));
+  formData.append("defaultfoto", localStorage.getItem('foto'));
   $.ajax({
-      url: 'https://cdmype.000webhostapp.com/editarusuario.php',
-      // url: 'http://192.168.1.20/cdmypephp/editarusuario.php',
+      // url: 'http://backend.acdmype.org/editarusuario.php',
+      // url: 'https://cdmype.000webhostapp.com/editarusuario.php',
+      url: 'http://localhost/cdmypephp/editarusuario.php',
       data: formData,
       type: 'POST',
       contentType: false,
       processData: false,
-      success: data => this.exito(data)
-      // success: data => alert(data)
+      // success: data => this.exito(data)
+      success: data => console.log(data)
   });
 }
+onFileSelected(event) {
+var selectedFile = event.target.files[0];
+var reader = new FileReader();
 
+var imgtag = document.getElementById("myimagee");
+imgtag.title = selectedFile.name;
+
+reader.onload = function(event) {
+  imgtag.src = event.target.result;
+};
+reader.readAsDataURL(selectedFile);
+}
   exito(data){
-    this.props.history.push({pathname:`/Home/Perfil/` + sessionStorage.getItem('id')});
+    this.props.history.push({pathname:`/Home/Perfil/` + localStorage.getItem('id')});
   }
   allowNumbersOnly(e) {
       var code = (e.which) ? e.which : e.keyCode;
@@ -51,18 +63,19 @@ onEdit(e) {
   }
   componentDidMount(){
   /*Fecth para la lista de cdmypes, conamypes e invitados, ademas de los puestos de cada uno*/
-   fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
+   fetch("http://backend.acdmype.org/getentidades.php",{ mode:'cors'})
       .then(response => response.json())
       .then(data => this.setState({entidad: data}));
     }
-   // fetch("http://192.168.1.20/cdmypephp/getentidades.php",{ mode:'cors'})
+    // fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
+    //    .then(response => response.json())
+    //    .then(data => this.setState({entidad: data}));
+    //  }
+   // fetch("http://localhost/cdmypephp/getentidades.php",{ mode:'cors'})
    //    .then(response => response.json())
    //    .then(data => this.setState({entidad: data}));
-   //  }
+   // }
 render() {
-  $(window).on('load',function(){
-          document.body.style.backgroundImage= "white";
-  });
   /*const cdmype y conamype toman los valores del ajax sobre la tabla organizaciones*/
   const {entidad} = this.state;
   /*separacion de listas del array entidad*/
@@ -83,9 +96,9 @@ render() {
          </div>
          <div className="form-group d-flex justify-content-center links">
            <select className="form-control" id="identidad" name="identidad" required>
-               <option disabled hidden selected value="" >{sessionStorage.getItem('nombreentidad')}</option>
+               <option disabled hidden value="" >{localStorage.getItem('nombreentidad')}</option>
                {cdmype.map((item, key) =>
-                 <option key={item.tipoentidad} value={item.tipoentidad} required>{item.entidad}</option>
+                 <option key={item.identidad} value={item.identidad} required>{item.entidad}</option>
                )}
            </select>
          </div>
@@ -94,9 +107,9 @@ render() {
          </div>
          <div className="form-group d-flex justify-content-center links">
            <select className="form-control" id="idpuesto" name="idpuesto" required>
-           <option disabled hidden selected value="">{sessionStorage.getItem('nombrepuesto')}</option>
+           <option disabled hidden selected value="">{localStorage.getItem('nombrepuesto')}</option>
              {puestoscdmype.map((item,key)=>
-               <option key={item.nombrepuesto} value={item.idpuesto} required>{item.nombrepuesto}</option>
+               <option key={item.idpuesto} value={item.idpuesto} required>{item.nombrepuesto}</option>
              )}
            </select>
          </div>
@@ -113,9 +126,9 @@ render() {
          </div>
          <div className="form-group d-flex justify-content-center links">
            <select className="form-control" id="identidad" name="identidad" required>
-               <option disabled hidden selected value="">{sessionStorage.getItem('nombreentidad')}</option>
+               <option disabled hidden selected value="">{localStorage.getItem('nombreentidad')}</option>
              {conamype.map((item, key) =>
-               <option key={item.tipoentidad} value={item.tipoentidad} required>{item.entidad}</option>
+               <option key={item.identidad} value={item.identidad} required>{item.entidad}</option>
              )}
            </select>
          </div>
@@ -124,9 +137,9 @@ render() {
          </div>
          <div className="form-group d-flex justify-content-center links">
            <select className="form-control" id="idpuesto" name="idpuesto" required>
-               <option disabled hidden selected value="">{sessionStorage.getItem('nombrepuesto')}</option>
+               <option disabled hidden selected value="">{localStorage.getItem('nombrepuesto')}</option>
              {puestosconamype.map((item,key)=>
-               <option key={item.nombrepuesto} value={item.idpuesto} required>{item.nombrepuesto}</option>
+               <option key={item.idpuesto} value={item.idpuesto} required>{item.nombrepuesto}</option>
              )}
            </select>
          </div>
@@ -171,7 +184,10 @@ render() {
       <div className="">
         <div className="container" style={{marginTop: "100px"}}>
 {/*comienza el div de formulario*/}
-                <form id="frm" encType="multipart/form-data" method="POST" onSubmit={this.onEdit.bind(this)}>
+                <img src={`http://backend.acdmype.org/uploads/usuarios/${localStorage.getItem('foto')}`} className="previewOld" height="100px" width="100px" alt=""/>
+                {/*<img src={`https://cdmype.000webhostapp.com/uploads/usuarios/${localStorage.getItem('foto')}`} className="previewOld" height="100px" width="100px" alt=""/>*/}
+                {/*<img src={`http://localhost/cdmypephp/uploads/usuarios/${localStorage.getItem('foto')}`} className="previewOld" height="100px" width="100px" alt=""/>*/}
+                <form id="frme" encType="multipart/form-data" method="POST" onSubmit={this.onEdit.bind(this)}>
                     <div className="justify-content-left ">
                       <label>Nombres:</label>
                     </div>
@@ -191,7 +207,7 @@ render() {
                   </div>
                   <div className="justify-content-center">
                     <select className="form-control" id="institucion" name="institucion"  onChange={(e)=>this.setState({mostrar: e.target.value})}>
-                      <option disabled hidden selected value="">{sessionStorage.getItem('nombretipo')}</option>
+                      <option disabled hidden selected value="">{localStorage.getItem('nombretipo')}</option>
                       <option value="CDMYPE" required>CDMYPE</option>
                       <option value="CONAMYPE" required>CONAMYPE</option>
                       <option value="Invitado" required>Invitado</option>
@@ -201,16 +217,18 @@ render() {
                   {
                     renderOrg(this.state.mostrar)
                   }
-                  <div className=" justify-content-left links">
+                  <br/>
                     <label>Foto de Perfil:</label>
-                  </div>
-                  <div className="form-group d-flex justify-content-left links">
-                    <label htmlFor="imgInp" className="btn btn-info"> Eligir foto de perfil</label>
-                    <input type="file"  id="imgInp"  style={{display:"none"}} name="foto"/>
-                  </div>
+                    <br/>
+                    <label htmlFor="fotonueva" className="btn btn-info lbfoto">Elegir foto</label>
+                    <input type="file" id="fotonueva" name="fotonueva" onChange={this.onFileSelected.bind(this)} style={{display:"none"}}/>
+                    <img id="myimagee"  height="100px" width="100px" alt=""/>
+                  <br/>
+                  <br/>
+                  <br/>
                   <div className="botones">
                     <input type="submit" value="Guardar cambios" className="btn float-right btn-info"/>
-                    <Link to={{pathname:`Perfil/${sessionStorage.getItem('id')}`}} className="btn float-left btn-info">Volver</Link>
+                    <Link to={{pathname:`Perfil/${localStorage.getItem('id')}`}} className="btn float-left btn-info">Volver</Link>
                   </div>
                 </form>
               </div>

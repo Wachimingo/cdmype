@@ -13,7 +13,7 @@ body{
   font-family: 'Oxygen', sans-serif;
 }
 .bgR{
-    height: 150vh;
+    height: 165vh;
     background-image: linear-gradient(#5678B7,#263160);
 }
 .cardR{
@@ -51,16 +51,20 @@ box-shadow: 0 0 0 0 !important;
 .registrar{
   margin-left: 430px;
 }
+.lbfoto{
+  margin-right: 60px;
+}
 @media screen and (max-width: 600px){
-  .preview{
-    height: 0;
-    margin-left: 100px;}
+  .lbfoto{
+    margin-right: 60px;
+  }
+
   .formulario{
     margin-left: 3%;
     width: 320px;
   }
   .bgR{
-    height: 107vh;
+    height: 140vh;
   }
   .botones{
     margin-right: 0%;
