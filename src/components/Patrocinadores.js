@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import Cartas from "./Cartas.js";
+import "../css/Patrocinadores.css";
 class Patrocinadores extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +25,7 @@ class Patrocinadores extends Component {
   render() {
     const {patrocinadores} = this.state;
     return (
-      <div>
+      <div className="contenedorCartas">
           <div className="contenedor">
             {patrocinadores.map((item, i) =>
               <Cartas item={item} key={i} />

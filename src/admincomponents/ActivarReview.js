@@ -9,6 +9,7 @@ class ActivarReview extends Component {
     this.state={
       agenda:[],
       mostrar: "1",
+      reviews: [],
     };
   }
   cambiarTaller(e){
@@ -42,9 +43,13 @@ componentDidMount(){
   // fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
   //   .then(response => response.json())
   //   .then(data => this.setState({agenda: data}));
+  fetch("https://backend.acdmype.org/getreviewsactivos.php",{ mode:'cors'})
+     .then(response => response.json())
+     .then(data => this.setState({agenda: data}));
 }
   render() {
     const {agenda} = this.state;
+    const {reviews} = this.state;
     function renderTaller(M) {
       const m = M;
      if(m === '1'){
@@ -70,6 +75,18 @@ componentDidMount(){
        );
      }
    }
+   /*Funcion para crear la tabla de la Lista*/
+   function renderLista(){
+     return reviews.map((value,key) => {
+       return (
+        <tr key={value.idreviewactivo}  id={value.idreviewactivo} className="cuerpo">
+           <td width=''>{value.nombre}</td>
+           <td width=''>{value.contenido}</td>
+           <td width=''>{value.fecha}</td>
+       </tr>
+       )
+     })
+   }
     return (
     <div className="container-fluid contenedorActivarReview">
       <form id="frm" method="POST"  onSubmit={this.activar.bind(this)}>
@@ -85,6 +102,24 @@ componentDidMount(){
         <input value={localStorage.getItem('id')} name="id" className="dato"/>
         <button type="submit" className="btn btn-primary float-left" value="Activar">Activar Review</button>
       </form>
+      <br/>
+      <br/>
+      <br/>
+      <div className="divTabla resume">
+          <table className="table" id="Lista">
+            <thead>
+              <tr className="header">
+                 <td>ID</td>
+                 <td>Tipo</td>
+                 <td>Contenido</td>
+                 <td>fecha</td>
+             </tr>
+            </thead>
+            <tbody>
+              {renderLista()}
+            </tbody>
+          </table>
+      </div>
     </div>
 
     );

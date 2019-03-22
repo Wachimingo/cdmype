@@ -11,21 +11,51 @@ class Perfil extends Component {
     }
   }
   componentDidMount(){
-    let id = localStorage.getItem('id');
-    if (typeof this.props.match.params.id !== 'undefined') {
-      id = this.props.match.params.id;
-      fetch("http://backend.acdmype.org/getperfil.php?id="+id, { mode:'cors'})
-         .then(response => response.json())
-         .then(data => this.setState({profile: data[0]}));
+    this.getPerfil();
+    // let id = localStorage.getItem('id');
+    // if (typeof this.props.match.params.id !== 'undefined') {
+    //   id = this.props.match.params.id;
+    //   fetch("http://backend.acdmype.org/getperfil.php?id="+id, { mode:'cors'})
+    //      .then(response => response.json())
+    //      .then(data => this.setState({profile: data[0]}));
       // fetch("https://cdmype.000webhostapp.com/getperfil.php?id="+id, { mode:'cors'})
       //    .then(response => response.json())
       //    .then(data => this.setState({profile: data[0]}));
        // fetch("http://localhost/cdmypephp/getperfil.php?id="+id, { mode:'cors'})
        //    .then(response => response.json())
        //    .then(data => this.setState({profile: data[0]}));
-    }
+    // }
+  }
+  ComponentWillUnmount(){
+    this.setState({profile: []});
+
   }
 
+getPerfil(){
+  let id = localStorage.getItem('id');
+  if (typeof this.props.match.params.id !== 'undefined') {
+    id = this.props.match.params.id;
+    fetch("http://backend.acdmype.org/getperfil.php?id="+id, { mode:'cors'})
+       .then(response => response.json())
+       .then(data => this.setStoragePerfil(data));
+}
+}
+
+setStoragePerfil(data){
+  console.log(data[0]);
+  this.setState({profile: data[0]});
+  localStorage.setItem("id",data[0]['idusuario']);
+  localStorage.setItem("nombres",data[0]['nombres']);
+  localStorage.setItem("identidad",data[0]['identidad']);
+  localStorage.setItem("nombreentidad",data[0]['nombreentidad']);
+  localStorage.setItem("nombretipo",data[0]['nombretipo']);
+  localStorage.setItem("nombrepuesto",data[0]['nombrepuesto']);
+  localStorage.setItem("idpuesto",data[0]['idpuesto']);
+  localStorage.setItem("correo",data[0]['correo']);
+  localStorage.setItem("telefono",data[0]['telefono']);
+  localStorage.setItem("foto",data[0]['imgperfil']);
+  localStorage.setItem("privilegio",data[0]['privilegio']);
+}
   renderInputSubmit(){
     if (this.props.match.params.id === localStorage.getItem('id')) {
       return(

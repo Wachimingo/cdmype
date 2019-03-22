@@ -7,6 +7,7 @@ import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
 import Ponentes from"./components/Ponentes.js";
 import AcercaDe from"./components/Acercade.js";
+import ReviewTaller from"./components/ReviewTaller.js";
 import CreadoresInfo from"./components/CreadoresInfo.js";
 import Participantes from"./components/Participantes.js";
 import PonenteInfo from"./components/PonenteInfo.js";
@@ -15,12 +16,15 @@ import PatrocinadorInfo from"./components/PatrocinadorInfo.js";
 import Post from "./components/ModalWindowPost.js";
 import EditarPerfil from "./components/EditarPerfil.js";
 import {Route, Switch, Link} from 'react-router-dom';
+import $ from 'jquery';
 import "./js/MuroFuncion.js";
 
 class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
+      command:[],
+      // idreview:[],
     };
   }
   /*Funcion para mostrar un preview de la foto seleccionada para la publicacion*/
@@ -40,18 +44,49 @@ class Home extends Component {
 
 /*Funcion para cerrar sesion*/
  cerrarSesion(e){
+   localStorage.removeItem("nombres");
+   localStorage.removeItem("identidad");
+   localStorage.removeItem("nombreentidad");
+   localStorage.removeItem("nombretipo");
+   localStorage.removeItem("nombrepuesto");
+   localStorage.removeItem("idpuesto");
+   localStorage.removeItem("correo");
+   localStorage.removeItem("telefono");
+   localStorage.removeItem("foto");
+   localStorage.removeItem("privilegio");
    localStorage.clear();
    this.props.history.replace('/');
  }
 
  componentWillMount(){
    document.body.style.overflow = 'auto';
-
  }
-
+ componentDidMount(){
+   fetch("http://backend.acdmype.org/getreviewcommand.php?id=" + localStorage.getItem('id'),{ mode:'cors'})
+      .then(response => response.json())
+      .then(data => this.modalReview(data));
+ }
+ modalReview(data){
+   // var resultado = JSON.parse(data);
+   console.log(data);
+   this.setState({command: data});
+   for(var key in data) {
+      if(data.hasOwnProperty(key)){
+        for (var i = 0; i < data.length; i++) {
+          // this.setState({idreview: data[i]['idreviewactivo']});
+          console.log(localStorage.getItem('idreviewactivo'+i));
+          if (data[i]['idreviewactivo'] !== localStorage.getItem('idreviewactivo'+i)) {
+              $('#review').modal('show');
+          }
+        }
+      }
+    }
+    // console.log(this.state.idreview);
+ }
   render() {
+    const {command} = this.state;
     return (
-      <div className="container-fluid ">
+      <div className="container-fluid bgH">
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark barra">
               <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
               <Link to={'/Home'} replace className="navbar-brand Items">V CONGRESO</Link>
@@ -74,6 +109,21 @@ class Home extends Component {
               </div>
             </div>
           </div>
+{/*Modal window para review*/}
+    <div className="modal fade" id="review" tabIndex="-2" role="dialog" aria-labelledby="review" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h4 className="modal-title" id="exampleModalLabel">Su opinion es importante para nosotros</h4>
+          </div>
+          <div className="modal-body">
+          {command.map((item,key)=>
+            <ReviewTaller titulo={item['contenido']} idreviewactivo={item["idreviewactivo"]} tiporeview={item["idtiporeview"]}/>
+          )}
+          </div>
+        </div>
+      </div>
+    </div>
 {/*Aqui comienza el dropdown menu*/}
           <div className="row">
               <div className="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in panel fixed-top" id="sidebar">

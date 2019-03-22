@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 class Cartasponente extends Component {
   render() {
     return (
-      <div className="contenedor">
+      <div className="contenedorCartas">
         <Link to={{pathname:`/Home/Ponente/${this.props.item.idponente}`}}>
           <div className="card1">
             <div className="box">

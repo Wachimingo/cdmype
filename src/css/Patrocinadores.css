@@ -8,6 +8,10 @@ body {
   margin-top: 20%;
   margin-left: 10%;
 }
+.contenedorCartas{
+  margin-top: 250px;
+  margin-left: 90px;
+}
 .cabezera{
  margin-top: 7%;
 }

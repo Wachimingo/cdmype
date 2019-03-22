@@ -32,17 +32,33 @@ inLogin(e){
 validarLogin(data){
   var resultado = JSON.parse(data);
   if (resultado['correo'] === this.state.correo && resultado['clave'] === this.state.clave && resultado['privilegio'] === '1' && resultado['estado'] === '1') {
-    localStorage.setItem("id",resultado['idusuario']);
-    localStorage.setItem("nombres",resultado['nombres']);
-    localStorage.setItem("identidad",resultado['identidad']);
-    localStorage.setItem("nombreentidad",resultado['nombreentidad']);
-    localStorage.setItem("nombretipo",resultado['nombretipo']);
-    localStorage.setItem("nombrepuesto",resultado['nombrepuesto']);
-    localStorage.setItem("idpuesto",resultado['idpuesto']);
-    localStorage.setItem("correo",resultado['correo']);
-    localStorage.setItem("telefono",resultado['telefono']);
-    localStorage.setItem("foto",resultado['imgperfil']);
-    localStorage.setItem("privilegio",resultado['privilegio']);
+    if (resultado['idusuario'] === localStorage.getItem("id")) {
+      localStorage.setItem("id",resultado['idusuario']);
+      localStorage.setItem("nombres",resultado['nombres']);
+      localStorage.setItem("identidad",resultado['identidad']);
+      localStorage.setItem("nombreentidad",resultado['nombreentidad']);
+      localStorage.setItem("nombretipo",resultado['nombretipo']);
+      localStorage.setItem("nombrepuesto",resultado['nombrepuesto']);
+      localStorage.setItem("idpuesto",resultado['idpuesto']);
+      localStorage.setItem("correo",resultado['correo']);
+      localStorage.setItem("telefono",resultado['telefono']);
+      localStorage.setItem("foto",resultado['imgperfil']);
+      localStorage.setItem("privilegio",resultado['privilegio']);
+    }
+    else {
+      localStorage.setItem("id",resultado['idusuario']);
+      localStorage.setItem("nombres",resultado['nombres']);
+      localStorage.setItem("identidad",resultado['identidad']);
+      localStorage.setItem("nombreentidad",resultado['nombreentidad']);
+      localStorage.setItem("nombretipo",resultado['nombretipo']);
+      localStorage.setItem("nombrepuesto",resultado['nombrepuesto']);
+      localStorage.setItem("idpuesto",resultado['idpuesto']);
+      localStorage.setItem("correo",resultado['correo']);
+      localStorage.setItem("telefono",resultado['telefono']);
+      localStorage.setItem("foto",resultado['imgperfil']);
+      localStorage.setItem("privilegio",resultado['privilegio']);
+      localStorage.removeItem('idreviewactivo');
+    }
     this.props.history.push('/Home');
   }
   else if (resultado['correo'] === this.state.correo && resultado['clave'] === this.state.clave && resultado['privilegio'] === '2' && resultado['estado'] === '1') {
@@ -84,6 +100,9 @@ recuperarPassword(){
 }
 componentDidMount(){
   document.body.style.overflow = 'hidden';
+  if (typeof localStorage.getItem('id') === 'undefined') {
+      localStorage.setItem('contador', 0);
+  }
 }
   render() {
     document.body.style.overflow = 'hidden';

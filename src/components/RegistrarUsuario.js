@@ -209,7 +209,7 @@ render() {
                     <label>Nombre completo:</label>
                   </div>
                   <div className="form-group d-flex justify-content-center">
-                    <input type="text" className="form-control" id="txtNombre" name="nombres" placeholder="ej: Jose Antonio" required  title="Ingrese sus nombres con letra inicial mayuscula"/>
+                    <input type="text" className="form-control" id="txtNombre" name="nombres" placeholder="ej: Jose Antonio Hernandez Perez" required  title="Ingrese sus nombres con letra inicial mayuscula"/>
                   </div>
                   <div className="justify-content-left">
                     <label>Sexo:</label>
@@ -221,6 +221,7 @@ render() {
                       <option value="2" required>Femenino</option>
                     </select>
                   </div>
+                  <br/>
                   <div className=" justify-content-left">
                     <label>Telefono:</label>
                   </div>
@@ -239,6 +240,7 @@ render() {
                     <option value="Invitado" required>Invitado</option>
                   </select>
                 </div>
+                <br/>
 {/*Se llama a la funcion renderOrg para mostrar que cdmype o conamype ha seleccionado, y su puestos*/}
                 {
                   renderOrg(this.state.mostrar)

@@ -29,11 +29,12 @@ onEdit(e) {
   formData.append("defaultidpuesto", localStorage.getItem('idpuesto'));
   formData.append("defaultfoto", localStorage.getItem('foto'));
   $.ajax({
-      // url: 'http://backend.acdmype.org/editarusuario.php',
+      url: 'http://backend.acdmype.org/editarusuario.php',
       // url: 'https://cdmype.000webhostapp.com/editarusuario.php',
-      url: 'http://localhost/cdmypephp/editarusuario.php',
+      // url: 'http://localhost/cdmypephp/editarusuario.php',
       data: formData,
       type: 'POST',
+      crossDomain: true,
       contentType: false,
       processData: false,
       // success: data => this.exito(data)
@@ -96,7 +97,6 @@ render() {
          </div>
          <div className="form-group d-flex justify-content-center links">
            <select className="form-control" id="identidad" name="identidad" required>
-               <option disabled hidden value="" >{localStorage.getItem('nombreentidad')}</option>
                {cdmype.map((item, key) =>
                  <option key={item.identidad} value={item.identidad} required>{item.entidad}</option>
                )}
@@ -107,7 +107,6 @@ render() {
          </div>
          <div className="form-group d-flex justify-content-center links">
            <select className="form-control" id="idpuesto" name="idpuesto" required>
-           <option disabled hidden selected value="">{localStorage.getItem('nombrepuesto')}</option>
              {puestoscdmype.map((item,key)=>
                <option key={item.idpuesto} value={item.idpuesto} required>{item.nombrepuesto}</option>
              )}
@@ -126,7 +125,6 @@ render() {
          </div>
          <div className="form-group d-flex justify-content-center links">
            <select className="form-control" id="identidad" name="identidad" required>
-               <option disabled hidden selected value="">{localStorage.getItem('nombreentidad')}</option>
              {conamype.map((item, key) =>
                <option key={item.identidad} value={item.identidad} required>{item.entidad}</option>
              )}
@@ -137,7 +135,6 @@ render() {
          </div>
          <div className="form-group d-flex justify-content-center links">
            <select className="form-control" id="idpuesto" name="idpuesto" required>
-               <option disabled hidden selected value="">{localStorage.getItem('nombrepuesto')}</option>
              {puestosconamype.map((item,key)=>
                <option key={item.idpuesto} value={item.idpuesto} required>{item.nombrepuesto}</option>
              )}
@@ -207,7 +204,6 @@ render() {
                   </div>
                   <div className="justify-content-center">
                     <select className="form-control" id="institucion" name="institucion"  onChange={(e)=>this.setState({mostrar: e.target.value})}>
-                      <option disabled hidden selected value="">{localStorage.getItem('nombretipo')}</option>
                       <option value="CDMYPE" required>CDMYPE</option>
                       <option value="CONAMYPE" required>CONAMYPE</option>
                       <option value="Invitado" required>Invitado</option>

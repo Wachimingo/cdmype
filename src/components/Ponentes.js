@@ -16,7 +16,7 @@ class Ponentes extends Component {
     // fetch("https://cdmype.000webhostapp.com/getponentes.php",{ mode:'cors'})
     //    .then(response => response.json())
     //    .then(data => this.setState({ponentes: data}));
-    // fetch("http://192.168.1.20/cdmypephp/getponentes.php",{ mode:'cors'})
+    // fetch("http://localhost/cdmypephp/getponentes.php",{ mode:'cors'})
     //    .then(response => response.json())
     //    .then(data => this.setState({ponentes: data}));
   }

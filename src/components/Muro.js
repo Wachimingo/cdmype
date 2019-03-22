@@ -3,9 +3,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/Muro.css";
 import "../js/MuroFuncion.js";
-import ReviewTaller from"./ReviewTaller.js";
 import {Link} from 'react-router-dom';
-import $ from 'jquery';
 class Muro extends Component {
   constructor(props){
     super(props);
@@ -16,9 +14,9 @@ class Muro extends Component {
   }
   componentDidMount(){
     /*fetch para buscar las publicaciones*/
-    fetch("http://backend.acdmype.org/getreviewcommand.php?id=" + localStorage.getItem('id'),{ mode:'cors'})
-       .then(response => response.json())
-       .then(data => this.modalReview(data));
+    // fetch("http://backend.acdmype.org/getreviewcommand.php?id=" + localStorage.getItem('id'),{ mode:'cors'})
+    //    .then(response => response.json())
+    //    .then(data => this.modalReview(data));
     fetch("http://backend.acdmype.org/getpublicaciones.php",{mode:'cors'})
       .then(response => response.json())
       .then(data => this.setState({publicaciones: data}));
@@ -35,35 +33,11 @@ class Muro extends Component {
       //    .then(response => response.json())
       //    .then(data => this.modalReview(data));
   }
-  modalReview(data){
-    // var resultado = JSON.parse(data);
-    console.log(data);
-    for(var key in data) {
-       if(data.hasOwnProperty(key))
-       this.setState({command: data});
-            $('#review').modal('show');
-     }
-  }
   render() {
     const {publicaciones} = this.state;
-    const {command} = this.state;
     return (
     <div className="container-fluid ">
-{/*Modal window para review*/}
-    <div className="modal fade" id="review" tabIndex="-2" role="dialog" aria-labelledby="review" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-      <div className="modal-dialog" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h4 className="modal-title" id="exampleModalLabel">Su opinion es importante para nosotros</h4>
-          </div>
-          <div className="modal-body">
-          {command.map((item,key)=>
-            <ReviewTaller titulo={item['contenido']} idreviewactivo={item["idreviewactivo"]}/>
-          )}
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div style={{height:"3em"}}></div>
     { publicaciones.map((item,key) =>
       <section className="hero" key={item.idpublicacion}>
@@ -86,6 +60,8 @@ class Muro extends Component {
           			  </div>
           			 </div>
           			 <div className="cardbox-item">
+                 {/*Boton para poder descargar las fotos*/}
+                 {/*<a className="btn btn-danger float-right" download={`http://backend.acdmype.org/uploads/publicaciones/${item.foto}`} href="#"><i className="fa fa-download"></i> Descargar</a>*/}
           			  <img className="img-fluid" src={`http://backend.acdmype.org/uploads/publicaciones/${item.foto}`} alt=""/>
                   {/*<img className="img-fluid" src={`https://cdmype.000webhostapp.com/uploads/publicaciones/${item.foto}`} alt=""/>*/}
                   {/*<img className="img-fluid" src={`http://192.168.1.20/cdmypephp/uploads/publicaciones/${item.foto}`} alt=""/>*/}
@@ -97,7 +73,6 @@ class Muro extends Component {
           </section>
           )}
     </div>
-
     );
   }
 }
