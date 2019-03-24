@@ -62,43 +62,25 @@ cambiarSexo(e){
   preview(){
     if (this.state.sexo === '1') {
       return(<img id="myimage" src={"http://backend.acdmype.org/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
-      // return(<img id="myimage" src={"https://cdmype.000webhostapp.com/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
-      // return(<img id="myimage" src={"http://localhost/cdmypephp/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
     }
     else if(this.state.sexo === '2'){
       return(<img id="myimage" src={"http://backend.acdmype.org/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
-      // return(<img id="myimage" src={"https://cdmype.000webhostapp.com/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
-      // return(<img id="myimage" src={"http://localhost/cdmypephp/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
     }
     else {
       return(<img id="myimage" className="preview" height="100px" width="100px" alt=""/>);
     }
   }
 componentWillMount(){
-  document.body.style.overflow = 'auto';
+
 }
 componentDidMount(){
-document.body.style.overflow = 'auto';
 /*Fecth para la lista de cdmypes, conamypes e invitados, ademas de los puestos de cada uno*/
 fetch("http://backend.acdmype.org/getentidades.php",{ mode:'cors'})
    .then(response => response.json())
    .then(data => this.setState({entidad: data}));
  }
- // fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
- //    .then(response => response.json())
- //    .then(data => this.setState({entidad: data}));
- //  }
- // fetch("http://localhost/cdmypephp/getentidades.php",{ mode:'cors'})
- //    .then(response => response.json())
- //    .then(data => this.setState({entidad: data}));
- //
- //  }
-  // fetch("http://areadev.260mb.net/appmype/index.php/cli/cmpany",{ mode:'cors', method:'POST', cache:'default'})
-  //    .then(response => response.json())
-  //    .then(data => this.setState({entidad: data}));
-  //  }
 render() {
-    document.body.style.overflow = 'auto';
+    document.body.style.overflowY = 'scroll';
   /*const cdmype y conamype toman los valores del ajax sobre la tabla organizaciones*/
   const {entidad} = this.state;
   /*separacion de listas del array entidad*/

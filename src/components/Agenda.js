@@ -17,12 +17,6 @@ class Agenda extends Component {
   fetch("http://backend.acdmype.org/getagenda.php",{ mode:'cors'})
      .then(response => response.json())
      .then(data => this.setState({agenda: data}));
-    // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
-    //    .then(response => response.json())
-    //    .then(data => this.setState({agenda: data}));
-    // fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
-    //   .then(response => response.json())
-    //   .then(data => this.setState({agenda: data}));
   }
   render() {
     /*Array agenda*/
@@ -80,8 +74,7 @@ class Agenda extends Component {
       })
     }
     return (
-      <div className="container-fluid ">
-
+      <div className="container-fluid contenedoragenda">
           <div>
             <img src={`http://backend.acdmype.org/uploads/logo.png`} className="rotulo bloque" alt=""/>
             <div className="bloque contenido">

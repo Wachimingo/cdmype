@@ -12,25 +12,10 @@ class Perfil extends Component {
   }
   componentDidMount(){
     this.getPerfil();
-    // let id = localStorage.getItem('id');
-    // if (typeof this.props.match.params.id !== 'undefined') {
-    //   id = this.props.match.params.id;
-    //   fetch("http://backend.acdmype.org/getperfil.php?id="+id, { mode:'cors'})
-    //      .then(response => response.json())
-    //      .then(data => this.setState({profile: data[0]}));
-      // fetch("https://cdmype.000webhostapp.com/getperfil.php?id="+id, { mode:'cors'})
-      //    .then(response => response.json())
-      //    .then(data => this.setState({profile: data[0]}));
-       // fetch("http://localhost/cdmypephp/getperfil.php?id="+id, { mode:'cors'})
-       //    .then(response => response.json())
-       //    .then(data => this.setState({profile: data[0]}));
-    // }
   }
   ComponentWillUnmount(){
     this.setState({profile: []});
-
   }
-
 getPerfil(){
   let id = localStorage.getItem('id');
   if (typeof this.props.match.params.id !== 'undefined') {
@@ -42,7 +27,7 @@ getPerfil(){
 }
 
 setStoragePerfil(data){
-  console.log(data[0]);
+  // console.log(data[0]);
   this.setState({profile: data[0]});
   localStorage.setItem("id",data[0]['idusuario']);
   localStorage.setItem("nombres",data[0]['nombres']);
@@ -72,44 +57,27 @@ setStoragePerfil(data){
   }
   render() {
     return (
-      <div className="container emp-profile">
-        <div style={{height: "70px"}}></div>
-        <form method="post">
+      <div className="contenedorPerfil">
+      <div className="imgPerfil1">
+        {<img id="preview" src={`http://backend.acdmype.org/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt=""/>}
+      </div>
+        <form method="post" className="InformacionPerfil">
             <div className="row">
-                <div className="col-md-4">
-                    <div className="profile-img">
-                    {<img id="preview" src={`http://backend.acdmype.org/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt=""/>}
-                        {/*<img id="preview" src={`https://cdmype.000webhostapp.com/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt=""/>*/}
-                        {/*<img id="preview" src={`http://localhost/cdmypephp/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt=""/>*/}
-                    </div>
-                </div>
-                <div className="col-md-6">
+                <div className="col-md-9">
                     <div className="profile-head">
-                                <h5>
-                                    {this.state.profile["nombres"]}
-                                </h5>
-                        <ul className="nav nav-tabs" id="myTab" role="tablist">
-                            <li className="nav-item">
-                            </li>
-                        </ul>
+                      <h5>
+                          {this.state.profile["nombres"]}
+                      </h5>
                     </div>
                 </div>
                 {this.renderInputSubmit()}
             </div>
             <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-9">
                </div>
-                <div className="col-md-8">
+                <div className="col-md-9">
                     <div className="tab-content profile-tab" id="myTabContent">
                         <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                          <div className="row">
-                              <div className="col-md-6">
-                                  <label>Nombre</label>
-                              </div>
-                              <div className="col-md-6">
-                                  <p>{this.state.profile['nombres']}</p>
-                              </div>
-                          </div>
                           <div className="row">
                               <div className="col-md-6">
                                   <label>Correo</label>

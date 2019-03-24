@@ -13,19 +13,13 @@ class Ponentes extends Component {
     fetch("http://backend.acdmype.org/getponentes.php",{ mode:'cors'})
        .then(response => response.json())
        .then(data => this.setState({ponentes: data}));
-    // fetch("https://cdmype.000webhostapp.com/getponentes.php",{ mode:'cors'})
-    //    .then(response => response.json())
-    //    .then(data => this.setState({ponentes: data}));
-    // fetch("http://localhost/cdmypephp/getponentes.php",{ mode:'cors'})
-    //    .then(response => response.json())
-    //    .then(data => this.setState({ponentes: data}));
   }
   render() {
     const {ponentes} = this.state;
     return (
       <div>
-      <div className="cabezera"><h1 className="">Ponentes</h1></div>
-        <div className="contenedor">
+      <div className="cabezera"></div>
+        <div className="">
           {ponentes.map((item, i) =>
             <CartasPonente item={item} key={i} />
           )}

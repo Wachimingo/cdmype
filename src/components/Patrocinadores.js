@@ -14,19 +14,13 @@ class Patrocinadores extends Component {
     fetch("http://backend.acdmype.org/getpatrocinadores.php", {mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({patrocinadores: data}));
-    // fetch("https://cdmype.000webhostapp.com/getpatrocinadores.php", {mode:'cors'})
-    // .then(response => response.json())
-    // .then(data => this.setState({patrocinadores: data}));
-    // fetch("http://192.168.1.20/cdmypephp/getpatrocinadores.php", {mode:'cors'})
-    // .then(response => response.json())
-    // .then(data => this.setState({patrocinadores: data}));
   }
 
   render() {
     const {patrocinadores} = this.state;
     return (
       <div className="contenedorCartas">
-          <div className="contenedor">
+          <div className="">
             {patrocinadores.map((item, i) =>
               <Cartas item={item} key={i} />
             )}

@@ -1,9 +1,18 @@
 .previewOld{
-  margin-left: 80vh;
+  margin-left: 65vh;
 }
-
+.contenedorEditarPerfil{
+  margin-left: 30vh;
+  width: 150vh;
+  height: 103vh;
+}
 @media only screen and (max-width: 600px){
   .previewOld{
-    margin-left: 17vh;
+    margin-left: 13vh;
+  }
+  .contenedorEditarPerfil{
+    margin-left: 5vh;
+    width: 50vh;
+    height: 115vh;
   }
 }

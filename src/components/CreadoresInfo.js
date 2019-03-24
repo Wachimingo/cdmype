@@ -11,7 +11,7 @@ class CreadoresInfo extends Component {
       return(
         <div>
           <div style={{height: "100px"}}></div>
-          <div className="nombre">
+          <div className="nombre" style={{width: "380px"}}>
             <h2>Joshua Alexander Herrera Guillen</h2>
           </div>
           <div className="panelizquierdo">

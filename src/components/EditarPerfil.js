@@ -30,8 +30,6 @@ onEdit(e) {
   formData.append("defaultfoto", localStorage.getItem('foto'));
   $.ajax({
       url: 'http://backend.acdmype.org/editarusuario.php',
-      // url: 'https://cdmype.000webhostapp.com/editarusuario.php',
-      // url: 'http://localhost/cdmypephp/editarusuario.php',
       data: formData,
       type: 'POST',
       crossDomain: true,
@@ -54,6 +52,10 @@ reader.onload = function(event) {
 reader.readAsDataURL(selectedFile);
 }
   exito(data){
+    $('#notificacionedicion').modal('show');
+  }
+  irAperfil(e){
+    $('#notificacionedicion').modal('hide');
     this.props.history.push({pathname:`/Home/Perfil/` + localStorage.getItem('id')});
   }
   allowNumbersOnly(e) {
@@ -68,14 +70,6 @@ reader.readAsDataURL(selectedFile);
       .then(response => response.json())
       .then(data => this.setState({entidad: data}));
     }
-    // fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
-    //    .then(response => response.json())
-    //    .then(data => this.setState({entidad: data}));
-    //  }
-   // fetch("http://localhost/cdmypephp/getentidades.php",{ mode:'cors'})
-   //    .then(response => response.json())
-   //    .then(data => this.setState({entidad: data}));
-   // }
 render() {
   /*const cdmype y conamype toman los valores del ajax sobre la tabla organizaciones*/
   const {entidad} = this.state;
@@ -168,22 +162,17 @@ render() {
    $("input[name='number']").val(destroyMaskPhone(this.value));
    this.value = createMaskPhone($("input[name='number']").val());
  })
-
  function createMaskPhone(string){
    return string.replace(/(\d{4})(\d{4})/,"$1-$2");
  }
-
  function destroyMaskPhone(string){
    return string.replace(/\D/g,'').substring(0, 8);
  }
-
   return (
       <div className="">
-        <div className="container" style={{marginTop: "100px"}}>
+        <div className="contenedorEditarPerfil" style={{marginTop: "100px"}}>
 {/*comienza el div de formulario*/}
-                <img src={`http://backend.acdmype.org/uploads/usuarios/${localStorage.getItem('foto')}`} className="previewOld" height="100px" width="100px" alt=""/>
-                {/*<img src={`https://cdmype.000webhostapp.com/uploads/usuarios/${localStorage.getItem('foto')}`} className="previewOld" height="100px" width="100px" alt=""/>*/}
-                {/*<img src={`http://localhost/cdmypephp/uploads/usuarios/${localStorage.getItem('foto')}`} className="previewOld" height="100px" width="100px" alt=""/>*/}
+                <img src={`http://backend.acdmype.org/uploads/usuarios/${localStorage.getItem('foto')}`} className="previewOld" height="150px" width="150px" alt=""/>
                 <form id="frme" encType="multipart/form-data" method="POST" onSubmit={this.onEdit.bind(this)}>
                     <div className="justify-content-left ">
                       <label>Nombres:</label>
@@ -227,6 +216,20 @@ render() {
                     <Link to={{pathname:`Perfil/${localStorage.getItem('id')}`}} className="btn float-left btn-info">Volver</Link>
                   </div>
                 </form>
+              </div>
+              {/*Modal window de aviso sobre exito*/}
+              <div className="modal fade" id="notificacionedicion" tabIndex="-1" role="dialog" aria-labelledby="post" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">Notificacion</h5>
+                    </div>
+                    <div className="modal-body">
+                      <h5>Los cambios se haran efectivos en un par de minutos, pueda que aun vea la informacion anterior.</h5>
+                      <input type="button" value="Aceptar" onClick={e=>this.irAperfil(e)} className="btn btn-success"/>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
     );

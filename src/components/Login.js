@@ -20,8 +20,6 @@ inLogin(e){
   var formData = new FormData(form[0]);
   $.ajax({
       url: "http://backend.acdmype.org/validarLogin.php",
-      // url: "https://cdmype.000webhostapp.com/validarLogin.php",
-      // url: "http://localhost/cdmypephp/validarlogin.php",
       data: formData,
       type:'POST',
       contentType: false,
@@ -99,13 +97,12 @@ recuperarPassword(){
   }
 }
 componentDidMount(){
-  document.body.style.overflow = 'hidden';
   if (typeof localStorage.getItem('id') === 'undefined') {
       localStorage.setItem('contador', 0);
   }
+  document.body.style.overflow="hidden";
 }
   render() {
-    document.body.style.overflow = 'hidden';
 
     return (
   <div className = "bg">

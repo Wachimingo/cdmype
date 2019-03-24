@@ -23,11 +23,12 @@
 .contenido > h3{
   margin-left: 25px;
 }
-.tabla{
+.tablaA{
   margin-top: 0px;
-  background-color: #E9A043;
+  width: 209vh;
+  height: auto;
 }
-.divTabla{
+.divTablaA{
   clear: both;
   height: auto;
   width: auto;
@@ -57,5 +58,16 @@
      width: 64vh;
      overflow: auto;
    }
-
+   .header{
+     background-color: #E5E7E8;
+     text-align: center;
+   }
+   .cuerpo{
+     text-align: center;
+   }
+   .tablaA{
+     margin-top: 0px;
+     width: 56vh;
+     height: auto;
+   }
  }

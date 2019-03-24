@@ -14,7 +14,7 @@ class AcercaDe extends Component {
       <br/>
       <br/>
           <Link to={{pathname:`/Home/AcercaDe/${1}`}}>
-          <div className="card1">
+          <div className="card1" style={{marginLeft: "33vh", marginTop: "5vh"}}>
             <div className="box">
               <div className="img">
                   <img src={Joshua} alt=""/>

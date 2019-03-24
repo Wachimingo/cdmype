@@ -29,17 +29,14 @@ class Home extends Component {
   }
   /*Funcion para mostrar un preview de la foto seleccionada para la publicacion*/
   onFileSelected(event) {
-  var selectedFile = event.target.files[0];
-  var reader = new FileReader();
-
-  var imgtag = document.getElementById("myimage");
-  imgtag.title = selectedFile.name;
-
-  reader.onload = function(event) {
-    imgtag.src = event.target.result;
-  };
-
-  reader.readAsDataURL(selectedFile);
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+    var imgtag = document.getElementById("myimage");
+    imgtag.title = selectedFile.name;
+    reader.onload = function(event) {
+      imgtag.src = event.target.result;
+    };
+    reader.readAsDataURL(selectedFile);
   }
 
 /*Funcion para cerrar sesion*/
@@ -54,7 +51,7 @@ class Home extends Component {
    localStorage.removeItem("telefono");
    localStorage.removeItem("foto");
    localStorage.removeItem("privilegio");
-   localStorage.clear();
+   // localStorage.clear();
    this.props.history.replace('/');
  }
 
