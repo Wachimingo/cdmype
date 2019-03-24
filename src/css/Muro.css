@@ -147,11 +147,11 @@ text-align: center;
   border: 2px solid #fff;
 }
 .ContenedorPublicaciones{
-  margin-left: 30vh;
+  margin-left: 100px;
 }
 @media only screen and (max-width: 600px){
   .ContenedorPublicaciones{
-    margin-left: 0;
-    width: 62vh;
+    margin-left: 30px;
+    width: 80vw;
   }
 }

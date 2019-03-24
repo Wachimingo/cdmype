@@ -3,7 +3,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/Agenda.css";
 import {Link} from 'react-router-dom';
-import $ from 'jquery';
+// import $ from 'jquery';
 class Agenda extends Component {
   constructor(props){
     super(props);
@@ -25,23 +25,18 @@ class Agenda extends Component {
     let miercoles = agenda.filter(id => id.dia === 'Miercoles');
     let jueves = agenda.filter(id => id.dia === 'Jueves');
     let viernes = agenda.filter(id => id.dia === 'Viernes');
-    /*funcion para cambiar el fondo*/
-    $(window).on('load',function(){
-      document.body.style.backgroundImage = null;
-      document.body.style.background = "white";
-    });
     /*Funcion para crear la tabla de la agenda, toma un array como parametro, en este caso llamado JSON*/
     function renderMiercoles(){
       return miercoles.map((value,key) => {
         return (
-               <tr key={value.idagenda} className="cuerpo">
-                  <td width=''>{value.hora}</td>
-                  <td width=''>
-                    {value.contenido}
-                    <br/>
-                    <Link to={{pathname:`/Home/Ponente/${value.idponente}`}}>{value.nombreponente}</Link>
-                  </td>
-              </tr>
+         <tr key={value.idagenda} className="cuerpo">
+            <td width=''>{value.hora}</td>
+            <td width=''>
+              {value.contenido}
+              <br/>
+              <Link to={{pathname:`/Home/Ponente/${value.idponente}`}}>{value.nombreponente}</Link>
+            </td>
+        </tr>
         )
       })
     }
@@ -74,7 +69,7 @@ class Agenda extends Component {
       })
     }
     return (
-      <div className="container-fluid contenedoragenda">
+      <div className="contenedoragenda container-fluid">
           <div>
             <img src={`http://backend.acdmype.org/uploads/logo.png`} className="rotulo bloque" alt=""/>
             <div className="bloque contenido">

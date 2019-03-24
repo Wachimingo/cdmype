@@ -12,27 +12,20 @@ class PatrocinadorInfo extends Component {
   }
   componentDidMount(){
     let id = this.props.match.params.id;
-    // fetch("https://cdmype.000webhostapp.com/getpatrocinadorinfo.php?id="+id, {mode:'cors'})
-    // .then(response => response.json())
-    // .then(data => this.setState({patrocinador: data[0]}));
+
     fetch("http://backend.acdmype.org/getpatrocinadorinfo.php?id="+id, {mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({patrocinador: data[0]}));
-    // fetch("http://192.168.1.20/cdmypephp/getpatrocinadorinfo.php?id="+id, {mode:'cors'})
-    // .then(response => response.json())
-    // .then(data => this.setState({patrocinador : data[0]}));
   }
   render() {
     return (
-      <div>
+      <div className="contaier-fluid">
         <div style={{height: "100px"}}></div>
         <div className="nombre">
           <h2>{this.state.patrocinador['nombrepatrocinador']}</h2>
         </div>
         <div className="panelizquierdo">
         <img src={`http://backend.acdmype.org/uploads/patrocinadores/${this.state.patrocinador['imgpatrocinador']}`} height="100px" width="100px" alt=""/>
-          {/*<img src={`https://cdmype.000webhostapp.com/uploads/patrocinadores/${this.state.patrocinador['imgpatrocinador']}`} height="100px" width="100px" alt=""/>*/}
-          {/*<img src={`http://192.168.1.20/cdmypephp/uploads/patrocinadores/${this.state.patrocinador['imgpatrocinador']}`} height="100px" width="100px" alt=""/>*/}
         </div>
         <div className="panelderecho">
           <p>

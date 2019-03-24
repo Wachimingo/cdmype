@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 class AcercaDe extends Component {
   render() {
     return (
-      <div className="contenedor">
+      <div className="contenedor contaier-fluid">
       <br/>
       <br/>
       <br/>

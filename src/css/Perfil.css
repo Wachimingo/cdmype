@@ -2,17 +2,17 @@
 
 }
 .contenedorPerfil{
-  margin-left: 35vh;
-  margin-top: 17vh;
+  margin-left: 205px;
+  margin-top: 150px;
 }
 .imgPerfil1{
   margin-left: 0vh;
   float: left;
-  margin-right: 15vh;
+  margin-right: 70px;
 }
 .InformacionPerfil{
   float: right;
-  margin-top: -33vh;
+  margin-top: -0px;
 }
 .centrar{
   margin-left: 50%;
@@ -82,18 +82,18 @@
 
 @media only screen and (max-width: 600px){
   .contenedorPerfil{
-    margin-left: -0vh;
-    margin-top: 10vh;
-    width: 60vh;
+    margin-left: -0;
+    margin-top: 50px;
+    width: 90vw;
   }
   .imgPerfil1{
-    margin-left: 10vh;
+    margin-left: 70px;
     clear: both;
-    margin-right: 0vh;
+    margin-right: 0;
   }
   .InformacionPerfil{
     clear: both;
-    margin-top: 5vh;
-    margin-left: 5vh;
+    margin-top: 35px;
+    margin-left: 55px;
   }
 }

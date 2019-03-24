@@ -27,8 +27,8 @@ aviso(){
 }
   render() {
     return (
-<div className = "bg">
-      <div className="container">
+<div className = "bg contaier-fluid">
+      <div className="container contaier-fluid">
         <div className="d-flex justify-content-center h-100">
           <div className="card">
             <div className="card-header links">

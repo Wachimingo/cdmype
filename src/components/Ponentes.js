@@ -18,7 +18,7 @@ class Ponentes extends Component {
     const {ponentes} = this.state;
     return (
       <div>
-      <div className="cabezera"></div>
+      <div className="cabezera contaier-fluid"></div>
         <div className="">
           {ponentes.map((item, i) =>
             <CartasPonente item={item} key={i} />

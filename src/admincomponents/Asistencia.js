@@ -79,7 +79,7 @@ return false;
     }
 
     return (
-      <div className="contenedorAsistenciaA">
+      <div className="contenedorAsistenciaA contaier-fluid">
       <form name="frm" id="frm" method="POST">
       <h3>Taller</h3>
       <select name="idAgenda" className="form-control">

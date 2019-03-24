@@ -37,7 +37,7 @@ componentDidMount(){
      .then(data => this.setState({agenda: data}));
   fetch("https://backend.acdmype.org/getreviewsactivos.php",{ mode:'cors'})
      .then(response => response.json())
-     .then(data => this.setState({agenda: data}));
+     .then(data => this.setState({reviews: data}));
 }
   render() {
     const {agenda} = this.state;
@@ -72,6 +72,7 @@ componentDidMount(){
      return reviews.map((value,key) => {
        return (
         <tr key={value.idreviewactivo}  id={value.idreviewactivo} className="cuerpo">
+           <td width=''>{value.idreviewactivo}</td>
            <td width=''>{value.nombre}</td>
            <td width=''>{value.contenido}</td>
            <td width=''>{value.fecha}</td>

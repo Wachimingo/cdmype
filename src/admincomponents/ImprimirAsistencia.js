@@ -41,7 +41,7 @@ class ImprimirAsistencia extends Component {
       })
     }
     return (
-      <div className="contenedorAsistenciaA">
+      <div className="contenedorAsistenciaA contaier-fluid">
       <h3>Taller</h3>
           <div className="divTabla resume">
               <table className="table" id="Lista">

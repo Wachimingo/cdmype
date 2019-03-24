@@ -9,8 +9,6 @@ publicar(e){
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
-          // url: 'http://localhost/cdmypephp/publicar.php',
-          // url: 'https://cdmype.000webhostapp.com/publicar.php',
           url: 'http://backend.acdmype.org/publicar.php',
           data: formData,
           type: 'POST',

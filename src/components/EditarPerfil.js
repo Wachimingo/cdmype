@@ -35,8 +35,8 @@ onEdit(e) {
       crossDomain: true,
       contentType: false,
       processData: false,
-      // success: data => this.exito(data)
-      success: data => console.log(data)
+      success: data => this.exito(data)
+      // success: data => console.log(data)
   });
 }
 onFileSelected(event) {
@@ -170,7 +170,7 @@ render() {
  }
   return (
       <div className="">
-        <div className="contenedorEditarPerfil" style={{marginTop: "100px"}}>
+        <div className="contenedorEditarPerfil contaier-fluid" style={{marginTop: "100px"}}>
 {/*comienza el div de formulario*/}
                 <img src={`http://backend.acdmype.org/uploads/usuarios/${localStorage.getItem('foto')}`} className="previewOld" height="150px" width="150px" alt=""/>
                 <form id="frme" encType="multipart/form-data" method="POST" onSubmit={this.onEdit.bind(this)}>

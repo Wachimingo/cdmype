@@ -18,7 +18,7 @@ class PonenteInfo extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="contaier-fluid">
         <div style={{height: "100px"}}></div>
         <div className="nombre">
           <h2>{this.state.ponente['nombreponente']}</h2>

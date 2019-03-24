@@ -49,7 +49,7 @@ class Asistencia extends Component {
     }
 
     return (
-      <div className="contenedorAsistenciaA">
+      <div className="contenedorAsistenciaA contaier-fluid">
       <br/>
       <br/>
       <input id="myInput" type="text" placeholder="Search.." className="form-control"/>

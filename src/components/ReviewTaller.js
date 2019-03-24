@@ -21,8 +21,6 @@ class ReviewTaller extends Component {
     var formData = new FormData(form[0]);
     formData.append("comentario", this.state.comentario);
     $.ajax({
-            // url: 'http://localhost/cdmypephp/review.php',
-            // url: 'https://cdmype.000webhostapp.com/review.php',
             url: 'http://backend.acdmype.org/review.php',
             data: formData,
             type: 'POST',
@@ -35,7 +33,7 @@ class ReviewTaller extends Component {
   }
   incrementar(contador){
     localStorage.setItem('contador', contador)
-    console.log(localStorage.getItem('contador'));
+    // console.log(localStorage.getItem('contador'));
   }
   limpiar(){
     localStorage.removeItem('contador');
@@ -46,8 +44,8 @@ class ReviewTaller extends Component {
     if (!hecho) {
       if (this.props.tiporeview === '2') {
           return(
-            <div className="container-fluid ">
-            <h4>¿Que opinas sobre nuestra app?</h4>
+            <div className="">
+            <h6>¿Que opinas sobre nuestra app?</h6>
               <form id="frm2" onSubmit={this.review.bind(this)}>
                 <p>Seleccione la cantidad de estrellas que le da:</p>
                 <fieldset className="rating">
@@ -75,8 +73,8 @@ class ReviewTaller extends Component {
         }
         else if (this.props.tiporeview === '3') {
             return(
-              <div className="container-fluid ">
-              <h4>¿Cual es tu opinion sobre el congreso?</h4>
+              <div className="">
+              <h6>¿Cual es tu opinion sobre el congreso?</h6>
                 <form id="frm2" onSubmit={this.review.bind(this)}>
                   <p>Seleccione la cantidad de estrellas que le da:</p>
                   <fieldset className="rating">
@@ -105,7 +103,7 @@ class ReviewTaller extends Component {
          else {
               return(
                 <div className="container-fluid ">
-                <h4>{this.props.titulo}</h4>
+                <h6>{this.props.titulo}</h6>
                   <form id="frm2" onSubmit={this.review.bind(this)}>
                     <p>Seleccione la cantidad de estrellas que le da:</p>
                     <fieldset className="rating">
@@ -144,7 +142,7 @@ class ReviewTaller extends Component {
 render() {
 console.log(localStorage.getItem('contador'));
     return (
-    <div className="container-fluid ">
+    <div className="container-fluid">
       {this.renderMensaje(this.state.hecho)}
       {/*<input type="button" onClick={this.limpiar} value="limpiar el contador"/>*/}
     </div>

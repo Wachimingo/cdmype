@@ -19,7 +19,7 @@ class Patrocinadores extends Component {
   render() {
     const {patrocinadores} = this.state;
     return (
-      <div className="contenedorCartas">
+      <div className="contenedorCartas contaier-fluid">
           <div className="">
             {patrocinadores.map((item, i) =>
               <Cartas item={item} key={i} />

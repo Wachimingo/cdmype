@@ -57,7 +57,7 @@ setStoragePerfil(data){
   }
   render() {
     return (
-      <div className="contenedorPerfil">
+      <div className="contenedorPerfil contaier-fluid">
       <div className="imgPerfil1">
         {<img id="preview" src={`http://backend.acdmype.org/uploads/usuarios/${this.state.profile["imgperfil"]}`} alt=""/>}
       </div>

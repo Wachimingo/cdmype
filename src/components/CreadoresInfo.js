@@ -9,7 +9,7 @@ class CreadoresInfo extends Component {
     let id = this.props.match.params.id;
     if (id === '1') {
       return(
-        <div>
+        <div className="contaier-fluid">
           <div style={{height: "100px"}}></div>
           <div className="nombre" style={{width: "380px"}}>
             <h2>Joshua Alexander Herrera Guillen</h2>

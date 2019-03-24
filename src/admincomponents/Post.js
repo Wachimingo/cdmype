@@ -32,7 +32,7 @@ reader.readAsDataURL(selectedFile);
 }
   render() {
     return (
-    <div className="contenedor">
+    <div className="contenedor contaier-fluid">
       <form id="frm" method="POST" encType="multipart/form-data" onSubmit={this.publicar.bind(this)}>
         <label htmlFor="comment">Descripcion:</label>
         <textarea className="form-control texto" rows="5" id="comment" form="frm" maxLength="200" name="descripcion"></textarea>

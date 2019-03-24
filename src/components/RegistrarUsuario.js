@@ -175,7 +175,7 @@ render() {
   return string.replace(/\D/g,'').substring(0, 8);
   }
   return (
-      <div className="bgR">
+      <div className="bgR contaier-fluid">
       <br/>
           <div className="cardR">
                 <h1 className="informaciongeneral">Informacion general:</h1>

@@ -16,7 +16,7 @@ crearPDF(e){
 }
   render() {
     return (
-      <div className="">
+      <div className="ccc">
           <div className="ContenendorMenu">
             <div className="ContenendorAsistencia">
               <h3>Asistencia</h3>

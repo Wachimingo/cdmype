@@ -20,7 +20,7 @@ class Muro extends Component {
   render() {
     const {publicaciones} = this.state;
     return (
-    <div className="ContenedorPublicaciones">
+    <div className="container-fluid ContenedorPublicaciones">
     <div style={{height:"3em"}}></div>
     { publicaciones.map((item,key) =>
       <section className="hero" key={item.idpublicacion}>

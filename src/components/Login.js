@@ -100,14 +100,13 @@ componentDidMount(){
   if (typeof localStorage.getItem('id') === 'undefined') {
       localStorage.setItem('contador', 0);
   }
-  document.body.style.overflow="hidden";
 }
   render() {
 
     return (
-  <div className = "bg">
+  <div className = "container-fluid bg">
   {this.isLogged()}
-        <div className="container">
+        <div className="container-fluid container">
           <div className="d-flex justify-content-center h-100">
             <div className="card">
               <div className="card-header">

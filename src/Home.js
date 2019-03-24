@@ -65,14 +65,15 @@ class Home extends Component {
  }
  modalReview(data){
    // var resultado = JSON.parse(data);
-   console.log(data);
-   this.setState({command: data});
+   // console.log(data);
+
    for(var key in data) {
       if(data.hasOwnProperty(key)){
         for (var i = 0; i < data.length; i++) {
           // this.setState({idreview: data[i]['idreviewactivo']});
-          console.log(localStorage.getItem('idreviewactivo'+i));
+          // console.log(localStorage.getItem('idreviewactivo'+i));
           if (data[i]['idreviewactivo'] !== localStorage.getItem('idreviewactivo'+i)) {
+            this.setState({command: data[0]});
               $('#review').modal('show');
           }
         }
@@ -81,9 +82,9 @@ class Home extends Component {
     // console.log(this.state.idreview);
  }
   render() {
-    const {command} = this.state;
+    // const {command} = this.state;
     return (
-      <div className="container-fluid bgH">
+      <div className="bgH">
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark barra">
               <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
               <Link to={'/Home'} replace className="navbar-brand Items">V CONGRESO</Link>
@@ -111,12 +112,10 @@ class Home extends Component {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h4 className="modal-title" id="exampleModalLabel">Su opinion es importante para nosotros</h4>
+            <h6 className="modal-title" id="exampleModalLabel">Su opinion es importante para nosotros</h6>
           </div>
           <div className="modal-body">
-          {command.map((item,key)=>
-            <ReviewTaller titulo={item['contenido']} idreviewactivo={item["idreviewactivo"]} tiporeview={item["idtiporeview"]}/>
-          )}
+            <ReviewTaller titulo={this.state.command['contenido']} idreviewactivo={this.state.command["idreviewactivo"]} tiporeview={this.state.command["idtiporeview"]}/>
           </div>
         </div>
       </div>
