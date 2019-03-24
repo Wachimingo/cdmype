@@ -19,9 +19,7 @@ constructor(props) {
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
-      // url:"https://cdmype.000webhostapp.com/registrarusuario.php",
       url:"http://backend.acdmype.org/registrarusuario.php",
-      // url:"http://localhost/cdmypephp/registrarusuario.php",
       data: formData,
       type: 'POST',
       contentType: false,
@@ -33,14 +31,11 @@ constructor(props) {
 onFileSelected(event) {
   var selectedFile = event.target.files[0];
   var reader = new FileReader();
-
   var imgtag = document.getElementById("myimage");
   imgtag.title = selectedFile.name;
-
   reader.onload = function(event) {
     imgtag.src = event.target.result;
   };
-
   reader.readAsDataURL(selectedFile);
 }
   exito(data){

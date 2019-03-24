@@ -20,19 +20,6 @@ class ImprimirAsistencia extends Component {
   fetch("http://backend.acdmype.org/getagenda.php",{ mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({agenda: data}));
-    // fetch("https://cdmype.000webhostapp.com/getListaAsistenciaImprimir.php",{ mode:'cors'})
-    //   .then(response => response.json())
-    //   .then(data => this.setState({Lista: data}));
-    // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
-    //   .then(response => response.json())
-    //   .then(data => this.setState({agenda: data}));
-    // fetch("http://localhost/cdmypephp/getListaAsistenciaImprimir.php",{ mode:'cors'})
-    //   .then(response => response.json())
-    //   .then(data => this.setState({Lista: data}));
-    // fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
-    //   .then(response => response.json())
-    //   .then(data => this.setState({agenda: data}));
-
   }
 
   render() {
@@ -54,7 +41,7 @@ class ImprimirAsistencia extends Component {
       })
     }
     return (
-      <div className="container-fluid contenedorAsistencia">
+      <div className="contenedorAsistenciaA">
       <h3>Taller</h3>
           <div className="divTabla resume">
               <table className="table" id="Lista">
@@ -78,7 +65,7 @@ class ImprimirAsistencia extends Component {
 class Imprimir extends React.Component {
   render() {
     return (
-      <div className="contenedordeImpresion">
+      <div className="contenedorAsistenciaA">
         <ReactToPrint
           trigger={() => <button className="btn btn-success" value="Imprimir"/>}
           content={() => this.componentRef}

@@ -1,7 +1,6 @@
 .ContenendorMenu{
-  margin-top: 15vh;
-  margin-left: 55vh;
-  margin-bottom: 45vh;
+  margin-top: 20vh;
+  margin-left: 75vh;
 }
 .Link {
   text-decoration: none;
@@ -12,7 +11,7 @@
 .icono {
   -webkit-filter: drop-shadow(16px 16px 10px rgba(0,0,0,0.9));
   filter: drop-shadow(16px 16px 10px rgba(0,0,0,0.9));
-  width: 240px;
+  width: 150px;
   margin-right: 15vh;
   float: left;
   cursor: pointer;
@@ -24,7 +23,13 @@
 }
 .ContenendorPost{
   margin-top: -6vh;
-  margin-left: 50vh;
+  margin-left: 0vh;
+  float: left;
+}
+.ContenendorAsistencia{
+  margin-top: -6vh;
+  margin-left: 0vh;
+  float: left;
 }
 
 @media only screen and (max-width: 600px){

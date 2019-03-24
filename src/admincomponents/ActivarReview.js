@@ -21,8 +21,6 @@ activar(e){
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
-          // url: 'http://localhost/cdmypephp/activarreview.php',
-          // url: 'https://cdmype.000webhostapp.com/activarreview.php',
           url: 'http://backend.acdmype.org/activarreview.php',
           data: formData,
           type: 'POST',
@@ -34,15 +32,9 @@ activar(e){
 }
 componentDidMount(){
 /*Fetch para obtener toda la agenda de la bd*/
-  // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
-  //    .then(response => response.json())
-  //    .then(data => this.setState({agenda: data}));
   fetch("https://backend.acdmype.org/getagenda.php",{ mode:'cors'})
      .then(response => response.json())
      .then(data => this.setState({agenda: data}));
-  // fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
-  //   .then(response => response.json())
-  //   .then(data => this.setState({agenda: data}));
   fetch("https://backend.acdmype.org/getreviewsactivos.php",{ mode:'cors'})
      .then(response => response.json())
      .then(data => this.setState({agenda: data}));
@@ -88,7 +80,7 @@ componentDidMount(){
      })
    }
     return (
-    <div className="container-fluid contenedorActivarReview">
+    <div className="contenedorActivarReview">
       <form id="frm" method="POST"  onSubmit={this.activar.bind(this)}>
       <select id="Tipo" name="TipoReview" className="form-control" onChange={this.cambiarTaller.bind(this)}>
         <option id="Taller" value='1'>Review para taller</option>

@@ -16,7 +16,7 @@ crearPDF(e){
 }
   render() {
     return (
-      <div className="container-fluid ">
+      <div className="">
           <div className="ContenendorMenu">
             <div className="ContenendorAsistencia">
               <h3>Asistencia</h3>
@@ -31,7 +31,7 @@ crearPDF(e){
               </Link>
             </div>
           </div>
-
+          <div style={{height: "150px"}}></div>
           <div className="ContenendorMenu">
             <div className="ContenendorAsistencia">
               <h3>Activar Review</h3>

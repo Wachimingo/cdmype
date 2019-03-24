@@ -9,8 +9,6 @@ publicar(e){
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
-          // url: 'http://localhost/cdmypephp/publicar.php',
-          // url: 'https://cdmype.000webhostapp.com/publicar.php',
           url: 'http://backend.acdmype.org/publicar.php',
           data: formData,
           type: 'POST',
@@ -34,7 +32,7 @@ reader.readAsDataURL(selectedFile);
 }
   render() {
     return (
-    <div className="container-fluid contenedor">
+    <div className="contenedor">
       <form id="frm" method="POST" encType="multipart/form-data" onSubmit={this.publicar.bind(this)}>
         <label htmlFor="comment">Descripcion:</label>
         <textarea className="form-control texto" rows="5" id="comment" form="frm" maxLength="200" name="descripcion"></textarea>

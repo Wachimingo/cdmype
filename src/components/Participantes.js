@@ -49,13 +49,13 @@ class Asistencia extends Component {
     }
 
     return (
-      <div className="container-fluid contenedorAsistencia">
+      <div className="contenedorAsistenciaA">
       <br/>
       <br/>
       <input id="myInput" type="text" placeholder="Search.." className="form-control"/>
       <br/>
           <div className="divTablaA resume">
-              <table className="tablaA" id="Lista">
+              <table className="table" id="Lista">
                 <thead>
                   <tr className="header">
                      <td>ID</td>
