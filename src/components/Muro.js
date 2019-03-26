@@ -3,6 +3,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../css/Muro.css";
 import "../js/MuroFuncion.js";
+import ReviewTaller from"./ReviewTaller.js";
 import {Link} from 'react-router-dom';
 class Muro extends Component {
   constructor(props){
@@ -19,12 +20,13 @@ class Muro extends Component {
   }
   render() {
     const {publicaciones} = this.state;
+    // const {command} = this.state;
     return (
-    <div className="container-fluid ContenedorPublicaciones">
+    <div className="container-fluid ">
     <div style={{height:"3em"}}></div>
     { publicaciones.map((item,key) =>
       <section className="hero" key={item.idpublicacion}>
-         <div className="">
+         <div className="container">
             <div className="row">
       		   <div className="col-lg-6 offset-lg-3">
         			<div className="cardbox shadow-lg bg-white">
@@ -36,12 +38,11 @@ class Muro extends Component {
           			   <div className="media-body">
           			    <p className="m-0">{item.nombres} {item.apellidos}</p>
           				  <small><span><i className="icon ion-md-time"></i> {item.fechapublicacion}</span></small>
-
+                    <p className="m-0">{item.descripcion}</p>
           			   </div>
           			  </div>
           			 </div>
           			 <div className="cardbox-item">
-                  <p className="m-0 descripcion">{item.descripcion}</p>
           			  <img className="img-fluid" src={`http://backend.acdmype.org/uploads/publicaciones/${item.foto}`} alt=""/>
           			 </div>
             </div>
@@ -51,6 +52,7 @@ class Muro extends Component {
           </section>
           )}
     </div>
+
     );
   }
 }

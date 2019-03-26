@@ -30,33 +30,17 @@ inLogin(e){
 validarLogin(data){
   var resultado = JSON.parse(data);
   if (resultado['correo'] === this.state.correo && resultado['clave'] === this.state.clave && resultado['privilegio'] === '1' && resultado['estado'] === '1') {
-    if (resultado['idusuario'] === localStorage.getItem("id")) {
-      localStorage.setItem("id",resultado['idusuario']);
-      localStorage.setItem("nombres",resultado['nombres']);
-      localStorage.setItem("identidad",resultado['identidad']);
-      localStorage.setItem("nombreentidad",resultado['nombreentidad']);
-      localStorage.setItem("nombretipo",resultado['nombretipo']);
-      localStorage.setItem("nombrepuesto",resultado['nombrepuesto']);
-      localStorage.setItem("idpuesto",resultado['idpuesto']);
-      localStorage.setItem("correo",resultado['correo']);
-      localStorage.setItem("telefono",resultado['telefono']);
-      localStorage.setItem("foto",resultado['imgperfil']);
-      localStorage.setItem("privilegio",resultado['privilegio']);
-    }
-    else {
-      localStorage.setItem("id",resultado['idusuario']);
-      localStorage.setItem("nombres",resultado['nombres']);
-      localStorage.setItem("identidad",resultado['identidad']);
-      localStorage.setItem("nombreentidad",resultado['nombreentidad']);
-      localStorage.setItem("nombretipo",resultado['nombretipo']);
-      localStorage.setItem("nombrepuesto",resultado['nombrepuesto']);
-      localStorage.setItem("idpuesto",resultado['idpuesto']);
-      localStorage.setItem("correo",resultado['correo']);
-      localStorage.setItem("telefono",resultado['telefono']);
-      localStorage.setItem("foto",resultado['imgperfil']);
-      localStorage.setItem("privilegio",resultado['privilegio']);
-      localStorage.removeItem('idreviewactivo');
-    }
+    localStorage.setItem("id",resultado['idusuario']);
+    localStorage.setItem("nombres",resultado['nombres']);
+    localStorage.setItem("identidad",resultado['identidad']);
+    localStorage.setItem("nombreentidad",resultado['nombreentidad']);
+    localStorage.setItem("nombretipo",resultado['nombretipo']);
+    localStorage.setItem("nombrepuesto",resultado['nombrepuesto']);
+    localStorage.setItem("idpuesto",resultado['idpuesto']);
+    localStorage.setItem("correo",resultado['correo']);
+    localStorage.setItem("telefono",resultado['telefono']);
+    localStorage.setItem("foto",resultado['imgperfil']);
+    localStorage.setItem("privilegio",resultado['privilegio']);
     this.props.history.push('/Home');
   }
   else if (resultado['correo'] === this.state.correo && resultado['clave'] === this.state.clave && resultado['privilegio'] === '2' && resultado['estado'] === '1') {
@@ -97,16 +81,14 @@ recuperarPassword(){
   }
 }
 componentDidMount(){
-  if (typeof localStorage.getItem('id') === 'undefined') {
-      localStorage.setItem('contador', 0);
-  }
+  document.body.style.overflow = 'hidden';
 }
   render() {
-
+    document.body.style.overflow = 'hidden';
     return (
-  <div className = "container-fluid bg">
+  <div className = "bg">
   {this.isLogged()}
-        <div className="container-fluid container">
+        <div className="container">
           <div className="d-flex justify-content-center h-100">
             <div className="card">
               <div className="card-header">

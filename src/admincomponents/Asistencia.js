@@ -19,6 +19,18 @@ class Asistencia extends Component {
     fetch("http://backend.acdmype.org/getagenda.php",{ mode:'cors'})
       .then(response => response.json())
       .then(data => this.setState({agenda: data}));
+      // fetch("https://cdmype.000webhostapp.com/getListaAsistencia.php",{ mode:'cors'})
+      //   .then(response => response.json())
+      //   .then(data => this.setState({Lista: data}));
+      // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
+      //   .then(response => response.json())
+      //   .then(data => this.setState({agenda: data}));
+    // fetch("http://localhost/cdmypephp/getListaAsistencia.php",{ mode:'cors'})
+    //   .then(response => response.json())
+    //   .then(data => this.setState({Lista: data}));
+    // fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
+    //   .then(response => response.json())
+    //   .then(data => this.setState({agenda: data}));
   }
   enlistar(e){
 
@@ -48,6 +60,8 @@ class Asistencia extends Component {
         var formData = new FormData(form[0]);
         formData.append('id', id);
         $.ajax({
+                // url: 'http://localhost/cdmypephp/enlistar.php',
+                // url: 'https://cdmype.000webhostapp.com/enlistar.php',
                 url: 'https://backend.acdmype.org/enlistar.php',
                 data: formData,
                 type: 'POST',
@@ -79,7 +93,7 @@ return false;
     }
 
     return (
-      <div className="contenedorAsistenciaA contaier-fluid">
+      <div className="container-fluid contenedorAsistencia">
       <form name="frm" id="frm" method="POST">
       <h3>Taller</h3>
       <select name="idAgenda" className="form-control">

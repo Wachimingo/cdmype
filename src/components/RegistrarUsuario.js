@@ -19,7 +19,9 @@ constructor(props) {
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
+      // url:"https://cdmype.000webhostapp.com/registrarusuario.php",
       url:"http://backend.acdmype.org/registrarusuario.php",
+      // url:"http://localhost/cdmypephp/registrarusuario.php",
       data: formData,
       type: 'POST',
       contentType: false,
@@ -31,11 +33,14 @@ constructor(props) {
 onFileSelected(event) {
   var selectedFile = event.target.files[0];
   var reader = new FileReader();
+
   var imgtag = document.getElementById("myimage");
   imgtag.title = selectedFile.name;
+
   reader.onload = function(event) {
     imgtag.src = event.target.result;
   };
+
   reader.readAsDataURL(selectedFile);
 }
   exito(data){
@@ -57,25 +62,43 @@ cambiarSexo(e){
   preview(){
     if (this.state.sexo === '1') {
       return(<img id="myimage" src={"http://backend.acdmype.org/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
+      // return(<img id="myimage" src={"https://cdmype.000webhostapp.com/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
+      // return(<img id="myimage" src={"http://localhost/cdmypephp/uploads/usuarios/user.png"} className="preview" height="100px" width="100px" alt=""/>);
     }
     else if(this.state.sexo === '2'){
       return(<img id="myimage" src={"http://backend.acdmype.org/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
+      // return(<img id="myimage" src={"https://cdmype.000webhostapp.com/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
+      // return(<img id="myimage" src={"http://localhost/cdmypephp/uploads/usuarios/user2.png"} className="preview" height="100px" width="100px" alt=""/>);
     }
     else {
       return(<img id="myimage" className="preview" height="100px" width="100px" alt=""/>);
     }
   }
 componentWillMount(){
-
+  document.body.style.overflow = 'auto';
 }
 componentDidMount(){
+document.body.style.overflow = 'auto';
 /*Fecth para la lista de cdmypes, conamypes e invitados, ademas de los puestos de cada uno*/
 fetch("http://backend.acdmype.org/getentidades.php",{ mode:'cors'})
    .then(response => response.json())
    .then(data => this.setState({entidad: data}));
  }
+ // fetch("https://cdmype.000webhostapp.com/getentidades.php",{ mode:'cors'})
+ //    .then(response => response.json())
+ //    .then(data => this.setState({entidad: data}));
+ //  }
+ // fetch("http://localhost/cdmypephp/getentidades.php",{ mode:'cors'})
+ //    .then(response => response.json())
+ //    .then(data => this.setState({entidad: data}));
+ //
+ //  }
+  // fetch("http://areadev.260mb.net/appmype/index.php/cli/cmpany",{ mode:'cors', method:'POST', cache:'default'})
+  //    .then(response => response.json())
+  //    .then(data => this.setState({entidad: data}));
+  //  }
 render() {
-    document.body.style.overflowY = 'scroll';
+    document.body.style.overflow = 'auto';
   /*const cdmype y conamype toman los valores del ajax sobre la tabla organizaciones*/
   const {entidad} = this.state;
   /*separacion de listas del array entidad*/
@@ -175,7 +198,7 @@ render() {
   return string.replace(/\D/g,'').substring(0, 8);
   }
   return (
-      <div className="bgR contaier-fluid">
+      <div className="bgR">
       <br/>
           <div className="cardR">
                 <h1 className="informaciongeneral">Informacion general:</h1>
@@ -186,7 +209,7 @@ render() {
                     <label>Nombre completo:</label>
                   </div>
                   <div className="form-group d-flex justify-content-center">
-                    <input type="text" className="form-control" id="txtNombre" name="nombres" placeholder="ej: Jose Antonio Hernandez Perez" required  title="Ingrese sus nombres con letra inicial mayuscula"/>
+                    <input type="text" className="form-control" id="txtNombre" name="nombres" placeholder="ej: Jose Antonio" required  title="Ingrese sus nombres con letra inicial mayuscula"/>
                   </div>
                   <div className="justify-content-left">
                     <label>Sexo:</label>
@@ -198,7 +221,6 @@ render() {
                       <option value="2" required>Femenino</option>
                     </select>
                   </div>
-                  <br/>
                   <div className=" justify-content-left">
                     <label>Telefono:</label>
                   </div>
@@ -217,7 +239,6 @@ render() {
                     <option value="Invitado" required>Invitado</option>
                   </select>
                 </div>
-                <br/>
 {/*Se llama a la funcion renderOrg para mostrar que cdmype o conamype ha seleccionado, y su puestos*/}
                 {
                   renderOrg(this.state.mostrar)

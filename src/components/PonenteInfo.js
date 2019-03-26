@@ -15,16 +15,24 @@ class PonenteInfo extends Component {
     fetch("http://backend.acdmype.org/getponenteinfo.php?id="+id, {mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({ponente: data[0]}));
+    // fetch("https://cdmype.000webhostapp.com/getponenteinfo.php?id="+id, {mode:'cors'})
+    // .then(response => response.json())
+    // .then(data => this.setState({ponente: data[0]}));
+    // fetch("http://192.168.1.20/cdmypephp/getponenteinfo.php?id="+id, {mode:'cors'})
+    // .then(response => response.json())
+    // .then(data => this.setState({ponente: data[0]}));
   }
   render() {
     return (
-      <div className="contaier-fluid">
+      <div>
         <div style={{height: "100px"}}></div>
         <div className="nombre">
           <h2>{this.state.ponente['nombreponente']}</h2>
         </div>
         <div className="panelizquierdo">
-        <img src={`http://backend.acdmype.org/uploads/ponentes/${this.state.ponente['foto']}`} height="150px" width="150px" alt=""/>
+        <img src={`http://backend.acdmype.org/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt=""/>
+          {/*<img src={`https://cdmype.000webhostapp.com/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt=""/>*/}
+          {/*<img src={`http://192.168.1.20/cdmypephp/uploads/ponentes/${this.state.ponente['foto']}`} height="100px" width="100px" alt=""/>*/}
           <p>{this.state.ponente['puesto']}</p>
         </div>
         <div className="panelderecho">

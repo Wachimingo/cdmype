@@ -1,6 +1,8 @@
-.contenedorAsistenciaA{
+.contenedorAsistencia{
+  margin-top: 5vh;
+}
+.contenedordeImpresion{
   margin-top: 15vh;
-  width: 92vw;
 }
 .link{
   color: black;
@@ -21,12 +23,11 @@
 .contenido > h3{
   margin-left: 25px;
 }
-.tablaA{
+.tabla{
   margin-top: 0px;
-  width: 209vh;
-  height: auto;
+  background-color: #E9A043;
 }
-.divTablaA{
+.divTabla{
   clear: both;
   height: auto;
   width: auto;
@@ -43,28 +44,18 @@
    .contenido{
      background-image: linear-gradient(to right, #5678B7 , #263160);
      font-size: 20px;
-     width: 250px;
+     width: 62vh;
      color: white;
      text-align: left;
      margin-top: 0;
      margin-left: -30px;
    }
+
    .wrapper{
      margin-left: -45px;
      height: 100%;
-     width: 250px;
+     width: 64vh;
      overflow: auto;
    }
-   .header{
-     background-color: #E5E7E8;
-     text-align: center;
-   }
-   .cuerpo{
-     text-align: center;
-   }
-   .contenedorAsistenciaA{
-     margin-top: 15px;
-     margin-left: -15px;
-     width: 85vw;
-   }
+
  }

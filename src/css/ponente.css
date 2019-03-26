@@ -13,7 +13,6 @@
 }
 .panelderecho{
   margin-right: 35px;
-  width: 200vh;
   text-align: justify;
 }
 @media only screen and (max-width: 600px){
@@ -28,7 +27,6 @@
     clear: both;
     margin-top: 0;
     margin-left: 10%;
-    width: 50vh;
     text-align: justify;
   }
 }

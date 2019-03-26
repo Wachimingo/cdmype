@@ -19,6 +19,18 @@ class Asistencia extends Component {
   fetch("http://backend.acdmype.org/getagenda.php",{ mode:'cors'})
     .then(response => response.json())
     .then(data => this.setState({agenda: data}));
+    // fetch("https://cdmype.000webhostapp.com/getListaAsistenciaImprimir.php",{ mode:'cors'})
+    //   .then(response => response.json())
+    //   .then(data => this.setState({Lista: data}));
+    // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
+    //   .then(response => response.json())
+    //   .then(data => this.setState({agenda: data}));
+    // fetch("http://localhost/cdmypephp/getListaAsistencia.php",{ mode:'cors'})
+    //   .then(response => response.json())
+    //   .then(data => this.setState({Lista: data}));
+    // fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
+    //   .then(response => response.json())
+    //   .then(data => this.setState({agenda: data}));
   }
   render() {
     /*Array agenda*/
@@ -49,12 +61,12 @@ class Asistencia extends Component {
     }
 
     return (
-      <div className="contenedorAsistenciaA contaier-fluid">
+      <div className="container-fluid contenedorAsistencia">
       <br/>
       <br/>
       <input id="myInput" type="text" placeholder="Search.." className="form-control"/>
       <br/>
-          <div className="divTablaA resume">
+          <div className="divTabla resume">
               <table className="table" id="Lista">
                 <thead>
                   <tr className="header">

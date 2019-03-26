@@ -1,13 +1,8 @@
 
 .rotulo{
-  margin-top: 10vh;
+  margin-top: 55px;
   width: 250px;
   height: 250px;
-}
-.contenedoragenda{
-  margin-top: 0vh;
-  width: 150vh;
-  margin-left: 5vh;
 }
 .dia{
   background-color: #ff9714;
@@ -38,7 +33,6 @@
 }
 .tabla{
   margin-top: 0px;
-  width: 197vh;
   background-color: #E9A043;
 }
 .divTabla{
@@ -76,7 +70,7 @@
  @media only screen and (max-width: 600px){
    .rotulo{
      margin-left: 75px;
-     margin-top: 15vh;
+     margin-top: 70px;
      height: 150px;
      width: 150px;
    }
@@ -89,7 +83,7 @@
      width: 62vh;
      color: white;
      text-align: left;
-     margin-top: 35vh;
+     margin-top: 0;
      margin-left: -30px;
    }
    .contenido > h3{
@@ -110,16 +104,5 @@
      text-align: center;
      width: 250px;
      cursor: pointer;
-   }
-   .tabla{
-     margin-top: 0px;
-     width: 60vh;
-     margin-left: -2vh;
-     background-color: #E9A043;
-   }
-   .contenedoragenda{
-     margin-top: -7vh;
-     width: 0vh;
-     margin-left: 2vh;
    }
  }

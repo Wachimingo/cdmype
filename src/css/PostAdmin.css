@@ -1,9 +1,9 @@
 .contenedor{
-  margin-top: 155px;
-  margin-left: 80px;
+  margin-top: 15vh;
+  margin-left: 150px;
 }
 .texto{
-  width: 80vw;
+  width: 165vh;
 }
 .preview-images-zone {
   height: 90px;
@@ -71,10 +71,10 @@
 }
 @media only screen and (max-width: 600px){
   .texto{
-    width: 90vw;
+    width: 63vh;
   }
   .contenedor{
-    margin-top: 90px;
+    margin-top: 15vh;
     margin-left: -15px;
   }
 }

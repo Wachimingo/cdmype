@@ -1,15 +1,24 @@
+/*
+*
+* ===========================================================
+*     HERO SECTION
+* ===========================================================
+*
+*/
 .hero {
-  padding: 1rem 0px ;
-  margin: 0px ;
+  padding: 1rem 0px !important;
+  margin-left: -30px;
+  margin: 0px !important;
 }
 .cardbox {
   border-radius: 3px;
   margin-bottom: 5px;
-  padding: 0px ;
+  padding: 0px !important;
 }
-.descripcion{
-  font-size: 18px;
-}
+
+/* ------------------------------- */
+/* Cardbox Heading
+---------------------------------- */
 .cardbox .cardbox-heading {
   padding: 16px;
   margin: 0;
@@ -21,7 +30,7 @@
  width: 32px;
  padding: 0;
  overflow: hidden;
- color: #fff ;
+ color: #fff !important;
  background: #b5b6b6;
 
 display: flex;
@@ -32,10 +41,10 @@ text-align: center;
 }
 .cardbox .float-right .dropdown-menu{
   position: relative;
-  left: 13px ;
+  left: 13px !important;
 }
 .cardbox .float-right a:hover{
-  background: #f4f4f4 ;
+  background: #f4f4f4 !important;
 }
 .cardbox .float-right a.dropdown-item {
   display: block;
@@ -43,13 +52,18 @@ text-align: center;
   padding: 4px 0px 4px 10px;
   clear: both;
   font-weight: 400;
-  font-size: 14px ;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 14px !important;
   color: #848484;
   text-align: inherit;
   white-space: nowrap;
   background: 0 0;
   border: 0;
 }
+
+/* ------------------------------- */
+/* Media Section
+---------------------------------- */
 .media {
   display: -ms-flexbox;
   display: flex;
@@ -57,40 +71,45 @@ text-align: center;
   align-items: flex-start;
 }
 .d-flex {
-  display: -ms-flexbox;
-  display: flex ;
+  display: -ms-flexbox !important;
+  display: flex !important;
 }
 .media .mr-3{
-  margin-right: 1rem;
+  margin-right: 1rem !important;
 }
 .media img{
-  width: 48px ;
-  height: 48px ;
+  width: 48px !important;
+  height: 48px !important;
   padding: 2px;
   border: 2px solid #f4f4f4;
 }
 .media-body {
   -ms-flex: 1;
   flex: 1;
-  padding: .4rem;
+  padding: .4rem !important;
 }
 .media-body p{
-  font-weight: 500;
+  font-family: 'Rokkitt', serif;
+  font-weight: 500 !important;
   font-size: 14px;
   color: #88898a;
 }
 .media-body small span{
+  font-family: 'Rokkitt', serif;
   font-size: 12px;
   color: #aaa;
   margin-right: 10px;
 }
+
+
+/* ------------------------------- */
+/* Cardbox Item
+---------------------------------- */
 .cardbox .cardbox-item {
     position: relative;
     display: block;
 }
 .cardbox .cardbox-item img{
-  height: auto;
-  width: auto;
 }
 .img-responsive{
     display: block;
@@ -98,27 +117,33 @@ text-align: center;
     height: auto;
 }
 .fw {
-    width: 100%;
+    width: 100% !important;
 	height: auto;
 }
+
+
+/* ------------------------------- */
+/* Cardbox Base
+---------------------------------- */
 .cardbox-base{
  border-bottom: 2px solid #f4f4f4;
 }
 .cardbox-base ul{
- margin: 10px 0px 10px 15px;
- padding: 10px;
+ margin: 10px 0px 10px 15px!important;
+ padding: 10px !important;
  font-size: 0px;
   display: inline-block;
 }
 .cardbox-base li {
   list-style: none;
-  margin: 0px 0px 0px -8px;
-  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px -8px !important;
+  padding: 0px 0px 0px 0px !important;
   display: inline-block;
 }
+
 .cardbox-base li a{
-  margin: 0px;
-  padding: 0px;
+  margin: 0px !important;
+  padding: 0px !important;
 }
 .cardbox-base li a i{
  position: relative;
@@ -128,6 +153,7 @@ text-align: center;
  margin-right: 15px;
 }
 .cardbox-base li a span{
+ font-family: 'Rokkitt', serif;
  font-size: 14px;
  color: #8d8d8d;
  margin-left: 20px;
@@ -135,6 +161,7 @@ text-align: center;
  top: 5px;
 }
 .cardbox-base li a em{
+ font-family: 'Rokkitt', serif;
  font-size: 14px;
  color: #8d8d8d;
  position: relative;
@@ -143,15 +170,147 @@ text-align: center;
 .cardbox-base li a img{
   width: 25px;
   height: 25px;
-  margin: 0px;
+  margin: 0px !important;
   border: 2px solid #fff;
 }
-.ContenedorPublicaciones{
-  margin-left: 100px;
+
+
+/* ------------------------------- */
+/* Cardbox Comments
+---------------------------------- */
+.cardbox-comments{
+  padding: 10px 40px 20px 40px !important;
+  font-size: 0px;
+  text-align: center;
+  display: inline-block;
 }
-@media only screen and (max-width: 600px){
-  .ContenedorPublicaciones{
-    margin-left: 30px;
-    width: 80vw;
+.cardbox-comments .comment-avatar img{
+  margin-top: 1px;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+}
+.cardbox-comments .comment-body {
+  overflow: auto;
+}
+.search {
+ position: relative;
+ right: -60px;
+ top: -40px;
+ margin-bottom: -40px;
+ border: 2px solid #f4f4f4;
+ width: 100%;
+ overflow: hidden;
+}
+.search input[type="text"] {
+ background-color: #fff;
+ line-height: 10px;
+ padding: 15px 60px 20px 10px;
+ border: none;
+ border-radius: 4px;
+ width: 350px;
+ font-family: 'Rokkitt', serif;
+ font-size: 14px;
+ color: #8d8d8d;
+ height: inherit;
+ font-weight: 700;
+}
+.search button {
+ position: absolute;
+ right: 0;
+ top: 0px;
+ border: none;
+ background-color: transparent;
+ color: #bbbbbb;
+ padding: 15px 25px;
+ cursor: pointer;
+
+ display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+.search button i {
+ font-size: 20px;
+ line-height: 30px;
+ display: block;
+}
+
+
+/* ------------------------------- */
+/* Author
+---------------------------------- */
+.author a{
+ font-family: 'Rokkitt', serif;
+ font-size: 16px;
+ color: #00C4CF;
+}
+.author p{
+ font-family: 'Rokkitt', serif;
+ font-size: 16px;
+ color: #8d8d8d;
+}
+@media screen and (max-width: 600px){
+  .search {
+   position: relative;
+   right: -10px;
+   top: -0px;
+   margin-bottom: -40px;
+   border: 2px solid #f4f4f4;
+   width: 60%;
+   overflow: hidden;
+  }
+  .search input[type="text"] {
+   background-color: #fff;
+   line-height: 10px;
+   padding: 15px 60px 20px 10px;
+   border: none;
+   border-radius: 4px;
+   width: 350px;
+   font-family: 'Rokkitt', serif;
+   font-size: 14px;
+   color: #8d8d8d;
+   height: inherit;
+   font-weight: 700;
+  }
+  .search button {
+   position: absolute;
+   right: 0;
+   top: 0px;
+   border: none;
+   background-color: transparent;
+   color: #bbbbbb;
+   padding: 15px 25px;
+   cursor: pointer;
+
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  }
+  .search button i {
+   font-size: 20px;
+   line-height: 30px;
+   display: block;
+  }
+  .cardbox-comments{
+    font-size: 0px;
+    margin-left: -30px;
+    text-align: center;
+    display: inline-block;
+  }
+  .cardbox-comments .comment-avatar img{
+    margin-top: 1px;
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 40px;
+    height: 40px;
   }
 }

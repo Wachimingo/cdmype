@@ -28,6 +28,16 @@ onEdit(e) {
   formData.append("defaultidentidad", localStorage.getItem('identidad'));
   formData.append("defaultidpuesto", localStorage.getItem('idpuesto'));
   formData.append("defaultfoto", localStorage.getItem('foto'));
+  localStorage.removeItem("nombres");
+  localStorage.removeItem("identidad");
+  localStorage.removeItem("nombreentidad");
+  localStorage.removeItem("nombretipo");
+  localStorage.removeItem("nombrepuesto");
+  localStorage.removeItem("idpuesto");
+  localStorage.removeItem("correo");
+  localStorage.removeItem("telefono");
+  localStorage.removeItem("foto");
+  localStorage.removeItem("privilegio");
   $.ajax({
       url: 'http://backend.acdmype.org/editarusuario.php',
       data: formData,
@@ -40,16 +50,15 @@ onEdit(e) {
   });
 }
 onFileSelected(event) {
-var selectedFile = event.target.files[0];
-var reader = new FileReader();
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+    var imgtag = document.getElementById("myimagee");
+    imgtag.title = selectedFile.name;
 
-var imgtag = document.getElementById("myimagee");
-imgtag.title = selectedFile.name;
-
-reader.onload = function(event) {
-  imgtag.src = event.target.result;
-};
-reader.readAsDataURL(selectedFile);
+    reader.onload = function(event) {
+      imgtag.src = event.target.result;
+    };
+    reader.readAsDataURL(selectedFile);
 }
   exito(data){
     $('#notificacionedicion').modal('show');
@@ -235,5 +244,4 @@ render() {
     );
   }
   }
-
   export default EditarPerfil;

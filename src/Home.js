@@ -7,12 +7,12 @@ import Perfil from"./components/Perfil.js";
 import Muro from"./components/Muro.js";
 import Ponentes from"./components/Ponentes.js";
 import AcercaDe from"./components/Acercade.js";
-import ReviewTaller from"./components/ReviewTaller.js";
 import CreadoresInfo from"./components/CreadoresInfo.js";
 import Participantes from"./components/Participantes.js";
 import PonenteInfo from"./components/PonenteInfo.js";
 import Patrocinadores from"./components/Patrocinadores.js";
 import PatrocinadorInfo from"./components/PatrocinadorInfo.js";
+import ReviewTaller from"./components/ReviewTaller.js";
 import Post from "./components/ModalWindowPost.js";
 import EditarPerfil from "./components/EditarPerfil.js";
 import {Route, Switch, Link} from 'react-router-dom';
@@ -66,25 +66,23 @@ class Home extends Component {
  modalReview(data){
    // var resultado = JSON.parse(data);
    // console.log(data);
-
+   // console.log(localStorage.getItem('idreviewactivo'));
    for(var key in data) {
       if(data.hasOwnProperty(key)){
-        for (var i = 0; i < data.length; i++) {
+        // for (var i = 0; i < data.length; i++) {
           // this.setState({idreview: data[i]['idreviewactivo']});
-          // console.log(localStorage.getItem('idreviewactivo'+i));
-          if (data[i]['idreviewactivo'] !== localStorage.getItem('idreviewactivo'+i)) {
-            this.setState({command: data[0]});
+          if (data[0]['idreviewactivo'] !== localStorage.getItem('idreviewactivo')) {
+              this.setState({command: data[0]});
               $('#review').modal('show');
           }
-        }
+        // }
       }
     }
     // console.log(this.state.idreview);
  }
   render() {
-    // const {command} = this.state;
     return (
-      <div className="bgH">
+      <div className="container-fluid ">
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark barra">
               <a href="#sidebar" data-toggle="collapse"><i className="fa fa-navicon fa-lg  w "></i></a>
               <Link to={'/Home'} replace className="navbar-brand Items">V CONGRESO</Link>
@@ -107,19 +105,19 @@ class Home extends Component {
               </div>
             </div>
           </div>
-{/*Modal window para review*/}
-    <div className="modal fade" id="review" tabIndex="-2" role="dialog" aria-labelledby="review" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-      <div className="modal-dialog" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h6 className="modal-title" id="exampleModalLabel">Su opinion es importante para nosotros</h6>
+  {/*Modal window para review*/}
+          <div className="modal fade" id="review" tabIndex="-2" role="dialog" aria-labelledby="review" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h6 className="modal-title" id="exampleModalLabel">Su opinion es importante para nosotros</h6>
+                </div>
+                <div className="modal-body">
+                  <ReviewTaller titulo={this.state.command['contenido']} idreviewactivo={this.state.command["idreviewactivo"]} tiporeview={this.state.command["idtiporeview"]}/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="modal-body">
-            <ReviewTaller titulo={this.state.command['contenido']} idreviewactivo={this.state.command["idreviewactivo"]} tiporeview={this.state.command["idtiporeview"]}/>
-          </div>
-        </div>
-      </div>
-    </div>
 {/*Aqui comienza el dropdown menu*/}
           <div className="row">
               <div className="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in panel fixed-top" id="sidebar">

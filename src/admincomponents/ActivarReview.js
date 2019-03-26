@@ -9,7 +9,6 @@ class ActivarReview extends Component {
     this.state={
       agenda:[],
       mostrar: "1",
-      reviews: [],
     };
   }
   cambiarTaller(e){
@@ -21,6 +20,8 @@ activar(e){
   e.preventDefault();
   var formData = new FormData(form[0]);
   $.ajax({
+          // url: 'http://localhost/cdmypephp/activarreview.php',
+          // url: 'https://cdmype.000webhostapp.com/activarreview.php',
           url: 'http://backend.acdmype.org/activarreview.php',
           data: formData,
           type: 'POST',
@@ -32,16 +33,18 @@ activar(e){
 }
 componentDidMount(){
 /*Fetch para obtener toda la agenda de la bd*/
+  // fetch("https://cdmype.000webhostapp.com/getagenda.php",{ mode:'cors'})
+  //    .then(response => response.json())
+  //    .then(data => this.setState({agenda: data}));
   fetch("https://backend.acdmype.org/getagenda.php",{ mode:'cors'})
      .then(response => response.json())
      .then(data => this.setState({agenda: data}));
-  fetch("https://backend.acdmype.org/getreviewsactivos.php",{ mode:'cors'})
-     .then(response => response.json())
-     .then(data => this.setState({reviews: data}));
+  // fetch("http://localhost/cdmypephp/getagenda.php",{ mode:'cors'})
+  //   .then(response => response.json())
+  //   .then(data => this.setState({agenda: data}));
 }
   render() {
     const {agenda} = this.state;
-    const {reviews} = this.state;
     function renderTaller(M) {
       const m = M;
      if(m === '1'){
@@ -67,21 +70,8 @@ componentDidMount(){
        );
      }
    }
-   /*Funcion para crear la tabla de la Lista*/
-   function renderLista(){
-     return reviews.map((value,key) => {
-       return (
-        <tr key={value.idreviewactivo}  id={value.idreviewactivo} className="cuerpo">
-           <td width=''>{value.idreviewactivo}</td>
-           <td width=''>{value.nombre}</td>
-           <td width=''>{value.contenido}</td>
-           <td width=''>{value.fecha}</td>
-       </tr>
-       )
-     })
-   }
     return (
-    <div className="contenedorActivarReview">
+    <div className="container-fluid contenedorActivarReview">
       <form id="frm" method="POST"  onSubmit={this.activar.bind(this)}>
       <select id="Tipo" name="TipoReview" className="form-control" onChange={this.cambiarTaller.bind(this)}>
         <option id="Taller" value='1'>Review para taller</option>
@@ -95,24 +85,6 @@ componentDidMount(){
         <input value={localStorage.getItem('id')} name="id" className="dato"/>
         <button type="submit" className="btn btn-primary float-left" value="Activar">Activar Review</button>
       </form>
-      <br/>
-      <br/>
-      <br/>
-      <div className="divTabla resume">
-          <table className="table" id="Lista">
-            <thead>
-              <tr className="header">
-                 <td>ID</td>
-                 <td>Tipo</td>
-                 <td>Contenido</td>
-                 <td>fecha</td>
-             </tr>
-            </thead>
-            <tbody>
-              {renderLista()}
-            </tbody>
-          </table>
-      </div>
     </div>
 
     );

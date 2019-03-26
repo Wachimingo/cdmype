@@ -1,11 +1,46 @@
-.contenedorCartas{
-  margin-top: 250px;
-  margin-left: 95vh;
+body {
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+    background:#fbfbfb;
+}
+.contenedor{
+  margin-top: 20%;
+  margin-left: 10%;
+}
+.cabezera{
+ margin-top: 7%;
+}
+.oro{
+  background-color: yellow;
+  margin-top: 7%;
+  clear: both;
+}
+.grupoOro{
+  background-color: yellow;
+}
+.plata{
+  background-color: gray;
+  clear: both;
+}
+.grupoPlata{
+  background-color: gray;
+}
+.bronce{
+  background-color: brown;
+  clear: both;
+}
+.grupoBronce{
+  background-color: brown;
+}
+.titulo{
+  color: white;
+  text-align: center;
 }
 .card1 {
     float: left;
     margin-top:5%;
-    margin-left:0%;
+    margin-left:5%;
     transform:translate(-50%,-50%);
     width:300px;
     min-height:400px;
@@ -73,10 +108,9 @@
     transition:0.5s;
     text-align:center;
 }
-@media only screen and (max-width: 600px) {
-  .contenedorCartas{
-    margin-top: 40vh;
-    margin-left: 11vh;
+@media only screen and (max-width: 1100px) {
+  .cabezera{
+    margin-top: 95px;
   }
   .card1 {
       float: left;
@@ -90,4 +124,51 @@
       border-radius:10px;
       transition:0.5s;
   }
+  .contenedor{
+    margin-top: 200px;
+  }
+
+}
+@media only screen and (max-width: 920px) {
+  .cabezera{
+    margin-top: 95px;
+  }
+  .card1 {
+      float: left;
+      margin-top:15px;
+      margin-left:40%;
+      transform:translate(-50%,-50%);
+      width:300px;
+      min-height:400px;
+      background:#fff;
+      box-shadow:0 20px 50px rgba(0,0,0,.1);
+      border-radius:10px;
+      transition:0.5s;
+  }
+  .contenedor{
+    margin-top: 200px;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  .cabezera{
+    margin-top: 95px;
+  }
+  .card1 {
+      float: left;
+      margin-top:15px;
+      margin-left:40%;
+      transform:translate(-50%,-50%);
+      width:300px;
+      min-height:400px;
+      background:#fff;
+      box-shadow:0 20px 50px rgba(0,0,0,.1);
+      border-radius:10px;
+      transition:0.5s;
+  }
+  .contenedor{
+    margin-top: 200px;
+  }
+
 }
